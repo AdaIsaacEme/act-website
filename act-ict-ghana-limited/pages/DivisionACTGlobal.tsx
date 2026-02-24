@@ -49,7 +49,7 @@ const DivisionACTGlobal: React.FC = () => {
                </div>
                <p className="text-gray-600 leading-relaxed mb-6">{item.desc}</p>
                <div className="h-48 rounded-lg overflow-hidden bg-gray-100">
-                  <img src={`https://picsum.photos/600/400?random=${200 + idx}`} alt={item.title} className="w-full h-full object-cover" />
+                  <img src={`/images/divisions/act-global-${idx + 1}.jpg`} alt={item.title} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                </div>
              </div>
           ))}
