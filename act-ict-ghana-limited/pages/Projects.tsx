@@ -55,11 +55,6 @@ const Projects: React.FC = () => {
                   alt={project.title}
                   className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white font-bold border border-white px-4 py-2 rounded">
-                    View Details
-                  </span>
-                </div>
               </div>
               <div className="p-6">
                 <div className="text-xs font-bold text-blue-600 uppercase tracking-wide mb-2">
