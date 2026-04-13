@@ -8,11 +8,13 @@ const Footer: React.FC = () => {
   const { content } = useContent();
   const location = useLocation();
   const isMiningPage = location.pathname === '/mining';
+  const isProjectsPage = location.pathname === '/projects';
+  const hideCTA = isMiningPage || isProjectsPage;
 
   return (
     <footer className="bg-[#060F1E] border-t border-[#1E3A5F]">
-      {/* CTA Strip - Hidden on mining page */}
-      {!isMiningPage && (
+      {/* CTA Strip - Hidden on mining and projects pages */}
+      {!hideCTA && (
         <div className="bg-[#00A8E8] py-8 px-4 text-center">
           <h3 className="font-display text-2xl text-white">Ready to transform your operations?</h3>
           <Link to="/contact" className="mt-4 inline-block bg-white text-[#00A8E8] font-bold px-8 py-3 hover:bg-gray-100 transition-all duration-300">
