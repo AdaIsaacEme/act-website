@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useContent } from "../context/ContentContext";
 
 const Projects: React.FC = () => {
@@ -13,28 +14,36 @@ const Projects: React.FC = () => {
   const filteredProjects =
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
+  const categoryColors: { [key: string]: string } = {
+    Infrastructure: "#00A8E8",
+    Communications: "#F59E0B",
+    Security: "#EF4444",
+    Engineering: "#10B981",
+  };
+
   return (
-    <div className="pt-20 min-h-screen bg-white">
-      <div className="bg-gray-900 text-white py-16">
+    <div className="pt-32 min-h-screen bg-[#0A1628] pb-20">
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">Our Projects</h1>
-          <p className="text-gray-400 text-lg">
-            Showcasing excellence in execution across Ghana.
+          <h1 className="font-display text-5xl md:text-6xl font-bold mb-4">Our Projects</h1>
+          <p className="text-[#7A9ABD] text-lg">
+            Showcasing excellence in execution across Ghana and West Africa.
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 filter === cat
-                  ? "bg-blue-600 text-white shadow-lg scale-105"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50 scale-105"
+                  : "bg-[#0F2137] text-[#7A9ABD] border border-[#1E3A5F] hover:border-[#00A8E8] hover:text-[#00A8E8]"
               }`}
             >
               {cat}
@@ -42,31 +51,64 @@ const Projects: React.FC = () => {
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 overflow-hidden"
+              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              {/* Image Container */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E]">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
                 />
-              </div>
-              <div className="p-6">
-                <div className="text-xs font-bold text-blue-600 uppercase tracking-wide mb-2">
+                <div className="absolute inset-0 bg-[#0A1628]/30 group-hover:bg-[#0A1628]/10 transition-all duration-300" />
+
+                {/* Category Badge */}
+                <div
+                  className="absolute top-4 left-4 px-4 py-2 rounded-full text-white text-xs font-bold uppercase tracking-wider"
+                  style={{
+                    backgroundColor: categoryColors[project.category] || "#00A8E8",
+                  }}
+                >
                   {project.category}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+              </div>
+
+              {/* Content */}
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="font-display text-xl font-black text-white mb-2 group-hover:text-[#00A8E8] transition-all duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{project.description}</p>
+                <p className="text-[#7A9ABD] text-sm flex-1">
+                  {project.description}
+                </p>
               </div>
+
+              {/* Bottom Border Hover Effect */}
+              <div className="h-1 bg-gradient-to-r from-[#00A8E8] via-[#0090CC] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </div>
           ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-12 text-center">
+          <h3 className="font-display text-3xl text-white mb-4">More Projects on Request</h3>
+          <p className="text-[#7A9ABD] mb-6 max-w-2xl mx-auto">
+            We have completed 100+ projects across Ghana and West Africa. Contact us for a full portfolio of our engineering excellence and proven track record.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#00A8E8]/50"
+          >
+            Get in Touch →
+          </Link>
         </div>
       </div>
     </div>

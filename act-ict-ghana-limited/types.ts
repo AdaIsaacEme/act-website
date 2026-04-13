@@ -11,6 +11,7 @@ export interface Solution {
   title: string;
   description: string;
   iconName: string; // We'll map string names to Lucide icons
+  category?: string; // Added for filtering
 }
 
 export interface Partner {
@@ -51,7 +52,4 @@ export interface AppState {
   partners: Partner[];
   content: SiteContent;
   updateContent: (section: keyof SiteContent, data: any) => void;
-  updateProject: (project: Project) => void;
-  addProject: (project: Project) => void;
-  deleteProject: (id: string) => void;
 }

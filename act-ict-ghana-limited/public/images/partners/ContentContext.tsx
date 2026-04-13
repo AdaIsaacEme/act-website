@@ -34,10 +34,10 @@ const defaultContent: SiteContent = {
     ],
   },
   contact: {
-    address: "123 Technology Avenue, Accra, Ghana",
-    phone: "+233 30 200 0000",
-    email: "info@act-ict.com.gh",
-    mapUrl: "https://maps.google.com/maps?q=Accra,Ghana&z=15&output=embed",
+    address: "F28/8 5th Circular Road Extension, Cantonments, Accra, Ghana",
+    phone: "+233 577 700 555",
+    email: "office@act-ict.com.gh",
+    mapUrl: "https://maps.app.goo.gl/EVtgjcWg2ARddbLDA",
   },
   socials: {
     linkedin: "#",

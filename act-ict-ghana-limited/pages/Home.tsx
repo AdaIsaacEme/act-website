@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
+import AwardsTicker from "../components/AwardsTicker";
 import PartnerCarousel from "../components/PartnerCarousel";
 import { useContent } from "../context/ContentContext";
 import {
   ArrowRight,
-  ShieldCheck,
-  Radio,
-  Server,
-  HardHat,
   ExternalLink,
   Zap,
 } from "lucide-react";
@@ -19,7 +16,6 @@ const Home: React.FC = () => {
   const featuredSolutions = solutions.slice(0, 4);
   const recentProjects = projects.slice(0, 3);
 
-  // Dynamic Icon rendering
   const getIcon = (iconName: string) => {
     const IconComponent = (LucideIcons as any)[iconName];
     return IconComponent ? <IconComponent size={32} /> : <Zap size={32} />;
@@ -61,83 +57,100 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-[#0A1628]">
       <Hero />
+      <AwardsTicker />
 
-      {/* Divisions Section */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Our Divisions
-          </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8">
-          <Link
-            to="/act-ict"
-            className="group relative overflow-hidden rounded-2xl shadow-xl h-80"
-          >
+      {/* Divisions Section - Split Screen */}
+      <section className="py-0 bg-[#0A1628]">
+        {/* ACT-ICT Division */}
+        <div className="grid md:grid-cols-2 min-h-[500px]">
+          <div className="relative overflow-hidden order-2 md:order-1">
             <img
               src="/images/divisions/act-ict.jpg"
               alt="ACT-ICT"
-              className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+              className="w-full h-full object-cover"
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent flex flex-col justify-end p-8">
-              <h3 className="text-3xl font-bold text-white mb-2">ACT-ICT</h3>
-              <p className="text-blue-100 mb-4">
-                Specialized in Radio Communications, Network Infrastructure, and
-                Video Surveillance.
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0A1628]" />
+          </div>
+          <div className="bg-[#0A1628] flex items-center px-8 md:px-16 py-20 order-1 md:order-2">
+            <div>
+              <span className="text-[#00A8E8] text-sm font-bold tracking-[0.3em] uppercase">Division One</span>
+              <h2 className="font-display text-6xl text-white mt-2 mb-6">ACT-ICT</h2>
+              <p className="text-[#7A9ABD] text-lg mb-8">
+                Radio & mission-critical communications, network infrastructure, intelligent CCTV, and security systems.
               </p>
-              <span className="text-white font-semibold flex items-center group-hover:underline">
-                Explore Division <ArrowRight className="ml-2" size={16} />
-              </span>
+              <div className="space-y-2 mb-8 text-white text-sm">
+                <p>✓ TETRA & DMR Radio Systems</p>
+                <p>✓ Network Infrastructure</p>
+                <p>✓ Video Surveillance</p>
+                <p>✓ Fiber Optics</p>
+              </div>
+              <Link
+                to="/act-ict"
+                className="inline-flex items-center text-[#00A8E8] hover:text-[#0090CC] font-semibold transition-all duration-300"
+              >
+                Explore Division <ArrowRight className="ml-2" size={18} />
+              </Link>
             </div>
-          </Link>
+          </div>
+        </div>
 
-          <Link
-            to="/act-global"
-            className="group relative overflow-hidden rounded-2xl shadow-xl h-80"
-          >
+        {/* ACTGlobal Division */}
+        <div className="grid md:grid-cols-2 min-h-[500px]">
+          <div className="bg-[#060F1E] flex items-center px-8 md:px-16 py-20">
+            <div>
+              <span className="text-[#F59E0B] text-sm font-bold tracking-[0.3em] uppercase">Division Two</span>
+              <h2 className="font-display text-6xl text-white mt-2 mb-6">ACTGlobal</h2>
+              <p className="text-[#7A9ABD] text-lg mb-8">
+                Industrial equipment, safety systems, and specialized solutions for demanding environments.
+              </p>
+              <div className="space-y-2 mb-8 text-white text-sm">
+                <p>✓ Industrial LED Lights</p>
+                <p>✓ Safety Equipment</p>
+                <p>✓ Intrusion Detection</p>
+                <p>✓ Equipment Supply</p>
+              </div>
+              <Link
+                to="/act-global"
+                className="inline-flex items-center text-[#F59E0B] hover:text-amber-400 font-semibold transition-all duration-300"
+              >
+                Explore Division <ArrowRight className="ml-2" size={18} />
+              </Link>
+            </div>
+          </div>
+          <div className="relative overflow-hidden">
             <img
               src="/images/divisions/act-global.jpg"
               alt="ACTGlobal"
-              className="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110"
+              className="w-full h-full object-cover"
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent flex flex-col justify-end p-8">
-              <h3 className="text-3xl font-bold text-white mb-2">ACTGlobal</h3>
-              <p className="text-gray-200 mb-4">
-                Leaders in Industrial LED Lights, Intrusion Detection, Collision
-                Avoidance and other Safety Equipment.
-              </p>
-              <span className="text-white font-semibold flex items-center group-hover:underline">
-                Explore Division <ArrowRight className="ml-2" size={16} />
-              </span>
-            </div>
-          </Link>
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0A1628]" />
+          </div>
         </div>
       </section>
 
       <PartnerCarousel />
 
       {/* Solutions Overview */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#0A1628]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="font-display text-4xl text-white mb-2">
                 Our Solutions
               </h2>
-              <div className="w-20 h-1 bg-blue-600 rounded-full"></div>
+              <div className="w-20 h-1 bg-[#00A8E8] rounded-full"></div>
             </div>
             <Link
               to="/solutions"
-              className="hidden md:flex items-center text-blue-600 font-semibold hover:text-blue-800 transition"
+              className="hidden md:flex items-center text-[#00A8E8] font-semibold hover:text-[#0090CC] transition-all duration-300"
             >
               View All Solutions <ArrowRight className="ml-2" size={20} />
             </Link>
@@ -147,20 +160,20 @@ const Home: React.FC = () => {
             {featuredSolutions.map((sol) => (
               <div
                 key={sol.id}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 group"
+                className="bg-[#0F2137] p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border border-[#1E3A5F] hover:border-[#00A8E8] group"
               >
-                <div className="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <div className="w-14 h-14 bg-[#00A8E8]/10 rounded-lg flex items-center justify-center text-[#00A8E8] mb-6 group-hover:bg-[#00A8E8]/20 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
                   {getIcon(sol.iconName)}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="font-display text-xl text-white mb-3">
                   {sol.title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">
+                <p className="text-[#7A9ABD] text-sm mb-4 leading-relaxed line-clamp-3">
                   {sol.description}
                 </p>
                 <Link
                   to="/solutions"
-                  className="text-blue-600 text-sm font-semibold flex items-center hover:underline"
+                  className="text-[#00A8E8] text-sm font-semibold flex items-center hover:text-[#0090CC] transition-all duration-300"
                 >
                   Learn more <ArrowRight className="ml-1" size={14} />
                 </Link>
@@ -171,7 +184,7 @@ const Home: React.FC = () => {
           <div className="mt-8 text-center md:hidden">
             <Link
               to="/solutions"
-              className="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              className="inline-flex items-center px-6 py-3 border border-[#1E3A5F] text-[#00A8E8] font-semibold rounded-md bg-[#0F2137] hover:bg-[#1E3A5F] transition-all duration-300"
             >
               View All Solutions
             </Link>
@@ -180,16 +193,16 @@ const Home: React.FC = () => {
       </section>
 
       {/* Expertise Section */}
-      <section className="py-20 bg-blue-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-800 rounded-full opacity-50 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-cyan-900 rounded-full opacity-50 blur-3xl"></div>
+      <section className="py-20 bg-[#060F1E] text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#1E3A5F] rounded-full opacity-30 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-[#00A8E8] rounded-full opacity-20 blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
               Areas of Expertise
             </h2>
-            <p className="text-blue-200 max-w-2xl mx-auto">
+            <p className="text-[#7A9ABD] max-w-2xl mx-auto">
               We combine technical knowledge with industry best practices to
               deliver superior results.
             </p>
@@ -204,18 +217,20 @@ const Home: React.FC = () => {
                     expandedExpertise === item.id ? null : item.id,
                   )
                 }
-                className={`cursor-pointer bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/20 ${expandedExpertise === item.id ? "ring-2 ring-blue-400" : ""}`}
+                className={`cursor-pointer bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 transition-all duration-300 hover:border-[#00A8E8] hover:bg-[#0F2137]/80 ${
+                  expandedExpertise === item.id ? "ring-2 ring-[#00A8E8]" : ""
+                }`}
               >
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-blue-100 text-sm mb-4">{item.desc}</p>
+                <h3 className="font-display text-xl font-bold mb-2 text-white">{item.title}</h3>
+                <p className="text-[#7A9ABD] text-sm mb-4">{item.desc}</p>
 
                 {expandedExpertise === item.id && (
-                  <div className="mt-4 pt-4 border-t border-white/20 animate-fade-in text-sm text-white">
+                  <div className="mt-4 pt-4 border-t border-[#1E3A5F] animate-fade-in text-sm text-[#E8EFF8]">
                     {item.details}
                     <div className="mt-3">
                       <Link
                         to="/solutions"
-                        className="text-blue-300 hover:text-white text-xs uppercase font-bold tracking-wider"
+                        className="text-[#00A8E8] hover:text-[#0090CC] text-xs uppercase font-bold tracking-wider transition-all duration-300"
                       >
                         See Services &rarr;
                       </Link>
@@ -225,7 +240,9 @@ const Home: React.FC = () => {
 
                 <div className="flex justify-end mt-2">
                   <div
-                    className={`p-1 rounded-full bg-white/10 transition-transform duration-300 ${expandedExpertise === item.id ? "rotate-90" : ""}`}
+                    className={`p-1 rounded-full bg-[#1E3A5F] transition-transform duration-300 ${
+                      expandedExpertise === item.id ? "rotate-90" : ""
+                    }`}
                   >
                     <ExternalLink size={16} />
                   </div>
@@ -239,10 +256,10 @@ const Home: React.FC = () => {
       {/* Recent Projects */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">Recent Projects</h2>
+          <h2 className="font-display text-4xl text-white">Recent Projects</h2>
           <Link
             to="/projects"
-            className="hidden md:inline-flex px-6 py-2 border border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition"
+            className="hidden md:inline-flex px-6 py-2 border border-[#00A8E8] text-[#00A8E8] font-semibold rounded-full hover:bg-[#00A8E8] hover:text-[#0A1628] transition-all duration-300"
           >
             View More Projects
           </Link>
@@ -256,15 +273,19 @@ const Home: React.FC = () => {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
                 />
-                <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <div className="absolute inset-0 bg-[#0A1628]/40" />
+                <div className="absolute top-4 left-4 bg-[#00A8E8] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                   {project.category}
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition">
+              <h3 className="font-display text-xl text-white group-hover:text-[#00A8E8] transition-all duration-300">
                 {project.title}
               </h3>
-              <p className="text-gray-600 text-sm mt-2">
+              <p className="text-[#7A9ABD] text-sm mt-2">
                 {project.description}
               </p>
             </div>
@@ -274,24 +295,11 @@ const Home: React.FC = () => {
         <div className="mt-8 text-center md:hidden">
           <Link
             to="/projects"
-            className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700"
+            className="inline-block px-6 py-3 bg-[#00A8E8] text-[#0A1628] font-semibold rounded-md shadow-lg hover:bg-[#0090CC] transition-all duration-300"
           >
             View All Projects
           </Link>
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gray-900 py-16 px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-6">
-          Ready to transform your technology infrastructure?
-        </h2>
-        <Link
-          to="/contact"
-          className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg transform transition hover:-translate-y-1"
-        >
-          Contact ACT-ICT Today
-        </Link>
       </section>
     </div>
   );

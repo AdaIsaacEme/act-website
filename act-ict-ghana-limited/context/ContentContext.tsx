@@ -31,20 +31,30 @@ const defaultContent: SiteContent = {
         ctaPrimary: "View Expertise",
         ctaSecondary: "View Projects",
       },
+      {
+        id: "4",
+        title: "Trusted by Mining, Military & Government",
+        subtitle:
+          "From underground mine connectivity to aerostat surveillance — we deploy where it matters most.",
+        image: "/images/hero/slide-4.jpg",
+        ctaPrimary: "Our Capabilities",
+        ctaSecondary: "View Projects",
+      },
     ],
   },
   contact: {
-    address: "F28/8 Fifth Circular Rd.Cantonments, Accra",
+    address: "F28/8 Fifth Circular Rd., Cantonments, Accra, Ghana",
     phone: "+233-577-700-555",
     email: "office@act-ict.com.gh",
     mapUrl:
       "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31767.631074774617!2d-0.17039359999999998!3d5.5738368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!5e0!3m2!1sen!2sgh!4v1769185781477!5m2!1sen!2sgh",
   },
   socials: {
-    linkedin: "#",
-    facebook: "#",
-    twitter: "#",
-    instagram: "#",
+    linkedin:
+      "https://www.linkedin.com/company/act-innovative-engineering-ltd/?originalSubdomain=gh",
+    facebook: "https://web.facebook.com/actictgh/?_rdc=1&_rdr#",
+    twitter: "https://x.com/act_ghana",
+    instagram: "https://www.instagram.com/act.ict/",
   },
 };
 
@@ -94,6 +104,54 @@ const defaultProjects: Project[] = [
       "Installation of perimeter intrusion detection fence at Perseus Mining.",
     category: "Security",
     image: "/images/projects/perseus-fence.jpg",
+  },
+  {
+    id: "7",
+    title: "Zambia Maina Soko Military Hospital",
+    description:
+      "350-bed military hospital in Zambia: CISCO passive & active data network, 500+ extension AVAYA IP telephone system, Schneider Electric data center.",
+    category: "Infrastructure",
+    image: "/images/projects/zambia-military-hospital.jpg",
+  },
+  {
+    id: "8",
+    title: "Newmont Ahafo — SkyStar Aerostat",
+    description:
+      "Deployment of RT SkyStar™ 180 tactical aerostat system enabling continuous 72-hour day & night surveillance at 1,000 feet altitude.",
+    category: "Security",
+    image: "/images/projects/newmont-aerostat.jpg",
+  },
+  {
+    id: "9",
+    title: "AngloGold Ashanti — Underground CCTV",
+    description:
+      "Design, installation and maintenance of IP CCTV systems across AngloGold Ashanti underground mining operations.",
+    category: "Security",
+    image: "/images/projects/anglogold-cctv.jpg",
+  },
+  {
+    id: "10",
+    title: "MOFA — 20 Weather Stations",
+    description:
+      "Supply and installation of 20 automated weather monitoring stations across Ghana for the Ministry of Food and Agriculture.",
+    category: "Engineering",
+    image: "/images/projects/mofa-weather-stations.jpg",
+  },
+  {
+    id: "11",
+    title: "Ahafo North — TETRA Radio Network",
+    description:
+      "Full TETRA digital radio network deployment for mission-critical communications at Ahafo North mining operations.",
+    category: "Communications",
+    image: "/images/projects/ahafo-tetra.jpg",
+  },
+  {
+    id: "12",
+    title: "GSR Prestea & Wassa — CCTV",
+    description:
+      "Multi-site CCTV deployment across Golden Star Resources Prestea and Wassa mining facilities.",
+    category: "Security",
+    image: "/images/projects/gsr-cctv.jpg",
   },
 ];
 
@@ -155,6 +213,95 @@ const defaultSolutions: Solution[] = [
     title: "Radio Communications",
     description: "Two-way radios, TETRA, and DMR systems.",
     iconName: "Radio",
+    category: "Communications",
+  },
+  {
+    id: "10",
+    title: "TETRA Radio Networks",
+    description:
+      "Mission-critical digital trunked radio systems for mining, public safety, and industrial operations. Deployed and supported across Ghana.",
+    iconName: "Radio",
+    category: "Communications",
+  },
+  {
+    id: "11",
+    title: "Leaky Feeder Systems",
+    description:
+      "Underground mine connectivity using radiating cable systems for voice, data, and tracking in tunnels and shafts.",
+    iconName: "Cable",
+    category: "Communications",
+  },
+  {
+    id: "12",
+    title: "PTT over Cellular (PoC)",
+    description:
+      "ActiTalk push-to-talk over cellular with nationwide coverage, GPS tracking, dispatch and recording capabilities.",
+    iconName: "Smartphone",
+    category: "Communications",
+  },
+  {
+    id: "13",
+    title: "Aerostat Surveillance",
+    description:
+      "RT SkyStar™ tactical aerostat systems enabling continuous day & night ISR at 1,000–1,500 ft. Deployed at Newmont Ahafo South.",
+    iconName: "Eye",
+    category: "Security",
+  },
+  {
+    id: "14",
+    title: "Perimeter Intrusion Detection",
+    description:
+      "Smart fence sensors, radar integration, and drone surveillance for critical asset protection.",
+    iconName: "ShieldAlert",
+    category: "Security",
+  },
+  {
+    id: "15",
+    title: "Fire Detection Systems",
+    description:
+      "Simplex fire detection and alarm systems, designed and installed for hospital and industrial facilities.",
+    iconName: "Flame",
+    category: "Security",
+  },
+  {
+    id: "16",
+    title: "Data Center Infrastructure",
+    description:
+      "APC & Schneider Electric-based data center design, supply and installation for enterprise and hospital environments.",
+    iconName: "Database",
+    category: "Infrastructure",
+  },
+  {
+    id: "17",
+    title: "Fiber Optic Networks",
+    description:
+      "ADSS, mine-shaft, buried & underground fiber supply, installation, and splicing. Distributors for Fujikura, VIAVI OTDR, AFL.",
+    iconName: "Zap",
+    category: "Infrastructure",
+  },
+  {
+    id: "18",
+    title: "Solar Lighting & Trailers",
+    description:
+      "BEKA Schréder solar-powered lighting trailers for rapid deployment — Wi-Fi, radio, CCTV, and lighting from a single unit.",
+    iconName: "Sun",
+    category: "Electrical",
+  },
+  {
+    id: "19",
+    title: "SCADA & Process Automation",
+    description:
+      "Industrial automation and remote monitoring solutions for mining and oil & gas process control.",
+    iconName: "Settings",
+    category: "Engineering",
+  },
+  {
+    id: "20",
+    title: "Drone Services",
+    description:
+      "Drones for security, mapping, 3D scanning, and measurements. Integrated with CCTV command centers.",
+    iconName: "Navigation",
+    category: "Security",
   },
 ];
 
@@ -253,20 +400,6 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({
     setContent((prev) => ({ ...prev, [section]: data }));
   };
 
-  const updateProject = (updatedProject: Project) => {
-    setProjects((prev) =>
-      prev.map((p) => (p.id === updatedProject.id ? updatedProject : p)),
-    );
-  };
-
-  const addProject = (newProject: Project) => {
-    setProjects((prev) => [...prev, newProject]);
-  };
-
-  const deleteProject = (id: string) => {
-    setProjects((prev) => prev.filter((p) => p.id !== id));
-  };
-
   return (
     <ContentContext.Provider
       value={{
@@ -275,9 +408,6 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({
         solutions,
         partners,
         updateContent,
-        updateProject,
-        addProject,
-        deleteProject,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Radio, Server, Video, Check } from "lucide-react";
+import { Radio, Server, Video, Check, MapPin, Cable } from "lucide-react";
 
 const DivisionACTICT: React.FC = () => {
   const sections = [
@@ -42,60 +42,96 @@ const DivisionACTICT: React.FC = () => {
         "Remote Monitoring",
       ],
     },
+    {
+      id: "tracking",
+      title: "Personnel & Equipment Tracking",
+      icon: <MapPin size={48} />,
+      content:
+        "Real-time tracking of personnel and vehicles using RFID, GPS, and wireless sensor networks — critical for underground mining safety compliance.",
+      features: [
+        "Underground Personnel Tracking",
+        "Vehicle Location Systems",
+        "Asset Management",
+        "Compliance Reporting",
+      ],
+    },
+    {
+      id: "fiber",
+      title: "Fiber Optic Networks",
+      icon: <Cable size={48} />,
+      content:
+        "ADSS, mine-shaft, buried and underground fiber cable supply, installation and splicing. Authorised distributors for Fujikura, VIAVI, AFL, Teldor and OPTRAL.",
+      features: [
+        "Underground Fiber in Mines",
+        "OTDR Testing & Certification",
+        "Splicing & Termination",
+        "Mine Shaft Fiber",
+      ],
+    },
   ];
 
   return (
-    <div className="pt-20">
-      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
+    <div className="pt-32 bg-[#0A1628]">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-24">
         <div className="max-w-7xl mx-auto px-4">
-          <span className="text-blue-300 font-bold tracking-wider uppercase text-sm">
+          <span className="text-[#00A8E8] font-bold tracking-[0.3em] uppercase text-sm">
             Division
           </span>
-          <h1 className="text-5xl font-extrabold mt-2 mb-6">ACT-ICT</h1>
-          <p className="text-xl max-w-2xl text-blue-100">
+          <h1 className="font-display text-6xl font-black mt-2 mb-6">ACT-ICT</h1>
+          <p className="text-xl max-w-2xl text-[#7A9ABD]">
             Delivering the core of connectivity and security. We build the
             systems that keep your business communicating and secure.
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 space-y-24">
+      {/* Sections */}
+      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 space-y-24 pb-20">
         {sections.map((section, idx) => (
           <div
             key={section.id}
-            className={`flex flex-col md:flex-row gap-12 items-center ${idx % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+            className={`flex flex-col md:flex-row gap-12 items-center ${
+              idx % 2 !== 0 ? "md:flex-row-reverse" : ""
+            }`}
           >
+            {/* Content */}
             <div className="flex-1">
-              <div className="inline-block p-4 bg-blue-100 text-blue-700 rounded-2xl mb-6">
+              <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
                 {section.icon}
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="font-display text-4xl font-black text-white mb-4">
                 {section.title}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              <p className="text-[#7A9ABD] text-lg leading-relaxed mb-6">
                 {section.content}
               </p>
               <ul className="space-y-3">
                 {section.features.map((feat, i) => (
                   <li
                     key={i}
-                    className="flex items-center text-gray-700 font-medium"
+                    className="flex items-center text-white font-medium"
                   >
-                    <Check className="text-green-500 mr-3" size={20} />
+                    <Check className="text-[#00A8E8] mr-3" size={20} />
                     {feat}
                   </li>
                 ))}
               </ul>
             </div>
+
+            {/* Image */}
             <div className="flex-1 w-full">
-              <img
-                src={`/images/divisions/act-ict-${idx + 1}.jpg`}
-                alt={section.title}
-                className="rounded-xl shadow-2xl w-full object-cover hover:scale-[1.02] transition duration-500"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
+              <div className="relative overflow-hidden rounded-xl shadow-2xl ring-1 ring-[#00A8E8]/20 hover:ring-[#00A8E8]/50 transition-all duration-300">
+                <img
+                  src={`/images/divisions/act-ict-${idx + 1}.jpg`}
+                  alt={section.title}
+                  className="w-full h-auto object-cover hover:scale-105 transition duration-500"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/20 to-transparent" />
+              </div>
             </div>
           </div>
         ))}

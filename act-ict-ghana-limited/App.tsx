@@ -2,14 +2,15 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppFloat from './components/WhatsAppFloat';
 import Home from './pages/Home';
 import About from './pages/About';
 import Solutions from './pages/Solutions';
 import Projects from './pages/Projects';
 import DivisionACTICT from './pages/DivisionACTICT';
 import DivisionACTGlobal from './pages/DivisionACTGlobal';
+import MiningIndustrial from './pages/MiningIndustrial';
 import Contact from './pages/Contact';
-import Admin from './pages/Admin';
 import { ContentProvider } from './context/ContentContext';
 
 // Scroll to top wrapper
@@ -26,7 +27,7 @@ const App: React.FC = () => {
     <ContentProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen font-sans text-gray-900 bg-white">
+        <div className="flex flex-col min-h-screen font-sans text-[#E8EFF8] bg-[#0A1628]">
           <Navbar />
           <main className="flex-grow">
             <Routes>
@@ -36,11 +37,12 @@ const App: React.FC = () => {
               <Route path="/projects" element={<Projects />} />
               <Route path="/act-ict" element={<DivisionACTICT />} />
               <Route path="/act-global" element={<DivisionACTGlobal />} />
+              <Route path="/mining" element={<MiningIndustrial />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/admin" element={<Admin />} />
             </Routes>
           </main>
           <Footer />
+          <WhatsAppFloat />
         </div>
       </Router>
     </ContentProvider>
