@@ -14,33 +14,34 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 min-h-screen bg-[#0A1628] pb-20">
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '2rem', paddingBottom: '5rem' }}>
       {/* Header */}
-      <ScrollReveal slideDistance={30}>
-        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] py-20 text-center text-white mb-20">
-          <h1 className="font-display text-6xl font-black mb-4">Contact Us</h1>
-          <p className="text-[#7A9ABD] text-lg">
+      <ScrollReveal>
+        <div className="py-20 text-center" style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))', color: 'white', marginBottom: '5rem' }}>
+            <h1 className="font-display text-6xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>Contact Us</h1>
+            <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
             Get in touch with our expert team today.
           </p>
         </div>
       </ScrollReveal>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
           {/* Contact Info Cards */}
-          <StaggeredGrid staggerDelay={0.12} containerDelay={0.1} className="space-y-6">
+          <StaggeredGrid fromDirection="alternating" staggerDelay={0.06} containerDelay={0.1} className="space-y-6">
             {/* Phone */}
             <a
               href="tel:+233577700555"
-              className="block bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer" 
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               <div className="flex items-start space-x-4">
                 <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-lg">Phone</h4>
-                  <p className="text-[#7A9ABD] text-sm hover:text-[#00A8E8]">
+                  <h4 className="font-semibold text-lg" style={{ color: 'var(--text-heading)' }}>Phone</h4>
+                  <p className="text-sm hover:text-[#00A8E8]" style={{ color: 'var(--text-secondary)' }}>
                     {content.contact.phone}
                   </p>
                 </div>
@@ -50,15 +51,16 @@ const Contact: React.FC = () => {
             {/* Email */}
             <a
               href="mailto:office@act-ict.com.gh"
-              className="block bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               <div className="flex items-start space-x-4">
                 <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-lg">Email</h4>
-                  <p className="text-[#7A9ABD] text-sm hover:text-[#00A8E8]">
+                  <h4 className="font-semibold text-lg" style={{ color: 'var(--text-heading)' }}>Email</h4>
+                  <p className="text-sm hover:text-[#00A8E8]" style={{ color: 'var(--text-secondary)' }}>
                     {content.contact.email}
                   </p>
                 </div>
@@ -70,15 +72,16 @@ const Contact: React.FC = () => {
               href="https://maps.app.goo.gl/nh1LEgKni858MnMo8"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               <div className="flex items-start space-x-4">
                 <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-lg">Address</h4>
-                  <p className="text-[#7A9ABD] text-sm hover:text-[#00A8E8]">
+                  <h4 className="font-semibold text-lg" style={{ color: 'var(--text-heading)' }}>Address</h4>
+                  <p className="text-sm hover:text-[#00A8E8]" style={{ color: 'var(--text-secondary)' }}>
                     {content.contact.address}
                   </p>
                 </div>
@@ -90,15 +93,16 @@ const Contact: React.FC = () => {
               href="https://wa.me/233577700555"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               <div className="flex items-start space-x-4">
                 <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
                   <MessageCircle size={24} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white text-lg">WhatsApp</h4>
-                  <p className="text-[#7A9ABD] text-sm hover:text-[#00A8E8]">
+                  <h4 className="font-semibold text-lg" style={{ color: 'var(--text-heading)' }}>WhatsApp</h4>
+                  <p className="text-sm hover:text-[#00A8E8]" style={{ color: 'var(--text-secondary)' }}>
                     +233-577-700-555
                   </p>
                 </div>
@@ -107,39 +111,41 @@ const Contact: React.FC = () => {
           </StaggeredGrid>
 
           {/* Contact Form */}
-          <ScrollReveal slideDistance={25} delay={0.15} className="lg:col-span-2">
-            <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-8">
-              <h3 className="font-display text-2xl font-black text-white mb-6">
+          <ScrollReveal delay={0.15} className="lg:col-span-2">
+            <div className="rounded-xl p-5 sm:p-6 md:p-8" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
+              <h3 className="font-display text-2xl font-black mb-6" style={{ color: 'var(--text-heading)' }}>
                 Send us a Message
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                       Full Name
                     </label>
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
+                      style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                    <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                       Email Address
                     </label>
                     <input
                       type="email"
                       required
-                      className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
+                      style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                  <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                     Subject
                   </label>
-                  <select className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300">
+                  <select className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300" style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}>
                     <option>General Inquiry</option>
                     <option>Request Quote</option>
                     <option>Technical Support</option>
@@ -147,13 +153,14 @@ const Contact: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                  <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>
                     Message
                   </label>
                   <textarea
                     rows={4}
                     required
-                    className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300 resize-none"
+                    style={{ backgroundColor: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
                   ></textarea>
                 </div>
                 <AnimatedButton
@@ -169,8 +176,8 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Map */}
-        <ScrollReveal slideDistance={25} delay={0.25}>
-          <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl overflow-hidden shadow-lg h-96">
+        <ScrollReveal delay={0.25}>
+          <div className="rounded-xl overflow-hidden shadow-lg h-96" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
             <iframe
               title="ACT-ICT Location"
               width="100%"

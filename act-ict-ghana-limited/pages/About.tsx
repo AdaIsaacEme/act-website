@@ -68,15 +68,15 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className="pt-32 bg-[#0A1628]">
+    <div className="pt-32" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {/* Header */}
       <ScrollReveal slideDistance={30}>
-        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] py-20">
+        <div className="py-20" style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))' }}>
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="font-display text-6xl font-black text-white mb-4">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
               About ACT-ICT Ghana
             </h1>
-            <p className="text-xl text-[#7A9ABD] max-w-2xl mx-auto">
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               Your trusted partner in delivering world-class technology and
               engineering solutions in West Africa.
             </p>
@@ -86,13 +86,13 @@ const About: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 space-y-20">
         {/* Company Background */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <ScrollReveal slideDistance={40} direction="right" delay={0} duration={0.55}>
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <ScrollReveal direction="right" delay={0} duration={0.35} distance={40}>
             <div>
-              <h2 className="font-display text-4xl font-black text-white mb-6">
+              <h2 className="font-display text-4xl font-black mb-6" style={{ color: 'var(--text-heading)' }}>
                 Company Background
               </h2>
-              <div className="space-y-4 text-[#7A9ABD] leading-relaxed text-lg">
+              <div className="space-y-4 leading-relaxed text-lg" style={{ color: 'var(--text-secondary)' }}>
                 <p>
                   ACT-ICT Ghana Limited was established with a clear mandate: to
                   bridge the technological gap in the region by providing superior
@@ -113,9 +113,9 @@ const About: React.FC = () => {
               </div>
             </div>
           </ScrollReveal>
-          <ScrollReveal slideDistance={40} direction="left" delay={0.1} duration={0.55}>
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl bg-[#0F2137] ring-1 ring-[#1E3A5F] will-change-transform">
-              <AnimatedWrapper hoverScale={1.06} transitionDuration={0.7}>
+          <ScrollReveal direction="left" delay={0.08} duration={0.35} distance={40}>
+            <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl bg-[#0F2137] ring-1 ring-[#1E3A5F] will-change-transform">
+              <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                 <img
                   src="/images/about/cisco-router-hack.jpg"
                   alt="Strategic Partnership"
@@ -131,16 +131,17 @@ const About: React.FC = () => {
         </div>
 
         {/* Stats Row */}
-        <StaggeredGrid staggerDelay={0.08} containerDelay={0.15} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <StaggeredGrid fromDirection="alternating" staggerDelay={0.08} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 text-center"
+              className="rounded-xl p-6 text-center"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               <div className="font-display text-4xl font-black text-[#00A8E8] mb-2">
-                <AnimatedCounter value={stat.number} duration={2} />
+                <AnimatedCounter value={stat.number} duration={1.2} />
               </div>
-              <div className="text-[#7A9ABD] font-semibold">{stat.label}</div>
+              <div className="font-semibold" style={{ color: 'var(--text-secondary)' }}>{stat.label}</div>
             </div>
           ))}
         </StaggeredGrid>
@@ -148,14 +149,15 @@ const About: React.FC = () => {
         {/* Awards Section */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div>
-            <h2 className="font-display text-4xl font-black text-white text-center mb-12">
+            <h2 className="font-display text-4xl font-black text-center mb-12" style={{ color: 'var(--text-heading)' }}>
               Awards & Recognition
             </h2>
-            <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-2 gap-6">
+            <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid md:grid-cols-2 gap-6">
               {awards.map((award, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#0F2137] border-l-4 border-[#F59E0B] rounded-xl p-6 hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300"
+                  className="border-l-4 border-[#F59E0B] rounded-xl p-6 hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300"
+                  style={{ backgroundColor: 'var(--bg-surface)' }}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="text-3xl">{award.emoji}</div>
@@ -163,7 +165,7 @@ const About: React.FC = () => {
                       <div className="text-[#F59E0B] font-bold text-sm">
                         {award.year}
                       </div>
-                      <h3 className="text-white font-semibold mt-1">
+                      <h3 className="font-semibold mt-1" style={{ color: 'var(--text-primary)' }}>
                         {award.title}
                       </h3>
                     </div>
@@ -177,21 +179,21 @@ const About: React.FC = () => {
         {/* Mission & Vision */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#0F2137] border border-[#1E3A5F] p-8 rounded-xl">
-              <h3 className="font-display text-2xl font-black text-white mb-4">
+            <div className="bg-[#0F2137] border border-[#1E3A5F] p-8 rounded-xl" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
+              <h3 className="font-display text-2xl font-black mb-4" style={{ color: 'var(--text-primary)' }}>
                 Our Mission
               </h3>
-              <p className="text-[#7A9ABD] leading-relaxed">
+              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 To provide innovative, reliable, and sustainable technological
                 solutions that empower businesses and communities to thrive in a
                 connected world.
               </p>
             </div>
-            <div className="bg-[#0F2137] border border-[#1E3A5F] p-8 rounded-xl">
-              <h3 className="font-display text-2xl font-black text-white mb-4">
+            <div className="bg-[#0F2137] border border-[#1E3A5F] p-8 rounded-xl" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
+              <h3 className="font-display text-2xl font-black mb-4" style={{ color: 'var(--text-primary)' }}>
                 Our Vision
               </h3>
-              <p className="text-[#7A9ABD] leading-relaxed">
+              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 To be the premier technology infrastructure provider in West
                 Africa, known for engineering excellence and uncompromising
                 quality.
@@ -203,16 +205,17 @@ const About: React.FC = () => {
         {/* Key Clients */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div>
-            <h2 className="font-display text-4xl font-black text-white text-center mb-12">
+            <h2 className="font-display text-4xl font-black text-center mb-12" style={{ color: 'var(--text-heading)' }}>
               Our Clients
             </h2>
             <div className="text-center">
-              <p className="text-[#7A9ABD] mb-12">Among our clients:</p>
-              <StaggeredGrid staggerDelay={0.08} containerDelay={0.15} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <p className="mb-12" style={{ color: 'var(--text-secondary)' }}>Among our clients:</p>
+              <StaggeredGrid staggerDelay={0.04} containerDelay={0.15} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {clients.map((client, idx) => (
                   <div
                     key={idx}
                     className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 h-40 flex items-center justify-center hover:border-[#00A8E8] transition-all duration-300 group"
+                    style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
                   >
                     <AnimatedWrapper hoverScale={1.1}>
                       <img
@@ -242,16 +245,17 @@ const About: React.FC = () => {
         {/* Sectors */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div>
-            <h2 className="font-display text-4xl font-black text-white text-center mb-12">
+            <h2 className="font-display text-4xl font-black text-center mb-12" style={{ color: 'var(--text-heading)' }}>
               Sectors We Serve
             </h2>
-            <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-3 gap-6">
+            <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid md:grid-cols-3 gap-6">
               {sectors.map((sector, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-8 text-center hover:border-[#00A8E8] hover:bg-[#0F2137]/80 transition-all duration-300"
+                  className="border rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
+                  style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
                 >
-                  <h3 className="font-display text-2xl font-black text-white">
+                  <h3 className="font-display text-2xl font-black" style={{ color: 'var(--text-heading)' }}>
                     {sector}
                   </h3>
                 </div>
@@ -263,10 +267,10 @@ const About: React.FC = () => {
         {/* Why Choose Us */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div>
-            <h2 className="font-display text-4xl font-black text-center text-white mb-12">
+            <h2 className="font-display text-4xl font-black text-center mb-12" style={{ color: 'var(--text-heading)' }}>
               Why Choose Us?
             </h2>
-            <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-3 gap-8">
+            <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid md:grid-cols-3 gap-8">
               {[
                 {
                   title: "Certified Experts",
@@ -283,15 +287,16 @@ const About: React.FC = () => {
               ].map((val, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
+                  className="border rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
+                  style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
                 >
                   <div className="w-12 h-12 bg-[#00A8E8]/10 text-[#00A8E8] rounded-full flex items-center justify-center mb-4 mx-auto ring-1 ring-[#00A8E8]/30">
                     <CheckCircle size={24} />
                   </div>
-                  <h4 className="font-display text-xl font-black text-white mb-2">
+                  <h4 className="font-display text-xl font-black mb-2" style={{ color: 'var(--text-heading)' }}>
                     {val.title}
                   </h4>
-                  <p className="text-[#7A9ABD]">{val.desc}</p>
+                  <p style={{ color: 'var(--text-secondary)' }}>{val.desc}</p>
                 </div>
               ))}
             </StaggeredGrid>

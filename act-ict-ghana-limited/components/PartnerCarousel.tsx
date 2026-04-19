@@ -18,7 +18,7 @@ const PartnerCarousel: React.FC = () => {
           }
         `}</style>
 
-        <div style={{ backgroundColor: "#FFFFFF", borderTop: "1px solid #e5e7eb", borderBottom: "1px solid #e5e7eb", paddingTop: "48px", paddingBottom: "48px" }}>
+        <div style={{ backgroundColor: "#FFFFFF", borderTop: "1px solid #e5e7eb", borderBottom: "1px solid #e5e7eb", paddingTop: "clamp(24px, 4vw, 48px)", paddingBottom: "clamp(24px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto", paddingLeft: "16px", paddingRight: "16px", marginBottom: "32px", textAlign: "center" }}>
             <p style={{ color: "#666666", letterSpacing: "0.3em", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", margin: 0 }}>
               Our Trusted Partners
@@ -45,7 +45,7 @@ const PartnerCarousel: React.FC = () => {
                   key={`partner-${partner.id}-${index}`}
                   style={{
                     flexShrink: 0,
-                    width: "200px",
+                    width: "clamp(130px, 18vw, 180px)",
                     paddingLeft: "16px",
                     paddingRight: "16px",
                     display: "flex",
@@ -57,7 +57,7 @@ const PartnerCarousel: React.FC = () => {
                   <div
                     style={{
                       width: "100%",
-                      height: "96px",
+                      height: "clamp(64px, 10vw, 96px)",
                       backgroundColor: "#f9fafb",
                       border: "1px solid #e5e7eb",
                       borderRadius: "8px",

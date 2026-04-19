@@ -1,69 +1,47 @@
-import React, { ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React, { ReactNode, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+
+type Direction = 'up' | 'down' | 'left' | 'right' | 'none';
 
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  slideDistance?: number;
   duration?: number;
-  direction?: 'up' | 'down' | 'left' | 'right'; // NEW
+  direction?: Direction;
 }
 
-/**
- * ScrollReveal Component
- * 
- * Animates content when it enters the viewport.
- * - Fades in from opacity 0 to 1
- * - Slides in from specified direction
- * - Triggers when element is in view
- * - Smooth ease-out transition
- * 
- * Usage:
- * <ScrollReveal delay={0.1} direction="left">
- *   <section>Content here</section>
- * </ScrollReveal>
- */
+const dirMap: Record<Direction, { x: number; y: number }> = {
+  up:    { x: 0,   y: 44 },
+  down:  { x: 0,   y: -44 },
+  left:  { x: 48,  y: 0 },
+  right: { x: -48, y: 0 },
+  none:  { x: 0,   y: 0 },
+};
+
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   className = '',
   delay = 0,
-  slideDistance = 30,
-  duration = 0.5,
+  duration = 0.7,
   direction = 'up',
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
-
-  // Map direction to initial motion values
-  const getInitialMotion = () => {
-    switch (direction) {
-      case 'down':
-        return { x: 0, y: -slideDistance };
-      case 'left':
-        return { x: slideDistance, y: 0 };
-      case 'right':
-        return { x: -slideDistance, y: 0 };
-      case 'up':
-      default:
-        return { x: 0, y: slideDistance };
-    }
-  };
-
-  const initialMotion = getInitialMotion();
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+  const { x, y } = dirMap[direction];
 
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, ...initialMotion }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...initialMotion }}
+      layout={false}
+      style={{ willChange: 'transform, opacity' }}
+      initial={{ opacity: 0, x, y }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x, y }}
       transition={{
         duration,
-        ease: [0.25, 0.46, 0.45, 0.94],
         delay,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}

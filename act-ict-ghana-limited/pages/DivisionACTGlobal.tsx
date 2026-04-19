@@ -43,18 +43,18 @@ const DivisionACTGlobal: React.FC = () => {
   ];
 
   return (
-    <div className="pt-32 bg-[#0A1628]">
+    <div style={{ backgroundColor: 'var(--bg-primary)', paddingTop: '2rem' }}>
       {/* Header */}
       <ScrollReveal slideDistance={30}>
-        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-24">
+        <div className="text-white py-20 mb-24" style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))' }}>
           <div className="max-w-7xl mx-auto px-4">
             <span className="text-[#F59E0B] font-bold tracking-[0.3em] uppercase text-sm">
               Division
             </span>
-            <h1 className="font-display text-6xl font-black mt-2 mb-6">
+            <h1 className="font-display text-6xl font-black mt-2 mb-6" style={{ color: 'var(--text-heading)' }}>
               ACTGlobal
             </h1>
-            <p className="text-xl max-w-2xl text-[#7A9ABD]">
+            <p className="text-xl max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
               From industrial automation to advanced lighting and monitoring
               systems, we bring global technology to your operations.
             </p>
@@ -64,11 +64,12 @@ const DivisionACTGlobal: React.FC = () => {
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 pb-20">
-        <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-3 gap-8">
+        <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid md:grid-cols-3 gap-8">
           {sections.map((item, idx) => (
             <div
               key={idx}
-              className="group bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-8 hover:border-[#F59E0B] hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300 flex flex-col h-full"
+              className="group rounded-xl p-8 hover:border-[#F59E0B] hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300 flex flex-col h-full"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               {/* Icon */}
               <div className="p-3 bg-[#F59E0B]/10 text-[#F59E0B] rounded-lg w-fit mb-6 ring-1 ring-[#F59E0B]/30 group-hover:ring-[#F59E0B]/50 transition-all duration-300">
@@ -76,18 +77,18 @@ const DivisionACTGlobal: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h2 className="font-display text-2xl font-black text-white mb-4">
+              <h2 className="font-display text-2xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
                 {item.title}
               </h2>
 
               {/* Description */}
-              <p className="text-[#7A9ABD] leading-relaxed mb-6 flex-1">
+              <p className="leading-relaxed mb-6 flex-1" style={{ color: 'var(--text-secondary)' }}>
                 {item.desc}
               </p>
 
               {/* Image */}
               <div className="h-40 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F]">
-                <AnimatedWrapper hoverScale={1.15} transitionDuration={0.7}>
+                <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
                     src={`/images/divisions/act-global-${idx + 1}.jpg`}
                     alt={item.title}

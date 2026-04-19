@@ -28,13 +28,13 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 min-h-screen bg-[#0A1628] pb-20">
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '2rem', paddingBottom: '5rem' }}>
       {/* Header Section */}
       <ScrollReveal slideDistance={30}>
-        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-16">
+        <div style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))', color: 'white', paddingTop: '5rem', paddingBottom: '5rem', marginBottom: '4rem' }}>
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4">Our Projects</h1>
-            <p className="text-[#7A9ABD] text-lg">
+            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4" style={{ color: 'var(--text-heading)' }}>Our Projects</h1>
+            <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
               Showcasing excellence in execution across Ghana and West Africa.
             </p>
           </div>
@@ -49,11 +49,12 @@ const Projects: React.FC = () => {
               <AnimatedButton
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 btn-lift ${
+                className={`text-xs sm:text-sm px-4 sm:px-6 py-2 rounded-full font-semibold transition-all duration-300 btn-lift ${
                   filter === cat
                     ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50 scale-105"
-                    : "bg-[#0F2137] text-[#7A9ABD] border border-[#1E3A5F] hover:border-[#00A8E8] hover:text-[#00A8E8]"
+                    : ""
                 }`}
+                style={filter !== cat ? { backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' } : undefined}
                 hoverScale={1.05}
               >
                 {cat}
@@ -63,17 +64,18 @@ const Projects: React.FC = () => {
         </ScrollReveal>
 
         {/* Projects Grid */}
-        <StaggeredGrid staggerDelay={0.12} containerDelay={0.2} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <StaggeredGrid fromDirection="alternating" staggerDelay={0.07} containerDelay={0.2} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mb-12 md:mb-16">
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
               whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full will-change-transform"
+              className="group rounded-xl overflow-hidden hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full will-change-transform"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
               {/* Image Container */}
               <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E] will-change-transform">
-                <AnimatedWrapper hoverScale={1.06} transitionDuration={0.7}>
+                <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
                     src={project.image}
                     alt={project.title}
@@ -98,10 +100,10 @@ const Projects: React.FC = () => {
 
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="font-display text-xl font-black text-white mb-2 group-hover:text-[#00A8E8] transition-all duration-300">
+                <h3 className="font-display text-xl font-black mb-2 group-hover:text-[#00A8E8] transition-all duration-300" style={{ color: 'var(--text-heading)' }}>
                   {project.title}
                 </h3>
-                <p className="text-[#7A9ABD] text-sm flex-1">
+                <p className="text-sm flex-1" style={{ color: 'var(--text-secondary)' }}>
                   {project.description}
                 </p>
               </div>
@@ -114,9 +116,9 @@ const Projects: React.FC = () => {
 
         {/* CTA Section */}
         <ScrollReveal slideDistance={25} delay={0.3}>
-          <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-12 text-center">
-            <h3 className="font-display text-3xl text-white mb-4">More Projects on Request</h3>
-            <p className="text-[#7A9ABD] mb-6 max-w-2xl mx-auto">
+          <div className="rounded-xl p-12 text-center" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
+            <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--text-heading)' }}>More Projects on Request</h3>
+            <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               We have completed 100+ projects across Ghana and West Africa. Contact us for a full portfolio of our engineering excellence and proven track record.
             </p>
             <AnimatedLink

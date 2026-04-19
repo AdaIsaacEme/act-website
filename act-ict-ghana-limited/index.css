@@ -1,3 +1,74 @@
+:root {
+  /* Default: DARK theme */
+  --bg-primary:    #0A1628;
+  --bg-secondary:  #060F1E;
+  --bg-surface:    #0F2137;
+  --bg-elevated:   #1E3A5F;
+  --text-primary:  #E8EFF8;
+  --text-secondary: #7A9ABD;
+  --text-heading:  #ffffff;
+  --border-color:  #1E3A5F;
+  --card-shadow:   0 4px 24px rgba(0,0,0,0.3);
+  --logo-filter:   brightness(0) invert(1);
+}
+
+[data-theme="light"] {
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #f8fafc;
+  --bg-surface:    #f1f5f9;
+  --bg-elevated:   #e2e8f0;
+  --text-primary:  #111827;
+  --text-secondary: #4B5563;
+  --text-heading:  #0f172a;
+  --border-color:  #e2e8f0;
+  --card-shadow:   0 4px 24px rgba(0,0,0,0.08);
+  --logo-filter:   none;
+}
+
+/* Auto-theme body text */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Section theming — apply this class to any section wrapper */
+.theme-section {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.theme-section-alt {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Card theming */
+.theme-card {
+  background-color: var(--bg-surface);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Prevent white-on-white: any element that is explicitly white text 
+   but inside a light-theme section will be overridden */
+[data-theme="light"] .text-white,
+[data-theme="light"] [class*="text-white"] {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .text-\[\#E8EFF8\],
+[data-theme="light"] .text-\[\#7A9ABD\] {
+  color: var(--text-secondary) !important;
+}
+
+/* EXCEPTIONS: these should always stay white regardless of theme */
+[data-theme="light"] .hero-text,
+[data-theme="light"] .always-white {
+  color: #ffffff !important;
+}
+
+
 /* Scroll animation for partner carousel */
 @keyframes scroll {
   0% { transform: translateX(0); }
@@ -11,6 +82,31 @@
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+/* Ken Burns zoom effect for hero background - two variants for alternating slides */
+@keyframes kenburns-a {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  100% { transform: scale(1.12) translate(-1.5%, -1%); }
+}
+
+@keyframes kenburns-b {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  100% { transform: scale(1.12) translate(1%, -1.5%); }
+}
+
+.kenburns-a {
+  animation: kenburns-a 8s ease-out forwards;
+}
+
+.kenburns-b {
+  animation: kenburns-b 8s ease-out forwards;
+}
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +123,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 0.02em;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 /* Smooth transitions */

@@ -38,6 +38,7 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
         type: 'spring',
         stiffness: 400,
         damping: 30,
+        mass: 0.8,
       }}
     >
       {children}

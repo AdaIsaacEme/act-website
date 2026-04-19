@@ -38,8 +38,10 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       whileHover={{ scale: hoverScale }}
       whileTap={{ scale: 0.95 }}
       transition={{
-        duration: transitionDuration,
-        ease: 'easeOut',
+        type: 'spring',
+        stiffness: 500,
+        damping: 35,
+        mass: 0.6,
       }}
       {...props}
     >

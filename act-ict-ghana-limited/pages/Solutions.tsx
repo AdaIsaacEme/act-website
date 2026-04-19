@@ -31,13 +31,13 @@ const Solutions: React.FC = () => {
       : solutions.filter((sol) => sol.category === activeCategory);
 
   return (
-    <div className="pt-32 min-h-screen bg-[#0A1628] pb-20">
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '2rem', paddingBottom: '5rem' }}>
       {/* Header Section */}
       <ScrollReveal slideDistance={30}>
-        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-16">
+        <div style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))', color: 'white', paddingTop: '5rem', paddingBottom: '5rem', marginBottom: '4rem' }}>
           <div className="max-w-7xl mx-auto px-4">
-            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4">Our Solutions</h1>
-            <p className="text-[#7A9ABD] text-lg max-w-2xl">
+            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4" style={{ color: 'var(--text-heading)' }}>Our Solutions</h1>
+            <p className="text-lg max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
               Comprehensive technology and engineering solutions built to meet the
               demanding needs of modern industry.
             </p>
@@ -56,8 +56,9 @@ const Solutions: React.FC = () => {
                 className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 btn-lift ${
                   activeCategory === category
                     ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50"
-                    : "bg-[#0F2137] text-[#7A9ABD] border border-[#1E3A5F] hover:border-[#00A8E8] hover:text-[#00A8E8]"
+                    : ""
                 }`}
+                style={activeCategory !== category ? { backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' } : undefined}
                 hoverScale={1.05}
               >
                 {category}
@@ -67,15 +68,16 @@ const Solutions: React.FC = () => {
         </ScrollReveal>
 
         {/* Solutions Grid */}
-        <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggeredGrid fromDirection="alternating" staggerDelay={0.06} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {filteredSolutions.map((sol) => (
             <motion.div
               key={sol.id}
               whileHover={{ y: -6 }}
               transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] hover:shadow-lg hover:shadow-[#00A8E8]/20 transition-all duration-300 flex flex-col h-full will-change-transform"
+              className="group rounded-xl overflow-hidden hover:border-[#00A8E8] hover:shadow-lg hover:shadow-[#00A8E8]/20 transition-all duration-300 flex flex-col h-full will-change-transform"
+              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
-              <div className="p-8 flex-1 relative">
+              <div className="p-5 sm:p-6 md:p-8 flex-1 relative">
                 {/* Icon Circle with Glow */}
                 <div className="relative mb-6">
                   <div className="absolute inset-0 bg-[#00A8E8]/20 rounded-full blur-xl group-hover:bg-[#00A8E8]/40 transition-all duration-300" />
@@ -93,10 +95,10 @@ const Solutions: React.FC = () => {
                   </div>
                 )}
 
-                <h3 className="font-display text-2xl font-black text-white mb-3">
+                <h3 className="font-display text-xl sm:text-2xl font-black mb-3" style={{ color: 'var(--text-heading)' }}>
                   {sol.title}
                 </h3>
-                <p className="text-[#7A9ABD] leading-relaxed">
+                <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                   {sol.description}
                 </p>
               </div>
@@ -111,7 +113,7 @@ const Solutions: React.FC = () => {
         {filteredSolutions.length === 0 && (
           <ScrollReveal slideDistance={20}>
             <div className="text-center py-16">
-              <p className="text-[#7A9ABD] text-lg">
+              <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
                 No solutions found in this category.
               </p>
             </div>

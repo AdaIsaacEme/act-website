@@ -1,38 +1,26 @@
 import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
+type Direction = 'up' | 'alternating' | 'left' | 'right';
+
 interface StaggeredGridProps {
-  children: ReactNode[];
+  children: ReactNode | ReactNode[];
   className?: string;
   staggerDelay?: number;
   containerDelay?: number;
-  duration?: number;
+  fromDirection?: Direction;
 }
 
-/**
- * StaggeredGrid Component
- * 
- * Animates grid items with a staggered delay, creating a "pop-in" effect.
- * - Each item appears with a delay relative to previous items
- * - Fades in and scales up slightly
- * - Default 0.1s delay between items
- * 
- * Usage:
- * <StaggeredGrid staggerDelay={0.1}>
- *   {items.map((item) => <Card key={item.id}>{item}</Card>)}
- * </StaggeredGrid>
- */
 const StaggeredGrid: React.FC<StaggeredGridProps> = ({
   children,
   className = '',
-  staggerDelay = 0.06,
+  staggerDelay = 0.08,
   containerDelay = 0,
-  duration = 0.4,
+  fromDirection = 'up',
 }) => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const container = {
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: staggerDelay,
         delayChildren: containerDelay,
@@ -40,33 +28,44 @@ const StaggeredGrid: React.FC<StaggeredGridProps> = ({
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.95, y: 12 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration,
-        ease: [0.25, 0.46, 0.45, 0.94],
+  const getVariant = (index: number) => {
+    let x = 0, y = 0;
+    switch (fromDirection) {
+      case 'up': y = 36; break;
+      case 'left': x = 36; break;
+      case 'right': x = -36; break;
+      case 'alternating':
+        x = index % 2 === 0 ? -28 : 28;
+        y = 16;
+        break;
+    }
+    return {
+      hidden: { opacity: 0, x, y, scale: 0.97 },
+      visible: {
+        opacity: 1, x: 0, y: 0, scale: 1,
+        transition: {
+          duration: 0.6,
+          ease: [0.16, 1, 0.3, 1],
+        },
       },
-    },
+    };
   };
+
+  const childArray = Array.isArray(children) ? children : [children];
 
   return (
     <motion.div
       className={className}
-      variants={containerVariants}
+      variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-60px 0px' }}
+      viewport={{ once: true, margin: '0px 0px -30px 0px' }}
     >
-      {Array.isArray(children) &&
-        children.map((child, index) => (
-          <motion.div key={index} variants={itemVariants}>
-            {child}
-          </motion.div>
-        ))}
+      {childArray.map((child, i) => (
+        <motion.div key={i} variants={getVariant(i)} style={{ willChange: 'transform, opacity' }}>
+          {child}
+        </motion.div>
+      ))}
     </motion.div>
   );
 };
