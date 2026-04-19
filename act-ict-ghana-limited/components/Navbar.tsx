@@ -208,87 +208,135 @@ const Navbar: React.FC = () => {
             }}
           />
           {/* Mobile menu */}
-          <div className={`md:hidden absolute w-full shadow-lg z-50 max-h-[calc(100vh-120px)] overflow-y-auto border-t transition-all duration-300 ${isDark ? "bg-[#0A1628] border-[#1E3A5F]" : "bg-white border-gray-200"}`}>
-            <div className="px-4 pt-2 pb-6 space-y-2">
-              <AnimatedLink
+          <div className={`md:hidden absolute w-full shadow-2xl z-50 max-h-[calc(100vh-120px)] overflow-y-auto border-t transition-all duration-300 ${isDark ? "bg-[#0A1628] border-[#1E3A5F]" : "bg-white border-gray-200"}`}>
+            <div className="px-4 pt-4 pb-6 space-y-1">
+              <Link
                 to="/"
                 onClick={toggleMenu}
-                className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === '/' 
+                    ? 'text-[#00A8E8] bg-[#00A8E8]/10' 
+                    : isDark ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                }`}
               >
                 Home
-              </AnimatedLink>
-              <AnimatedLink
+              </Link>
+              <Link
                 to="/about"
                 onClick={toggleMenu}
-                className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === '/about'
+                    ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                    : isDark ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                }`}
               >
                 About Us
-              </AnimatedLink>
+              </Link>
 
-              <button
-                onClick={() => setDivisionOpen(!divisionOpen)}
-                className={`w-full text-left flex justify-between items-center px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
-              >
-                <span>Divisions</span>
-                <ChevronDown
-                  size={16}
-                  className={`transform transition-transform duration-300 ${divisionOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {divisionOpen && (
-                <div className="pl-6 space-y-1">
-                  <AnimatedLink
-                    to="/act-ict"
-                    onClick={toggleMenu}
-                    className={`block px-3 py-3 rounded-md text-sm transition-all duration-300 ${isDark ? "text-[#7A9ABD] hover:text-[#00A8E8] hover:bg-[#1E3A5F]" : "text-gray-600 hover:text-[#00A8E8] hover:bg-gray-100"}`}
-                  >
-                    ACT-ICT
-                  </AnimatedLink>
-                  <AnimatedLink
-                    to="/act-global"
-                    onClick={toggleMenu}
-                    className={`block px-3 py-3 rounded-md text-sm transition-all duration-300 ${isDark ? "text-[#7A9ABD] hover:text-[#00A8E8] hover:bg-[#1E3A5F]" : "text-gray-600 hover:text-[#00A8E8] hover:bg-gray-100"}`}
-                  >
-                    ACTGlobal
-                  </AnimatedLink>
-                </div>
-              )}
+              {/* Divisions Accordion */}
+              <div className={`rounded-lg overflow-hidden ${isDark ? 'bg-[#0F1D2F]' : 'bg-gray-50'}`}>
+                <button
+                  onClick={() => setDivisionOpen(!divisionOpen)}
+                  className={`w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 ${
+                    (location.pathname === '/act-ict' || location.pathname === '/act-global')
+                      ? 'text-[#00A8E8]'
+                      : isDark ? "text-white hover:text-[#00A8E8]" : "text-gray-800 hover:text-[#00A8E8]"
+                  }`}
+                >
+                  <span>Divisions</span>
+                  <ChevronDown
+                    size={18}
+                    className={`transform transition-transform duration-300 ${divisionOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {divisionOpen && (
+                  <div className={`pb-2 space-y-0.5 ${isDark ? 'border-t border-[#1E3A5F]/50' : 'border-t border-gray-200'}`}>
+                    <Link
+                      to="/act-ict"
+                      onClick={toggleMenu}
+                      className={`flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all duration-200 ${
+                        location.pathname === '/act-ict'
+                          ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                          : isDark ? "text-[#7A9ABD] hover:text-[#00A8E8] hover:bg-[#1E3A5F]/40" : "text-gray-600 hover:text-[#00A8E8] hover:bg-gray-100"
+                      }`}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00A8E8] flex-shrink-0" />
+                      ACT-ICT
+                    </Link>
+                    <Link
+                      to="/act-global"
+                      onClick={toggleMenu}
+                      className={`flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all duration-200 ${
+                        location.pathname === '/act-global'
+                          ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                          : isDark ? "text-[#7A9ABD] hover:text-[#00A8E8] hover:bg-[#1E3A5F]/40" : "text-gray-600 hover:text-[#00A8E8] hover:bg-gray-100"
+                      }`}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" />
+                      ACTGlobal
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-              <AnimatedLink
-                to="/solutions"
-                onClick={toggleMenu}
-                className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
-              >
-                Solutions
-              </AnimatedLink>
-              <AnimatedLink
+              {/* Industries */}
+              <Link
                 to="/mining"
                 onClick={toggleMenu}
-                className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === '/mining'
+                    ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                    : isDark ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                }`}
               >
                 Mining & Industrial
-              </AnimatedLink>
-              <AnimatedLink
+              </Link>
+
+              <Link
+                to="/solutions"
+                onClick={toggleMenu}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === '/solutions'
+                    ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                    : isDark ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                }`}
+              >
+                Solutions
+              </Link>
+              <Link
                 to="/projects"
                 onClick={toggleMenu}
-                className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === '/projects'
+                    ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                    : isDark ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                }`}
               >
                 Projects
-              </AnimatedLink>
-              <AnimatedLink
+              </Link>
+              <Link
                 to="/contact"
                 onClick={toggleMenu}
-                className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-300 ${isDark ? "text-white hover:bg-[#1E3A5F] hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"}`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === '/contact'
+                    ? 'text-[#00A8E8] bg-[#00A8E8]/10'
+                    : isDark ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]" : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                }`}
               >
                 Contact
-              </AnimatedLink>
-              <AnimatedButton
-                onClick={() => {toggleMenu(); window.location.href = '/contact';}}
-                className={`block w-full px-3 py-3 rounded-md text-base font-medium transition-all duration-300 mt-4 btn-lift ${isDark ? "bg-[#00A8E8] text-white hover:bg-[#0090CC]" : "bg-[#00A8E8] text-white hover:bg-[#0090CC]"}`}
-                hoverScale={1.02}
+              </Link>
+
+              {/* Divider */}
+              <div className={`my-3 border-t ${isDark ? 'border-[#1E3A5F]' : 'border-gray-200'}`} />
+
+              {/* CTA Button */}
+              <Link
+                to="/contact"
+                onClick={toggleMenu}
+                className="flex items-center justify-center w-full px-4 py-3.5 rounded-lg text-base font-semibold bg-[#00A8E8] text-white hover:bg-[#0090CC] transition-all duration-200 shadow-lg shadow-[#00A8E8]/20"
               >
                 Get Quote
-              </AnimatedButton>
+              </Link>
             </div>
           </div>
         </>
