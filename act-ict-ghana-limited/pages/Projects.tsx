@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
@@ -64,17 +65,19 @@ const Projects: React.FC = () => {
         {/* Projects Grid */}
         <StaggeredGrid staggerDelay={0.12} containerDelay={0.2} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredProjects.map((project) => (
-            <div
+            <motion.div
               key={project.id}
-              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full"
+              whileHover={{ y: -8 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full will-change-transform"
             >
               {/* Image Container */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E]">
-                <AnimatedWrapper hoverScale={1.12} transitionDuration={0.7}>
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E] will-change-transform">
+                <AnimatedWrapper hoverScale={1.06} transitionDuration={0.7}>
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover will-change-transform"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}
@@ -105,7 +108,7 @@ const Projects: React.FC = () => {
 
               {/* Bottom Border Hover Effect */}
               <div className="h-1 bg-gradient-to-r from-[#00A8E8] via-[#0090CC] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-            </div>
+            </motion.div>
           ))}
         </StaggeredGrid>
 

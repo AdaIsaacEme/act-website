@@ -18,9 +18,9 @@ const PartnerCarousel: React.FC = () => {
           }
         `}</style>
 
-        <div style={{ backgroundColor: "#060F1E", borderTop: "1px solid #1E3A5F", borderBottom: "1px solid #1E3A5F", paddingTop: "48px", paddingBottom: "48px" }}>
+        <div style={{ backgroundColor: "#FFFFFF", borderTop: "1px solid #e5e7eb", borderBottom: "1px solid #e5e7eb", paddingTop: "48px", paddingBottom: "48px" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto", paddingLeft: "16px", paddingRight: "16px", marginBottom: "32px", textAlign: "center" }}>
-            <p style={{ color: "#7A9ABD", letterSpacing: "0.3em", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", margin: 0 }}>
+            <p style={{ color: "#666666", letterSpacing: "0.3em", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", margin: 0 }}>
               Our Trusted Partners
             </p>
           </div>
@@ -58,8 +58,8 @@ const PartnerCarousel: React.FC = () => {
                     style={{
                       width: "100%",
                       height: "96px",
-                      backgroundColor: "#0F2137",
-                      border: "1px solid #1E3A5F",
+                      backgroundColor: "#f9fafb",
+                      border: "1px solid #e5e7eb",
                       borderRadius: "8px",
                       display: "flex",
                       alignItems: "center",
@@ -72,7 +72,7 @@ const PartnerCarousel: React.FC = () => {
                       (e.currentTarget as HTMLDivElement).style.borderColor = "#00A8E8";
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = "#1E3A5F";
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "#e5e7eb";
                     }}
                   >
                     <img
@@ -96,7 +96,7 @@ const PartnerCarousel: React.FC = () => {
                     <span
                       style={{
                         display: "none",
-                        color: "#7A9ABD",
+                        color: "#666666",
                         fontSize: "11px",
                         fontWeight: "700",
                         textAlign: "center",
@@ -113,7 +113,7 @@ const PartnerCarousel: React.FC = () => {
                       marginTop: "12px",
                       fontSize: "11px",
                       fontWeight: "600",
-                      color: "#7A9ABD",
+                      color: "#666666",
                       textAlign: "center",
                       whiteSpace: "nowrap",
                       overflow: "hidden",

@@ -25,7 +25,7 @@ interface AnimatedWrapperProps {
 const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
   children,
   className = '',
-  hoverScale = 1.1,
+  hoverScale = 1.06,
   transitionDuration = 0.6,
   delay = 0,
 }) => {
@@ -35,8 +35,9 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
       initial={{ scale: 1 }}
       whileHover={{ scale: hoverScale }}
       transition={{
-        duration: transitionDuration,
-        ease: 'easeOut',
+        type: 'spring',
+        stiffness: 400,
+        damping: 30,
       }}
     >
       {children}

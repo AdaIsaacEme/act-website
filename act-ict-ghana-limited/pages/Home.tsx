@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Hero from "../components/Hero";
 import AwardsTicker from "../components/AwardsTicker";
 import PartnerCarousel from "../components/PartnerCarousel";
@@ -69,14 +70,14 @@ const Home: React.FC = () => {
       {/* Divisions Section - Split Screen */}
       <section className="py-0 bg-[#0A1628]">
         {/* ACT-ICT Division */}
-        <ScrollReveal slideDistance={30}>
-          <div className="grid md:grid-cols-2 min-h-[500px]">
+        <div className="grid md:grid-cols-2 min-h-[500px]">
+          <ScrollReveal slideDistance={40} direction="right" delay={0} duration={0.55}>
             <div className="relative overflow-hidden order-2 md:order-1">
-              <AnimatedWrapper hoverScale={1.05}>
+              <AnimatedWrapper hoverScale={1.06}>
                 <img
                   src="/images/divisions/act-ict.jpg"
                   alt="ACT-ICT"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover will-change-transform"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
@@ -84,33 +85,35 @@ const Home: React.FC = () => {
               </AnimatedWrapper>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0A1628]" />
             </div>
+          </ScrollReveal>
+          <ScrollReveal slideDistance={40} direction="left" delay={0.15} duration={0.55}>
             <div className="bg-[#0A1628] flex items-center px-8 md:px-16 py-20 order-1 md:order-2">
               <div>
-                <span className="text-[#00A8E8] text-sm font-bold tracking-[0.3em] uppercase">Division One</span>
-                <h2 className="font-display text-6xl text-white mt-2 mb-6">ACT-ICT</h2>
-                <p className="text-[#7A9ABD] text-lg mb-8">
-                  Radio & mission-critical communications, network infrastructure, intelligent CCTV, and security systems.
-                </p>
-                <div className="space-y-2 mb-8 text-white text-sm">
-                  <p>✓ TETRA & DMR Radio Systems</p>
-                  <p>✓ Network Infrastructure</p>
-                  <p>✓ Video Surveillance</p>
-                  <p>✓ Fiber Optics</p>
+                  <span className="text-[#00A8E8] text-sm font-bold tracking-[0.3em] uppercase">Division One</span>
+                  <h2 className="font-display text-6xl text-white mt-2 mb-6">ACT-ICT</h2>
+                  <p className="text-[#7A9ABD] text-lg mb-8">
+                    Radio & mission-critical communications, network infrastructure, intelligent CCTV, and security systems.
+                  </p>
+                  <div className="space-y-2 mb-8 text-white text-sm">
+                    <p>✓ TETRA & DMR Radio Systems</p>
+                    <p>✓ Network Infrastructure</p>
+                    <p>✓ Video Surveillance</p>
+                    <p>✓ Fiber Optics</p>
+                  </div>
+                  <AnimatedLink
+                    to="/act-ict"
+                    className="inline-flex items-center text-[#00A8E8] hover:text-[#0090CC] font-semibold transition-all duration-300"
+                  >
+                    Explore Division <ArrowRight className="ml-2" size={18} />
+                  </AnimatedLink>
                 </div>
-                <AnimatedLink
-                  to="/act-ict"
-                  className="inline-flex items-center text-[#00A8E8] hover:text-[#0090CC] font-semibold transition-all duration-300"
-                >
-                  Explore Division <ArrowRight className="ml-2" size={18} />
-                </AnimatedLink>
               </div>
-            </div>
-          </div>
-        </ScrollReveal>
+            </ScrollReveal>
+        </div>
 
         {/* ACTGlobal Division */}
-        <ScrollReveal slideDistance={30} delay={0.15}>
-          <div className="grid md:grid-cols-2 min-h-[500px]">
+        <div className="grid md:grid-cols-2 min-h-[500px]">
+          <ScrollReveal slideDistance={40} direction="left" delay={0} duration={0.55}>
             <div className="bg-[#060F1E] flex items-center px-8 md:px-16 py-20">
               <div>
                 <span className="text-[#F59E0B] text-sm font-bold tracking-[0.3em] uppercase">Division Two</span>
@@ -132,12 +135,14 @@ const Home: React.FC = () => {
                 </AnimatedLink>
               </div>
             </div>
+          </ScrollReveal>
+          <ScrollReveal slideDistance={40} direction="right" delay={0.15} duration={0.55}>
             <div className="relative overflow-hidden">
-              <AnimatedWrapper hoverScale={1.05}>
+              <AnimatedWrapper hoverScale={1.06}>
                 <img
                   src="/images/divisions/act-global.jpg"
                   alt="ACTGlobal"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover will-change-transform"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
@@ -145,19 +150,19 @@ const Home: React.FC = () => {
               </AnimatedWrapper>
               <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0A1628]" />
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </section>
 
       <PartnerCarousel />
 
       {/* Solutions Overview */}
-      <section className="py-20 bg-[#0A1628]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal slideDistance={25}>
             <div className="flex justify-between items-end mb-12">
               <div>
-                <h2 className="font-display text-4xl text-white mb-2">
+                <h2 className="font-display text-4xl text-gray-900 mb-2">
                   Our Solutions
                 </h2>
                 <div className="w-20 h-1 bg-[#00A8E8] rounded-full"></div>
@@ -173,17 +178,19 @@ const Home: React.FC = () => {
 
           <StaggeredGrid staggerDelay={0.1} containerDelay={0.2} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredSolutions.map((sol) => (
-              <div
+              <motion.div
                 key={sol.id}
-                className="bg-[#0F2137] p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border border-[#1E3A5F] hover:border-[#00A8E8] group"
+                whileHover={{ y: -6 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+                className="relative group bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border border-gray-200 hover:border-[#00A8E8] will-change-transform"
               >
-                <div className="w-14 h-14 bg-[#00A8E8]/10 rounded-lg flex items-center justify-center text-[#00A8E8] mb-6 group-hover:bg-[#00A8E8]/20 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
+                <div className="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center text-[#00A8E8] mb-6 group-hover:bg-blue-100 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
                   {getIcon(sol.iconName)}
                 </div>
-                <h3 className="font-display text-xl text-white mb-3">
+                <h3 className="font-display text-xl text-gray-900 mb-3">
                   {sol.title}
                 </h3>
-                <p className="text-[#7A9ABD] text-sm mb-4 leading-relaxed line-clamp-3">
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">
                   {sol.description}
                 </p>
                 <AnimatedLink
@@ -192,7 +199,8 @@ const Home: React.FC = () => {
                 >
                   Learn more <ArrowRight className="ml-1" size={14} />
                 </AnimatedLink>
-              </div>
+                <div className="shimmer-overlay rounded-lg" />
+              </motion.div>
             ))}
           </StaggeredGrid>
 
@@ -200,7 +208,7 @@ const Home: React.FC = () => {
             <div className="mt-8 text-center md:hidden">
               <AnimatedButton
                 onClick={() => window.location.href = '/solutions'}
-                className="inline-flex items-center px-6 py-3 border border-[#1E3A5F] text-[#00A8E8] font-semibold rounded-md bg-[#0F2137] hover:bg-[#1E3A5F] transition-all duration-300 btn-lift"
+                className="inline-flex items-center px-6 py-3 border border-gray-200 text-[#00A8E8] font-semibold rounded-md bg-white hover:bg-gray-50 transition-all duration-300 btn-lift"
                 hoverScale={1.05}
               >
                 View All Solutions
@@ -273,13 +281,13 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section style={{ maxWidth: "1280px", margin: "0 auto", padding: "80px 2rem" }}>
+      <section style={{ maxWidth: "1280px", margin: "0 auto", padding: "80px 2rem", backgroundColor: "#FFFFFF" }}>
         <ScrollReveal slideDistance={25}>
           <div className="flex justify-between items-center mb-12">
-            <h2 className="font-display text-4xl text-white">Recent Projects</h2>
+            <h2 className="font-display text-4xl text-gray-900">Recent Projects</h2>
             <AnimatedButton
               onClick={() => window.location.href = '/projects'}
-              className="hidden md:inline-flex px-6 py-2 border border-[#00A8E8] text-[#00A8E8] font-semibold rounded-full hover:bg-[#00A8E8] hover:text-[#0A1628] transition-all duration-300 btn-lift"
+              className="hidden md:inline-flex px-6 py-2 border border-[#00A8E8] text-[#00A8E8] font-semibold rounded-full hover:bg-[#00A8E8] hover:text-white transition-all duration-300 btn-lift"
               hoverScale={1.05}
             >
               View More Projects
@@ -289,30 +297,35 @@ const Home: React.FC = () => {
 
         <StaggeredGrid staggerDelay={0.12} containerDelay={0.1} className="grid md:grid-cols-3 gap-8">
           {recentProjects.map((project) => (
-            <div key={project.id} className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-xl mb-4 shadow-lg aspect-video">
-                <AnimatedWrapper hoverScale={1.08} transitionDuration={0.7}>
+            <motion.div
+              key={project.id}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 500, damping: 25 }}
+              className="group cursor-pointer will-change-transform"
+            >
+              <div className="relative overflow-hidden rounded-xl mb-4 shadow-lg aspect-video will-change-transform">
+                <AnimatedWrapper hoverScale={1.06} transitionDuration={0.7}>
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover will-change-transform"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}
                   />
                 </AnimatedWrapper>
-                <div className="absolute inset-0 bg-[#0A1628]/40" />
+                <div className="absolute inset-0 bg-gray-900/40" />
                 <div className="absolute top-4 left-4 bg-[#00A8E8] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                   {project.category}
                 </div>
               </div>
-              <h3 className="font-display text-xl text-white group-hover:text-[#00A8E8] transition-all duration-300">
+              <h3 className="font-display text-xl text-gray-900 group-hover:text-[#00A8E8] transition-all duration-300">
                 {project.title}
               </h3>
-              <p className="text-[#7A9ABD] text-sm mt-2">
+              <p className="text-gray-600 text-sm mt-2">
                 {project.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </StaggeredGrid>
 
@@ -320,7 +333,7 @@ const Home: React.FC = () => {
           <div className="mt-8 text-center md:hidden">
             <AnimatedButton
               onClick={() => window.location.href = '/projects'}
-              className="inline-block px-6 py-3 bg-[#00A8E8] text-[#0A1628] font-semibold rounded-md shadow-lg hover:bg-[#0090CC] transition-all duration-300 btn-lift"
+              className="inline-block px-6 py-3 bg-[#00A8E8] text-white font-semibold rounded-md shadow-lg hover:bg-[#0090CC] transition-all duration-300 btn-lift"
               hoverScale={1.08}
             >
               View All Projects

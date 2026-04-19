@@ -316,6 +316,32 @@ button {
   --tw-ring-color: #00A8E8;
 }
 
+/* Gradient Shimmer Overlay for Cards */
+.shimmer-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,168,232,0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.group:hover .shimmer-overlay {
+  opacity: 1;
+}
+
+/* Performance Optimizations for Framer Motion */
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+.framer-motion-element {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

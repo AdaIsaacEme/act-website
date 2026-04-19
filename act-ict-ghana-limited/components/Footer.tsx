@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     <footer className="bg-[#060F1E] border-t border-[#1E3A5F]">
       {/* CTA Strip - Hidden on mining and projects pages */}
       {!hideCTA && (
-        <ScrollReveal className="bg-[#00A8E8] py-8 px-4 text-center">
+        <ScrollReveal direction="up" delay={0.1} className="bg-[#00A8E8] py-8 px-4 text-center">
           <h3 className="font-display text-2xl text-white">Ready to transform your operations?</h3>
           <AnimatedButton
             onClick={() => window.location.href = '/contact'}

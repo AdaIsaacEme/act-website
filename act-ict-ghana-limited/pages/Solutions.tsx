@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
@@ -68,9 +69,11 @@ const Solutions: React.FC = () => {
         {/* Solutions Grid */}
         <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredSolutions.map((sol) => (
-            <div
+            <motion.div
               key={sol.id}
-              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] hover:shadow-lg hover:shadow-[#00A8E8]/20 transition-all duration-300 flex flex-col h-full"
+              whileHover={{ y: -6 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+              className="group bg-[#0F2137] rounded-xl overflow-hidden border border-[#1E3A5F] hover:border-[#00A8E8] hover:shadow-lg hover:shadow-[#00A8E8]/20 transition-all duration-300 flex flex-col h-full will-change-transform"
             >
               <div className="p-8 flex-1 relative">
                 {/* Icon Circle with Glow */}
@@ -100,7 +103,7 @@ const Solutions: React.FC = () => {
 
               {/* Hover Bottom Border */}
               <div className="h-1 bg-gradient-to-r from-[#00A8E8] via-[#0090CC] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-            </div>
+            </motion.div>
           ))}
         </StaggeredGrid>
 

@@ -3,6 +3,7 @@ import { CheckCircle, Award } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedWrapper from "../components/AnimatedWrapper";
+import AnimatedCounter from "../components/AnimatedCounter";
 
 const About: React.FC = () => {
   const awards = [
@@ -85,8 +86,8 @@ const About: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 space-y-20">
         {/* Company Background */}
-        <ScrollReveal slideDistance={25}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <ScrollReveal slideDistance={40} direction="right" delay={0} duration={0.55}>
             <div>
               <h2 className="font-display text-4xl font-black text-white mb-6">
                 Company Background
@@ -111,12 +112,14 @@ const About: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl bg-[#0F2137] ring-1 ring-[#1E3A5F]">
-              <AnimatedWrapper hoverScale={1.08} transitionDuration={0.7}>
+          </ScrollReveal>
+          <ScrollReveal slideDistance={40} direction="left" delay={0.1} duration={0.55}>
+            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl bg-[#0F2137] ring-1 ring-[#1E3A5F] will-change-transform">
+              <AnimatedWrapper hoverScale={1.06} transitionDuration={0.7}>
                 <img
                   src="/images/about/cisco-router-hack.jpg"
                   alt="Strategic Partnership"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover will-change-transform"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
@@ -124,8 +127,8 @@ const About: React.FC = () => {
               </AnimatedWrapper>
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/40 to-transparent" />
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
 
         {/* Stats Row */}
         <StaggeredGrid staggerDelay={0.08} containerDelay={0.15} className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -135,7 +138,7 @@ const About: React.FC = () => {
               className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 text-center"
             >
               <div className="font-display text-4xl font-black text-[#00A8E8] mb-2">
-                {stat.number}
+                <AnimatedCounter value={stat.number} duration={2} />
               </div>
               <div className="text-[#7A9ABD] font-semibold">{stat.label}</div>
             </div>

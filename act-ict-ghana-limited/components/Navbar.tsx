@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import AnimatedLink from "./AnimatedLink";
@@ -7,19 +7,42 @@ import AnimatedButton from "./AnimatedButton";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [divisionOpen, setDivisionOpen] = useState(false);
+  const [isScrolledIntoLight, setIsScrolledIntoLight] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Detect scroll position for light/dark theme awareness
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if scrolled past hero (approximately 80% of viewport height)
+      const threshold = window.innerHeight * 0.8;
+      setIsScrolledIntoLight(window.scrollY > threshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const isActive = (path: string) =>
     location.pathname === path
-      ? "text-[#00A8E8] font-bold"
-      : "text-white hover:text-[#00A8E8]";
+      ? isScrolledIntoLight
+        ? "text-[#00A8E8] font-bold"
+        : "text-[#00A8E8] font-bold"
+      : isScrolledIntoLight
+        ? "text-gray-800 hover:text-[#00A8E8]"
+        : "text-white hover:text-[#00A8E8]";
+
+  const navbarBg = isScrolledIntoLight
+    ? "bg-white border-gray-200"
+    : "bg-[#0A1628]/95 border-[#1E3A5F]";
+
+  const navbarTextColor = isScrolledIntoLight ? "text-gray-800" : "text-white";
 
   return (
-    <nav className="fixed w-full z-50 bg-[#0A1628]/95 backdrop-blur-md border-b border-[#1E3A5F] transition-all duration-300">
+    <nav className={`fixed w-full z-50 ${navbarBg} backdrop-blur-md border-b transition-all duration-300`}>
       {/* Top Bar */}
-      <div className="bg-[#060F1E] text-[#7A9ABD] text-xs py-2 hidden md:block border-b border-[#1E3A5F]">
+      <div className={`${isScrolledIntoLight ? "bg-gray-100 text-gray-600" : "bg-[#060F1E] text-[#7A9ABD]"} text-xs py-2 hidden md:block border-b ${isScrolledIntoLight ? "border-gray-200" : "border-[#1E3A5F]"} transition-all duration-300`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex space-x-6">
             <a href="tel:+233577700555" className="flex items-center space-x-2 hover:text-[#00A8E8] transition-all duration-300">
@@ -75,22 +98,24 @@ const Navbar: React.FC = () => {
                 className={`flex items-center space-x-1 transition-all duration-300 ${
                   isActive("/act-ict") || isActive("/act-global")
                     ? "text-[#00A8E8] font-bold"
-                    : "text-white hover:text-[#00A8E8]"
+                    : isScrolledIntoLight
+                      ? "text-gray-800 hover:text-[#00A8E8]"
+                      : "text-white hover:text-[#00A8E8]"
                 }`}
               >
                 <span>Divisions</span>
                 <ChevronDown size={16} />
               </button>
-              <div className="absolute left-0 mt-2 w-48 bg-[#0F2137] shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50 border border-[#1E3A5F]">
+              <div className={`absolute left-0 mt-2 w-48 shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50 border ${isScrolledIntoLight ? "bg-white border-gray-200" : "bg-[#0F2137] border-[#1E3A5F]"}`}>
                 <AnimatedLink
                   to="/act-ict"
-                  className="block px-4 py-2 text-sm text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F] transition-all duration-300"
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isScrolledIntoLight ? "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-100" : "text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F]"}`}
                 >
                   ACT-ICT
                 </AnimatedLink>
                 <AnimatedLink
                   to="/act-global"
-                  className="block px-4 py-2 text-sm text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F] transition-all duration-300"
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isScrolledIntoLight ? "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-100" : "text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F]"}`}
                 >
                   ACTGlobal
                 </AnimatedLink>
@@ -98,14 +123,14 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="relative group">
-              <button className="flex items-center space-x-1 text-white hover:text-[#00A8E8] transition-all duration-300">
+              <button className={`flex items-center space-x-1 transition-all duration-300 ${isScrolledIntoLight ? "text-gray-800 hover:text-[#00A8E8]" : "text-white hover:text-[#00A8E8]"}`}>
                 <span>Industries</span>
                 <ChevronDown size={16} />
               </button>
-              <div className="absolute left-0 mt-2 w-48 bg-[#0F2137] shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50 border border-[#1E3A5F]">
+              <div className={`absolute left-0 mt-2 w-48 shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50 border ${isScrolledIntoLight ? "bg-white border-gray-200" : "bg-[#0F2137] border-[#1E3A5F]"}`}>
                 <AnimatedLink
                   to="/mining"
-                  className="block px-4 py-2 text-sm text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F] transition-all duration-300"
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isScrolledIntoLight ? "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-100" : "text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F]"}`}
                 >
                   Mining & Industrial
                 </AnimatedLink>
@@ -144,7 +169,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMenu}
-              className="text-white hover:text-[#00A8E8] focus:outline-none transition-all duration-300"
+              className={`transition-all duration-300 focus:outline-none ${isScrolledIntoLight ? "text-gray-800 hover:text-[#00A8E8]" : "text-white hover:text-[#00A8E8]"}`}
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -164,7 +189,7 @@ const Navbar: React.FC = () => {
             }}
           />
           {/* Mobile menu */}
-          <div className="md:hidden bg-[#0A1628] border-t border-[#1E3A5F] absolute w-full shadow-lg z-50 max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className={`md:hidden absolute w-full shadow-lg z-50 max-h-[calc(100vh-120px)] overflow-y-auto border-t transition-all duration-300 ${isScrolledIntoLight ? "bg-white border-gray-200" : "bg-[#0A1628] border-[#1E3A5F]"}`}>
             <div className="px-4 pt-2 pb-6 space-y-2">
               <AnimatedLink
                 to="/"
