@@ -45,9 +45,9 @@ const PartnerCarousel: React.FC = () => {
                   key={`partner-${partner.id}-${index}`}
                   style={{
                     flexShrink: 0,
-                    width: "clamp(130px, 18vw, 180px)",
-                    paddingLeft: "16px",
-                    paddingRight: "16px",
+                    width: "clamp(110px, 18vw, 180px)",
+                    paddingLeft: "clamp(8px, 2vw, 16px)",
+                    paddingRight: "clamp(8px, 2vw, 16px)",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -57,14 +57,15 @@ const PartnerCarousel: React.FC = () => {
                   <div
                     style={{
                       width: "100%",
-                      height: "clamp(64px, 10vw, 96px)",
+                      height: "clamp(56px, 10vw, 96px)",
                       backgroundColor: "var(--bg-surface)",
                       border: "1px solid var(--border-color)",
                       borderRadius: "8px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      padding: "12px",
+                      padding: "clamp(6px, 1.5vw, 12px)",
+                      overflow: "hidden",
                       transition: "border-color 0.3s ease",
                       cursor: "pointer",
                     }}
@@ -79,8 +80,8 @@ const PartnerCarousel: React.FC = () => {
                       src={partner.logoUrl}
                       alt={partner.name}
                       style={{
-                        maxHeight: "60px",
-                        maxWidth: "160px",
+                        maxHeight: "100%",
+                        maxWidth: "100%",
                         objectFit: "contain",
                         filter: "brightness(0.8)",
                       }}
@@ -110,15 +111,15 @@ const PartnerCarousel: React.FC = () => {
 
                   <span
                     style={{
-                      marginTop: "12px",
-                      fontSize: "11px",
+                      marginTop: "8px",
+                      fontSize: "clamp(9px, 1.5vw, 11px)",
                       fontWeight: "600",
                       color: "var(--text-secondary)",
                       textAlign: "center",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxWidth: "168px",
+                      maxWidth: "100%",
                     }}
                   >
                     {partner.name}
