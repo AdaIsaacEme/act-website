@@ -43,18 +43,24 @@ const DivisionACTGlobal: React.FC = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', paddingTop: '2rem' }}>
-      {/* Header */}
+    <div style={{ backgroundColor: 'var(--bg-primary)' }} className="pt-28 sm:pt-32">
+      {/* Header with Banner */}
       <ScrollReveal slideDistance={30}>
-        <div className="text-white py-20 mb-24" style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))' }}>
-          <div className="max-w-7xl mx-auto px-4">
+        <div className="relative overflow-hidden py-20 mb-24">
+          <img
+            src="/images/divisions/act-global-banner.png"
+            alt="ACTGlobal Division"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
+          <div className="relative max-w-7xl mx-auto px-4">
             <span className="text-[#F59E0B] font-bold tracking-[0.3em] uppercase text-sm">
               Division
             </span>
-            <h1 className="font-display text-6xl font-black mt-2 mb-6" style={{ color: 'var(--text-heading)' }}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mt-2 mb-6 text-white">
               ACTGlobal
             </h1>
-            <p className="text-xl max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-xl max-w-2xl text-white/80">
               From industrial automation to advanced lighting and monitoring
               systems, we bring global technology to your operations.
             </p>
@@ -64,7 +70,7 @@ const DivisionACTGlobal: React.FC = () => {
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 pb-20">
-        <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid md:grid-cols-3 gap-8">
+        <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {sections.map((item, idx) => (
             <div
               key={idx}

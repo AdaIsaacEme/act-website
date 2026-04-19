@@ -56,29 +56,29 @@ const Footer: React.FC = () => {
               Leading the way in technological innovation. Providing top-tier IT, Security, and Engineering solutions across Ghana and West Africa.
             </p>
             <div className="flex space-x-4 pt-4">
-              <a href={content.socials.facebook} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Facebook size={20} /></a>
-              <a href={content.socials.linkedin} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Linkedin size={20} /></a>
-              <a href={content.socials.twitter} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Twitter size={20} /></a>
-              <a href={content.socials.instagram} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Instagram size={20} /></a>
+              <a href={content.socials.facebook} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = '#00A8E8'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Facebook size={20} /></a>
+              <a href={content.socials.linkedin} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = '#00A8E8'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Linkedin size={20} /></a>
+              <a href={content.socials.twitter} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = '#00A8E8'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Twitter size={20} /></a>
+              <a href={content.socials.instagram} target="_blank" rel="noopener noreferrer" className="transition-all duration-300" style={{ color: 'var(--text-secondary)' }} onMouseEnter={(e) => e.currentTarget.style.color = '#00A8E8'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}><Instagram size={20} /></a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-lg font-bold mb-6" style={{ color: 'var(--text-heading)' }}>Quick Links</h3>
+            <h3 className="font-display text-lg font-bold mb-6" style={{ color: '#00A8E8' }}>Quick Links</h3>
             <ul className="space-y-3 text-sm" style={{ color: 'var(--text-secondary)' }}>
-              <li><AnimatedLink to="/about" className="hover:text-white transition-all duration-300">About Us</AnimatedLink></li>
-              <li><AnimatedLink to="/act-ict" className="hover:text-white transition-all duration-300">ACT-ICT Division</AnimatedLink></li>
-              <li><AnimatedLink to="/act-global" className="hover:text-white transition-all duration-300">ACTGlobal Division</AnimatedLink></li>
-              <li><AnimatedLink to="/projects" className="hover:text-white transition-all duration-300">Our Projects</AnimatedLink></li>
-              <li><AnimatedLink to="/solutions" className="hover:text-white transition-all duration-300">Solutions & Services</AnimatedLink></li>
-              <li><AnimatedLink to="/contact" className="hover:text-white transition-all duration-300">Contact Support</AnimatedLink></li>
+              <li><AnimatedLink to="/about" className="hover:text-[#00A8E8] transition-all duration-300">About Us</AnimatedLink></li>
+              <li><AnimatedLink to="/act-ict" className="hover:text-[#00A8E8] transition-all duration-300">ACT-ICT Division</AnimatedLink></li>
+              <li><AnimatedLink to="/act-global" className="hover:text-[#00A8E8] transition-all duration-300">ACTGlobal Division</AnimatedLink></li>
+              <li><AnimatedLink to="/projects" className="hover:text-[#00A8E8] transition-all duration-300">Our Projects</AnimatedLink></li>
+              <li><AnimatedLink to="/solutions" className="hover:text-[#00A8E8] transition-all duration-300">Solutions & Services</AnimatedLink></li>
+              <li><AnimatedLink to="/contact" className="hover:text-[#00A8E8] transition-all duration-300">Contact Support</AnimatedLink></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-display text-lg font-bold mb-6" style={{ color: 'var(--text-heading)' }}>Contact Us</h3>
+            <h3 className="font-display text-lg font-bold mb-6" style={{ color: '#00A8E8' }}>Contact Us</h3>
             <ul className="space-y-4 text-sm" style={{ color: 'var(--text-secondary)' }}>
               <li className="flex items-start space-x-3">
                 <MapPin className="flex-shrink-0 mt-1" size={16} />
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
 
           {/* Trusted Partners */}
           <div>
-            <h3 className="font-display text-lg font-bold mb-6" style={{ color: 'var(--text-heading)' }}>Trusted Partners</h3>
+            <h3 className="font-display text-lg font-bold mb-6" style={{ color: '#00A8E8' }}>Trusted Partners</h3>
             <p className="text-sm mb-6" style={{ color: 'var(--text-secondary)' }}>Official technology partners across global brands</p>
             <TrustedPartnersCube />
           </div>

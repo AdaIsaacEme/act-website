@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedLink from "../components/AnimatedLink";
+import { useTheme } from "../context/ThemeContext";
 
 const SURFACE_IMG = "/images/mining/surface-mining.jpg";
 const UNDERGROUND_IMG = "/images/mining/underground-mining.jpg";
@@ -16,7 +17,7 @@ const MINING_CLIENTS = [
   },
   {
     name: "AngloGold Ashanti",
-    logo: "/images/logo/aga-logo.png",
+    logo: "/images/logo/aga.png",
     projects: "Leaky Feeder, Underground CCTV",
   },
   {
@@ -129,16 +130,16 @@ const ClientLogo: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
             maxHeight: "56px",
             maxWidth: "140px",
             objectFit: "contain",
-            filter: "brightness(0.75)",
-            transition: "filter 0.3s",
+            transition: "opacity 0.3s",
+            opacity: 0.85,
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLImageElement).style.filter =
-              "brightness(1)";
+            (e.currentTarget as HTMLImageElement).style.opacity =
+              "1";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLImageElement).style.filter =
-              "brightness(0.75)";
+            (e.currentTarget as HTMLImageElement).style.opacity =
+              "0.85";
           }}
         />
       )}
@@ -148,10 +149,12 @@ const ClientLogo: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
 
 // ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 const MiningIndustrial: React.FC = () => {
+  const { isDark } = useTheme();
+
   return (
     <div
-      style={{ backgroundColor: "#0A1628", minHeight: "100vh" }}
-      className="pt-20"
+      style={{ backgroundColor: 'var(--bg-primary)', minHeight: "100vh" }}
+      className="pt-28 sm:pt-32"
     >
       {/* ── HERO ── */}
       <div
@@ -271,7 +274,7 @@ const MiningIndustrial: React.FC = () => {
                 style={{
                   fontFamily: "'Bebas Neue', sans-serif",
                   fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                  color: "white",
+                  color: "var(--text-heading)",
                   marginTop: "8px",
                   marginBottom: "20px",
                   lineHeight: 1.1,
@@ -281,7 +284,7 @@ const MiningIndustrial: React.FC = () => {
               </h2>
               <p
                 style={{
-                  color: "#7A9ABD",
+                  color: "var(--text-secondary)",
                   fontSize: "17px",
                   lineHeight: "1.7",
                   marginBottom: "28px",
@@ -297,7 +300,7 @@ const MiningIndustrial: React.FC = () => {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      color: "white",
+                      color: "var(--text-primary)",
                       marginBottom: "12px",
                       fontSize: "15px",
                     }}
@@ -334,7 +337,7 @@ const MiningIndustrial: React.FC = () => {
       </section>
 
       {/* ── UNDERGROUND SOLUTIONS ── */}
-      <section style={{ backgroundColor: "#060F1E", padding: "80px 0" }}>
+      <section style={{ backgroundColor: 'var(--bg-secondary)', padding: "80px 0" }}>
         <ScrollReveal slideDistance={30} delay={0.15}>
           <div
             style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
@@ -374,7 +377,7 @@ const MiningIndustrial: React.FC = () => {
                   style={{
                     fontFamily: "'Bebas Neue', sans-serif",
                     fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                    color: "white",
+                    color: "var(--text-heading)",
                     marginTop: "8px",
                     marginBottom: "20px",
                     lineHeight: 1.1,
@@ -384,7 +387,7 @@ const MiningIndustrial: React.FC = () => {
                 </h2>
                 <p
                   style={{
-                    color: "#7A9ABD",
+                    color: "var(--text-secondary)",
                     fontSize: "17px",
                     lineHeight: "1.7",
                     marginBottom: "28px",
@@ -400,7 +403,7 @@ const MiningIndustrial: React.FC = () => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        color: "white",
+                        color: "var(--text-primary)",
                         marginBottom: "12px",
                         fontSize: "15px",
                       }}
@@ -428,12 +431,11 @@ const MiningIndustrial: React.FC = () => {
       {/* ── MINING CLIENTS ── */}
       <section
         style={{
-          padding: "80px 0",
-          maxWidth: "1280px",
-          margin: "0 auto",
+          backgroundColor: "#0F2137",
           padding: "80px 2rem",
         }}
       >
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <p
             style={{
@@ -451,7 +453,7 @@ const MiningIndustrial: React.FC = () => {
             style={{
               fontFamily: "'Bebas Neue', sans-serif",
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              color: "white",
+              color: "#ffffff",
               marginTop: "8px",
               marginBottom: "12px",
             }}
@@ -470,13 +472,13 @@ const MiningIndustrial: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
           {MINING_CLIENTS.map((client, i) => (
             <div
               key={i}
               style={{
-                backgroundColor: "#0F2137",
-                border: "1px solid #1E3A5F",
+                backgroundColor: "#1E3A5F",
+                border: "1px solid #2a4f7a",
                 borderRadius: "12px",
                 padding: "24px 16px",
                 display: "flex",
@@ -491,13 +493,13 @@ const MiningIndustrial: React.FC = () => {
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "#1E3A5F";
+                  "#2a4f7a";
               }}
             >
               <ClientLogo src={client.logo} alt={client.name} />
               <h4
                 style={{
-                  color: "white",
+                  color: "#ffffff",
                   fontWeight: "700",
                   fontSize: "14px",
                   margin: "0 0 6px 0",
@@ -517,6 +519,7 @@ const MiningIndustrial: React.FC = () => {
               </p>
             </div>
           ))}
+        </div>
         </div>
       </section>
 

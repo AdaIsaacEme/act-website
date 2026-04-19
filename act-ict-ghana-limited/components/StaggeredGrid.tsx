@@ -14,7 +14,7 @@ interface StaggeredGridProps {
 const StaggeredGrid: React.FC<StaggeredGridProps> = ({
   children,
   className = '',
-  staggerDelay = 0.08,
+  staggerDelay = 0.09,
   containerDelay = 0,
   fromDirection = 'up',
 }) => {
@@ -44,7 +44,7 @@ const StaggeredGrid: React.FC<StaggeredGridProps> = ({
       visible: {
         opacity: 1, x: 0, y: 0, scale: 1,
         transition: {
-          duration: 0.6,
+          duration: 0.65,
           ease: [0.16, 1, 0.3, 1],
         },
       },
@@ -59,7 +59,7 @@ const StaggeredGrid: React.FC<StaggeredGridProps> = ({
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '0px 0px -30px 0px' }}
+      viewport={{ once: true, margin: '0px 0px -60px 0px' }}
     >
       {childArray.map((child, i) => (
         <motion.div key={i} variants={getVariant(i)} style={{ willChange: 'transform, opacity' }}>

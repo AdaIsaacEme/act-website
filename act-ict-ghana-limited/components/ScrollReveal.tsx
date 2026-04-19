@@ -12,10 +12,10 @@ interface ScrollRevealProps {
 }
 
 const dirMap: Record<Direction, { x: number; y: number }> = {
-  up:    { x: 0,   y: 44 },
-  down:  { x: 0,   y: -44 },
-  left:  { x: 48,  y: 0 },
-  right: { x: -48, y: 0 },
+  up:    { x: 0,   y: 50 },
+  down:  { x: 0,   y: -50 },
+  left:  { x: 56,  y: 0 },
+  right: { x: -56, y: 0 },
   none:  { x: 0,   y: 0 },
 };
 
@@ -23,11 +23,11 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   className = '',
   delay = 0,
-  duration = 0.7,
+  duration = 0.75,
   direction = 'up',
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
   const { x, y } = dirMap[direction];
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
@@ -7,14 +7,41 @@ import AnimatedButton from './AnimatedButton';
 const Hero: React.FC = () => {
   const { content } = useContent();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imagesReady, setImagesReady] = useState(false);
   const slides = content.hero.slides;
+  const preloadedRef = useRef<Set<string>>(new Set());
+
+  // Preload all hero images on mount
+  useEffect(() => {
+    let loaded = 0;
+    const total = slides.length;
+    slides.forEach((slide) => {
+      if (preloadedRef.current.has(slide.image)) {
+        loaded++;
+        if (loaded >= total) setImagesReady(true);
+        return;
+      }
+      const img = new Image();
+      img.src = slide.image;
+      img.onload = () => {
+        preloadedRef.current.add(slide.image);
+        loaded++;
+        if (loaded >= total) setImagesReady(true);
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded >= total) setImagesReady(true);
+      };
+    });
+  }, [slides]);
 
   useEffect(() => {
+    if (!imagesReady) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [slides.length, imagesReady]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -27,55 +54,62 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full overflow-hidden bg-[#0A1628] text-white" style={{ minHeight: '100svh' }}>
-      <AnimatePresence mode="sync">
-        {slides.map((slide, index) =>
-          index === currentSlide && (
-            <motion.div
-              key={slide.id}
-              className="absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.0, ease: 'easeInOut' }}
-            >
-              {/* Background */}
-              <div className="absolute inset-0 overflow-hidden">
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className={`absolute inset-0 w-full h-full object-cover kenburns-${index % 2 === 0 ? 'a' : 'b'}`}
-                  style={{ willChange: 'transform' }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/70 to-[#0A1628]/30" />
-              </div>
+    <div className="relative w-full overflow-hidden overflow-x-hidden bg-[#0A1628] text-white" style={{ minHeight: '100svh' }}>
+      {/* Preloaded background images — all always in DOM for instant transitions */}
+      {slides.map((slide, index) => (
+        <div
+          key={`bg-${slide.id}`}
+          className="absolute inset-0 overflow-hidden transition-opacity duration-1000 ease-in-out"
+          style={{ opacity: index === currentSlide ? 1 : 0 }}
+        >
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className={`absolute inset-0 w-full h-full object-cover ${index === currentSlide ? `kenburns-${index % 2 === 0 ? 'a' : 'b'}` : ''}`}
+            style={{ willChange: 'transform' }}
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/70 to-[#0A1628]/30" />
+        </div>
+      ))}
+
+      {/* Animated text content */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={slides[currentSlide].id}
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+        >
 
               {/* Content — uses padding-top to clear navbar */}
               <div className="relative w-full h-full flex items-end pb-16 md:items-center md:pb-0">
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 md:pt-32">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 sm:pt-44 md:pt-44 lg:pt-40">
                   <div className="max-w-2xl lg:max-w-3xl">
                     <motion.h2
-                      key={`${slide.id}-title`}
-                      initial={{ opacity: 0, y: 60, filter: 'blur(10px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      key={`${slides[currentSlide].id}-title`}
+                      initial={{ opacity: 0, y: 60 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                       className="font-display leading-[0.9] tracking-tight text-white drop-shadow-2xl mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
                     >
-                      {slide.title}
+                      {slides[currentSlide].title}
                     </motion.h2>
 
                     <motion.p
-                      key={`${slide.id}-sub`}
-                      initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      key={`${slides[currentSlide].id}-sub`}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
                       className="text-base sm:text-lg md:text-xl text-[#E8EFF8]/90 font-light max-w-xl mb-6"
                     >
-                      {slide.subtitle}
+                      {slides[currentSlide].subtitle}
                     </motion.p>
 
                     <motion.div
-                      key={`${slide.id}-stats`}
+                      key={`${slides[currentSlide].id}-stats`}
                       initial={{ opacity: 0, x: -30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
@@ -91,7 +125,7 @@ const Hero: React.FC = () => {
                     </motion.div>
 
                     <motion.div
-                      key={`${slide.id}-cta`}
+                      key={`${slides[currentSlide].id}-cta`}
                       initial={{ opacity: 0, y: 20, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
@@ -102,22 +136,20 @@ const Hero: React.FC = () => {
                         className="inline-flex justify-center items-center px-6 sm:px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
                         hoverScale={1.04}
                       >
-                        {slide.ctaPrimary} <ArrowRight className="ml-2 flex-shrink-0" size={16} />
+                        {slides[currentSlide].ctaPrimary} <ArrowRight className="ml-2 flex-shrink-0" size={16} />
                       </AnimatedButton>
                       <AnimatedButton
                         onClick={() => window.location.href = '/projects'}
-                        className="inline-flex justify-center items-center px-6 sm:px-8 py-3 border border-white/40 hover:border-[#00A8E8] text-white font-semibold rounded-lg text-sm sm:text-base backdrop-blur-sm transition-colors duration-200"
+                        className="inline-flex justify-center items-center px-6 sm:px-8 py-3 border border-white/40 hover:border-[#00A8E8] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
                         hoverScale={1.03}
                       >
-                        {slide.ctaSecondary}
+                        {slides[currentSlide].ctaSecondary}
                       </AnimatedButton>
                     </motion.div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          )
-        )}
+        </motion.div>
       </AnimatePresence>
 
       {/* Slide indicators — responsive positioning */}
@@ -137,14 +169,14 @@ const Hero: React.FC = () => {
       <div className="absolute z-20 bottom-6 right-4 sm:right-10 hidden sm:flex gap-2">
         <AnimatedButton
           onClick={prevSlide}
-          className="p-2 rounded-full bg-white/10 hover:bg-[#00A8E8]/40 backdrop-blur text-white"
+          className="p-2 rounded-full bg-white/10 hover:bg-[#00A8E8]/40 text-white"
           hoverScale={1.1}
         >
           <ChevronLeft size={20} />
         </AnimatedButton>
         <AnimatedButton
           onClick={nextSlide}
-          className="p-2 rounded-full bg-white/10 hover:bg-[#00A8E8]/40 backdrop-blur text-white"
+          className="p-2 rounded-full bg-white/10 hover:bg-[#00A8E8]/40 text-white"
           hoverScale={1.1}
         >
           <ChevronRight size={20} />

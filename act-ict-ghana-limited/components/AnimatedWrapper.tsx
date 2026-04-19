@@ -36,9 +36,9 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
       whileHover={{ scale: hoverScale }}
       transition={{
         type: 'spring',
-        stiffness: 400,
-        damping: 30,
-        mass: 0.8,
+        stiffness: 350,
+        damping: 28,
+        mass: 0.9,
       }}
     >
       {children}

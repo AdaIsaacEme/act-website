@@ -28,13 +28,19 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '2rem', paddingBottom: '5rem' }}>
-      {/* Header Section */}
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingBottom: '5rem' }} className="pt-28 sm:pt-32">
+      {/* Header Section with Banner */}
       <ScrollReveal slideDistance={30}>
-        <div style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))', color: 'white', paddingTop: '5rem', paddingBottom: '5rem', marginBottom: '4rem' }}>
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4" style={{ color: 'var(--text-heading)' }}>Our Projects</h1>
-            <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+        <div className="relative overflow-hidden" style={{ paddingTop: '5rem', paddingBottom: '5rem', marginBottom: '4rem' }}>
+          <img
+            src="/images/projects/projects-banner.png"
+            alt="Our Projects"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
+          <div className="relative max-w-7xl mx-auto px-4 text-center">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white">Our Projects</h1>
+            <p className="text-lg text-white/80">
               Showcasing excellence in execution across Ghana and West Africa.
             </p>
           </div>

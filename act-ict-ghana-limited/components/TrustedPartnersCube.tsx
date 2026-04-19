@@ -15,6 +15,13 @@ const TrustedPartnersCube: React.FC = () => {
   return (
     <div
       style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+    <div
+      style={{
         perspective: '800px',
         width: '120px',
         height: '70px',
@@ -98,6 +105,7 @@ const TrustedPartnersCube: React.FC = () => {
           );
         })}
       </div>
+    </div>
     </div>
   );
 };

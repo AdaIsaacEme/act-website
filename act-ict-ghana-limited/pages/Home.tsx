@@ -162,7 +162,7 @@ const Home: React.FC = () => {
           <ScrollReveal slideDistance={25}>
             <div className="flex justify-between items-end mb-12">
               <div>
-                <h2 className="font-display text-4xl mb-2" style={{ color: 'var(--text-heading)' }}>
+                <h2 className="font-display text-3xl sm:text-4xl mb-2" style={{ color: 'var(--text-heading)' }}>
                   Our Solutions
                 </h2>
                 <div className="w-20 h-1 bg-[#00A8E8] rounded-full"></div>
@@ -176,15 +176,16 @@ const Home: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          <StaggeredGrid fromDirection="alternating" staggerDelay={0.06} containerDelay={0.2} className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
+          <StaggeredGrid fromDirection="alternating" staggerDelay={0.06} containerDelay={0.2} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
             {featuredSolutions.map((sol) => (
               <motion.div
                 key={sol.id}
                 whileHover={{ y: -6 }}
                 transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                className="relative group bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border border-gray-200 hover:border-[#00A8E8] will-change-transform"
+                className="relative group p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border hover:border-[#00A8E8] will-change-transform"
+                style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
               >
-                <div className="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center text-[#00A8E8] mb-6 group-hover:bg-blue-100 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
+                <div className="w-14 h-14 bg-[#00A8E8]/10 rounded-lg flex items-center justify-center text-[#00A8E8] mb-6 group-hover:bg-[#00A8E8]/20 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
                   {getIcon(sol.iconName)}
                 </div>
                 <h3 className="font-display text-xl mb-3" style={{ color: 'var(--text-heading)' }}>
@@ -208,7 +209,8 @@ const Home: React.FC = () => {
             <div className="mt-8 text-center md:hidden">
               <AnimatedButton
                 onClick={() => window.location.href = '/solutions'}
-                className="inline-flex items-center px-6 py-3 border border-gray-200 text-[#00A8E8] font-semibold rounded-md bg-white hover:bg-gray-50 transition-all duration-300 btn-lift"
+                className="inline-flex items-center px-6 py-3 border text-[#00A8E8] font-semibold rounded-md transition-all duration-300 btn-lift"
+                style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
                 hoverScale={1.05}
               >
                 View All Solutions
@@ -226,7 +228,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal slideDistance={25}>
             <div className="text-center mb-16">
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 Areas of Expertise
               </h2>
               <p className="text-[#7A9ABD] max-w-2xl mx-auto">
@@ -236,7 +238,7 @@ const Home: React.FC = () => {
             </div>
           </ScrollReveal>
 
-          <StaggeredGrid fromDirection="alternating" staggerDelay={0.07} containerDelay={0.15} className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
+          <StaggeredGrid fromDirection="alternating" staggerDelay={0.07} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8">
             {expertiseItems.map((item) => (
               <div
                 key={item.id}
@@ -284,7 +286,7 @@ const Home: React.FC = () => {
       <section style={{ maxWidth: "1280px", margin: "0 auto", padding: "clamp(48px, 8vw, 80px) 1rem", backgroundColor: 'var(--bg-secondary)' }}>
         <ScrollReveal slideDistance={25}>
           <div className="flex justify-between items-center mb-12">
-              <h2 className="font-display text-4xl" style={{ color: 'var(--text-heading)' }}>Recent Projects</h2>
+              <h2 className="font-display text-3xl sm:text-4xl" style={{ color: 'var(--text-heading)' }}>Recent Projects</h2>
             <AnimatedButton
               onClick={() => window.location.href = '/projects'}
               className="hidden md:inline-flex px-6 py-2 border border-[#00A8E8] text-[#00A8E8] font-semibold rounded-full hover:bg-[#00A8E8] hover:text-white transition-all duration-300 btn-lift"

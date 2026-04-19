@@ -73,16 +73,22 @@ const DivisionACTICT: React.FC = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', paddingTop: '2rem' }}>
-      {/* Header */}
+    <div style={{ backgroundColor: 'var(--bg-primary)' }} className="pt-28 sm:pt-32">
+      {/* Header with Banner */}
       <ScrollReveal>
-        <div className="text-white py-20 mb-24" style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))' }}>
-          <div className="max-w-7xl mx-auto px-4">
+        <div className="relative overflow-hidden py-20 mb-24">
+          <img
+            src="/images/divisions/act-ict-banner.png"
+            alt="ACT-ICT Division"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
+          <div className="relative max-w-7xl mx-auto px-4">
             <span className="text-[#00A8E8] font-bold tracking-[0.3em] uppercase text-sm">
               Division
             </span>
-            <h1 className="font-display text-6xl font-black mt-2 mb-6" style={{ color: 'var(--text-heading)' }}>ACT-ICT</h1>
-            <p className="text-xl max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mt-2 mb-6 text-white">ACT-ICT</h1>
+            <p className="text-xl max-w-2xl text-white/80">
               Delivering the core of connectivity and security. We build the
               systems that keep your business communicating and secure.
             </p>
@@ -106,7 +112,7 @@ const DivisionACTICT: React.FC = () => {
                 <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
                   {section.icon}
                 </div>
-                <h2 className="font-display text-4xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
+                <h2 className="font-display text-3xl sm:text-4xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
                   {section.title}
                 </h2>
                 <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>

@@ -14,14 +14,22 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '2rem', paddingBottom: '5rem' }}>
-      {/* Header */}
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingBottom: '5rem' }} className="pt-28 sm:pt-32">
+      {/* Header with Banner */}
       <ScrollReveal>
-        <div className="py-20 text-center" style={{ background: 'linear-gradient(to right, var(--bg-surface), var(--bg-elevated), var(--bg-surface))', color: 'white', marginBottom: '5rem' }}>
-            <h1 className="font-display text-6xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>Contact Us</h1>
-            <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
-            Get in touch with our expert team today.
-          </p>
+        <div className="relative overflow-hidden py-20 text-center" style={{ marginBottom: '5rem' }}>
+          <img
+            src="/images/banners/contact-banner.png"
+            alt="Contact Us"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
+          <div className="relative">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-4 text-white">Contact Us</h1>
+            <p className="text-lg text-white/80">
+              Get in touch with our expert team today.
+            </p>
+          </div>
         </div>
       </ScrollReveal>
 
