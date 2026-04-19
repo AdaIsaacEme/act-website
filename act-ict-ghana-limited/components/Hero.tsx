@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
+import AnimatedButton from './AnimatedButton';
 
 const Hero: React.FC = () => {
   const { content } = useContent();
@@ -69,18 +70,20 @@ const Hero: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <Link
-                  to="/solutions"
-                  className="inline-flex justify-center items-center px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/50"
+                <AnimatedButton
+                  onClick={() => window.location.href = '/solutions'}
+                  className="inline-flex justify-center items-center px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/50 btn-lift rounded-lg"
+                  hoverScale={1.08}
                 >
                   {slide.ctaPrimary} <ArrowRight className="ml-2" size={18} />
-                </Link>
-                <Link
-                  to="/projects"
-                  className="inline-flex justify-center items-center px-8 py-3 bg-transparent border border-white/50 hover:border-[#00A8E8] text-white font-semibold backdrop-blur-sm transition-all duration-300 hover:bg-[#00A8E8]/10"
+                </AnimatedButton>
+                <AnimatedButton
+                  onClick={() => window.location.href = '/projects'}
+                  className="inline-flex justify-center items-center px-8 py-3 bg-transparent border border-white/50 hover:border-[#00A8E8] text-white font-semibold backdrop-blur-sm transition-all duration-300 hover:bg-[#00A8E8]/10 btn-lift rounded-lg"
+                  hoverScale={1.05}
                 >
                   {slide.ctaSecondary}
-                </Link>
+                </AnimatedButton>
               </div>
             </div>
           </div>
@@ -89,18 +92,20 @@ const Hero: React.FC = () => {
 
       {/* Navigation Buttons */}
       <div className="absolute z-20 bottom-10 right-10 flex space-x-2">
-        <button
+        <AnimatedButton
           onClick={prevSlide}
           className="p-2 rounded-full bg-[#00A8E8]/20 hover:bg-[#00A8E8]/40 backdrop-blur text-white transition-all duration-300"
+          hoverScale={1.1}
         >
           <ChevronLeft size={24} />
-        </button>
-        <button
+        </AnimatedButton>
+        <AnimatedButton
           onClick={nextSlide}
           className="p-2 rounded-full bg-[#00A8E8]/20 hover:bg-[#00A8E8]/40 backdrop-blur text-white transition-all duration-300"
+          hoverScale={1.1}
         >
           <ChevronRight size={24} />
-        </button>
+        </AnimatedButton>
       </div>
 
       {/* Indicators */}

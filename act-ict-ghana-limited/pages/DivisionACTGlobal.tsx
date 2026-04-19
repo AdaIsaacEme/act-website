@@ -8,6 +8,9 @@ import {
   Navigation,
   Wind,
 } from "lucide-react";
+import ScrollReveal from "../components/ScrollReveal";
+import StaggeredGrid from "../components/StaggeredGrid";
+import AnimatedWrapper from "../components/AnimatedWrapper";
 
 const DivisionACTGlobal: React.FC = () => {
   const sections = [
@@ -42,24 +45,26 @@ const DivisionACTGlobal: React.FC = () => {
   return (
     <div className="pt-32 bg-[#0A1628]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-24">
-        <div className="max-w-7xl mx-auto px-4">
-          <span className="text-[#F59E0B] font-bold tracking-[0.3em] uppercase text-sm">
-            Division
-          </span>
-          <h1 className="font-display text-6xl font-black mt-2 mb-6">
-            ACTGlobal
-          </h1>
-          <p className="text-xl max-w-2xl text-[#7A9ABD]">
-            From industrial automation to advanced lighting and monitoring
-            systems, we bring global technology to your operations.
-          </p>
+      <ScrollReveal slideDistance={30}>
+        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-24">
+          <div className="max-w-7xl mx-auto px-4">
+            <span className="text-[#F59E0B] font-bold tracking-[0.3em] uppercase text-sm">
+              Division
+            </span>
+            <h1 className="font-display text-6xl font-black mt-2 mb-6">
+              ACTGlobal
+            </h1>
+            <p className="text-xl max-w-2xl text-[#7A9ABD]">
+              From industrial automation to advanced lighting and monitoring
+              systems, we bring global technology to your operations.
+            </p>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 pb-20">
-        <div className="grid md:grid-cols-3 gap-8">
+        <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-3 gap-8">
           {sections.map((item, idx) => (
             <div
               key={idx}
@@ -82,21 +87,23 @@ const DivisionACTGlobal: React.FC = () => {
 
               {/* Image */}
               <div className="h-40 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F]">
-                <img
-                  src={`/images/divisions/act-global-${idx + 1}.jpg`}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
+                <AnimatedWrapper hoverScale={1.15} transitionDuration={0.7}>
+                  <img
+                    src={`/images/divisions/act-global-${idx + 1}.jpg`}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                </AnimatedWrapper>
               </div>
 
               {/* Hover Border */}
               <div className="h-1 bg-gradient-to-r from-[#F59E0B] via-amber-400 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 mt-4" />
             </div>
           ))}
-        </div>
+        </StaggeredGrid>
       </div>
     </div>
   );

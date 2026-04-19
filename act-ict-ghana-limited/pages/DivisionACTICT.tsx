@@ -1,5 +1,7 @@
 import React from "react";
 import { Radio, Server, Video, Check, MapPin, Cable } from "lucide-react";
+import ScrollReveal from "../components/ScrollReveal";
+import AnimatedWrapper from "../components/AnimatedWrapper";
 
 const DivisionACTICT: React.FC = () => {
   const sections = [
@@ -73,67 +75,72 @@ const DivisionACTICT: React.FC = () => {
   return (
     <div className="pt-32 bg-[#0A1628]">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-24">
-        <div className="max-w-7xl mx-auto px-4">
-          <span className="text-[#00A8E8] font-bold tracking-[0.3em] uppercase text-sm">
-            Division
-          </span>
-          <h1 className="font-display text-6xl font-black mt-2 mb-6">ACT-ICT</h1>
-          <p className="text-xl max-w-2xl text-[#7A9ABD]">
-            Delivering the core of connectivity and security. We build the
-            systems that keep your business communicating and secure.
-          </p>
+      <ScrollReveal slideDistance={30}>
+        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-24">
+          <div className="max-w-7xl mx-auto px-4">
+            <span className="text-[#00A8E8] font-bold tracking-[0.3em] uppercase text-sm">
+              Division
+            </span>
+            <h1 className="font-display text-6xl font-black mt-2 mb-6">ACT-ICT</h1>
+            <p className="text-xl max-w-2xl text-[#7A9ABD]">
+              Delivering the core of connectivity and security. We build the
+              systems that keep your business communicating and secure.
+            </p>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Sections */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 space-y-24 pb-20">
         {sections.map((section, idx) => (
-          <div
-            key={section.id}
-            className={`flex flex-col md:flex-row gap-12 items-center ${
-              idx % 2 !== 0 ? "md:flex-row-reverse" : ""
-            }`}
-          >
-            {/* Content */}
-            <div className="flex-1">
-              <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
-                {section.icon}
+          <ScrollReveal key={section.id} slideDistance={30} delay={idx * 0.1}>
+            <div
+              className={`flex flex-col md:flex-row gap-12 items-center ${
+                idx % 2 !== 0 ? "md:flex-row-reverse" : ""
+              }`}
+            >
+              {/* Content */}
+              <div className="flex-1">
+                <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
+                  {section.icon}
+                </div>
+                <h2 className="font-display text-4xl font-black text-white mb-4">
+                  {section.title}
+                </h2>
+                <p className="text-[#7A9ABD] text-lg leading-relaxed mb-6">
+                  {section.content}
+                </p>
+                <ul className="space-y-3">
+                  {section.features.map((feat, i) => (
+                    <li
+                      key={i}
+                      className="flex items-center text-white font-medium"
+                    >
+                      <Check className="text-[#00A8E8] mr-3" size={20} />
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="font-display text-4xl font-black text-white mb-4">
-                {section.title}
-              </h2>
-              <p className="text-[#7A9ABD] text-lg leading-relaxed mb-6">
-                {section.content}
-              </p>
-              <ul className="space-y-3">
-                {section.features.map((feat, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center text-white font-medium"
-                  >
-                    <Check className="text-[#00A8E8] mr-3" size={20} />
-                    {feat}
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            {/* Image */}
-            <div className="flex-1 w-full">
-              <div className="relative overflow-hidden rounded-xl shadow-2xl ring-1 ring-[#00A8E8]/20 hover:ring-[#00A8E8]/50 transition-all duration-300">
-                <img
-                  src={`/images/divisions/act-ict-${idx + 1}.jpg`}
-                  alt={section.title}
-                  className="w-full h-auto object-cover hover:scale-105 transition duration-500"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/20 to-transparent" />
+              {/* Image */}
+              <div className="flex-1 w-full">
+                <div className="relative overflow-hidden rounded-xl shadow-2xl ring-1 ring-[#00A8E8]/20 hover:ring-[#00A8E8]/50 transition-all duration-300">
+                  <AnimatedWrapper hoverScale={1.08} transitionDuration={0.7}>
+                    <img
+                      src={`/images/divisions/act-ict-${idx + 1}.jpg`}
+                      alt={section.title}
+                      className="w-full h-auto object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  </AnimatedWrapper>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/20 to-transparent" />
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </div>

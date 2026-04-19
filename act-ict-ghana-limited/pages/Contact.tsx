@@ -1,5 +1,8 @@
 import React from "react";
 import { useContent } from "../context/ContentContext";
+import ScrollReveal from "../components/ScrollReveal";
+import StaggeredGrid from "../components/StaggeredGrid";
+import AnimatedButton from "../components/AnimatedButton";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 
 const Contact: React.FC = () => {
@@ -13,17 +16,19 @@ const Contact: React.FC = () => {
   return (
     <div className="pt-32 min-h-screen bg-[#0A1628] pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] py-20 text-center text-white mb-20">
-        <h1 className="font-display text-6xl font-black mb-4">Contact Us</h1>
-        <p className="text-[#7A9ABD] text-lg">
-          Get in touch with our expert team today.
-        </p>
-      </div>
+      <ScrollReveal slideDistance={30}>
+        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] py-20 text-center text-white mb-20">
+          <h1 className="font-display text-6xl font-black mb-4">Contact Us</h1>
+          <p className="text-[#7A9ABD] text-lg">
+            Get in touch with our expert team today.
+          </p>
+        </div>
+      </ScrollReveal>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {/* Contact Info Cards */}
-          <div className="space-y-6">
+          <StaggeredGrid staggerDelay={0.12} containerDelay={0.1} className="space-y-6">
             {/* Phone */}
             <a
               href="tel:+233577700555"
@@ -99,81 +104,86 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </a>
-          </div>
+          </StaggeredGrid>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2 bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-8">
-            <h3 className="font-display text-2xl font-black text-white mb-6">
-              Send us a Message
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
-                  />
+          <ScrollReveal slideDistance={25} delay={0.15} className="lg:col-span-2">
+            <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-8">
+              <h3 className="font-display text-2xl font-black text-white mb-6">
+                Send us a Message
+              </h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
-                    Email Address
+                    Subject
                   </label>
-                  <input
-                    type="email"
-                    required
-                    className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
-                  />
+                  <select className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300">
+                    <option>General Inquiry</option>
+                    <option>Request Quote</option>
+                    <option>Technical Support</option>
+                    <option>Partnership</option>
+                  </select>
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
-                  Subject
-                </label>
-                <select className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300">
-                  <option>General Inquiry</option>
-                  <option>Request Quote</option>
-                  <option>Technical Support</option>
-                  <option>Partnership</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
-                  Message
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300 resize-none"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full md:w-auto px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-[#00A8E8]/50"
-              >
-                Send Message <Send size={18} className="ml-2" />
-              </button>
-            </form>
-          </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#7A9ABD] mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    rows={4}
+                    required
+                    className="w-full px-4 py-3 bg-[#0A1628] border border-[#1E3A5F] text-white rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300 resize-none"
+                  ></textarea>
+                </div>
+                <AnimatedButton
+                  type="submit"
+                  className="w-full md:w-auto px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
+                  hoverScale={1.05}
+                >
+                  Send Message <Send size={18} className="ml-2" />
+                </AnimatedButton>
+              </form>
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* Map */}
-        <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl overflow-hidden shadow-lg h-96">
-          <iframe
-            title="ACT-ICT Location"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            scrolling="no"
-            marginHeight={0}
-            marginWidth={0}
-            src={content.contact.mapUrl}
-            className="w-full h-full"
-          ></iframe>
-        </div>
+        <ScrollReveal slideDistance={25} delay={0.25}>
+          <div className="bg-[#0F2137] border border-[#1E3A5F] rounded-xl overflow-hidden shadow-lg h-96">
+            <iframe
+              title="ACT-ICT Location"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight={0}
+              marginWidth={0}
+              src={content.contact.mapUrl}
+              className="w-full h-full"
+            ></iframe>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

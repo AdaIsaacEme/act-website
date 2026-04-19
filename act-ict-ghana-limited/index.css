@@ -78,6 +78,228 @@ button {
   color: #7A9ABD;
 }
 
+/* ============================================
+   Premium Animation Keyframes & Classes
+   ============================================ */
+
+/* Image Loading - Blur Up Effect */
+@keyframes blurUp {
+  from {
+    filter: blur(10px);
+    opacity: 0.7;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes softGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 168, 232, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 168, 232, 0.15);
+  }
+}
+
+/* Animation Classes */
+.animate-blur-up {
+  animation: blurUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-soft-glow {
+  animation: softGlow 3s ease-in-out infinite;
+}
+
+/* Overflow Control for Zoom Effects */
+.overflow-hidden-smooth {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Timing Functions - Premium Feel */
+.ease-out-smooth {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ease-in-smooth {
+  transition-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+.ease-in-out-smooth {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transition Durations */
+.duration-slow {
+  transition-duration: 700ms;
+}
+
+.duration-slower {
+  transition-duration: 1000ms;
+}
+
+.duration-fast {
+  transition-duration: 300ms;
+}
+
+/* Premium Button Interactions */
+.btn-interactive {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.btn-interactive:hover {
+  transform: translateY(-2px);
+}
+
+.btn-interactive:active {
+  transform: translateY(0);
+}
+
+/* Image Container Classes */
+.image-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.image-zoom-container img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-zoom-container:hover img {
+  transform: scale(1.1);
+}
+
+/* Glass-morphism effect for cards with animation */
+.glass-card-animated {
+  background: rgba(30, 58, 95, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 168, 232, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card-animated:hover {
+  background: rgba(30, 58, 95, 0.7);
+  border-color: rgba(0, 168, 232, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 168, 232, 0.1);
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Utility: Scale on hover */
+.scale-on-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Link underline animation */
+.link-animated {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.link-animated::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #00A8E8;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-animated:hover::after {
+  width: 100%;
+}
+
+/* Micro-interaction: Button lift effect */
+.btn-lift {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 168, 232, 0.2);
+}
+
+.btn-lift:active {
+  transform: translateY(-2px);
+}
+
 .bg-surface {
   background-color: #0F2137;
 }

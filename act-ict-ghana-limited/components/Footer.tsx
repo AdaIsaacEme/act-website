@@ -3,6 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Facebook, Linkedin, Twitter, Instagram, MapPin, Phone, Mail } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import TrustedPartnersCube from './TrustedPartnersCube';
+import AnimatedLink from './AnimatedLink';
+import AnimatedButton from './AnimatedButton';
+import ScrollReveal from './ScrollReveal';
 
 const Footer: React.FC = () => {
   const { content } = useContent();
@@ -15,12 +18,16 @@ const Footer: React.FC = () => {
     <footer className="bg-[#060F1E] border-t border-[#1E3A5F]">
       {/* CTA Strip - Hidden on mining and projects pages */}
       {!hideCTA && (
-        <div className="bg-[#00A8E8] py-8 px-4 text-center">
+        <ScrollReveal className="bg-[#00A8E8] py-8 px-4 text-center">
           <h3 className="font-display text-2xl text-white">Ready to transform your operations?</h3>
-          <Link to="/contact" className="mt-4 inline-block bg-white text-[#00A8E8] font-bold px-8 py-3 hover:bg-gray-100 transition-all duration-300">
+          <AnimatedButton
+            onClick={() => window.location.href = '/contact'}
+            className="mt-4 inline-block bg-white text-[#00A8E8] font-bold px-8 py-3 hover:bg-gray-100 transition-all duration-300 rounded-lg btn-lift"
+            hoverScale={1.08}
+          >
             Get in Touch →
-          </Link>
-        </div>
+          </AnimatedButton>
+        </ScrollReveal>
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,12 +66,12 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-display text-lg font-bold mb-6 text-[#00A8E8]">Quick Links</h3>
             <ul className="space-y-3 text-sm text-[#7A9ABD]">
-              <li><Link to="/about" className="hover:text-white transition-all duration-300">About Us</Link></li>
-              <li><Link to="/act-ict" className="hover:text-white transition-all duration-300">ACT-ICT Division</Link></li>
-              <li><Link to="/act-global" className="hover:text-white transition-all duration-300">ACTGlobal Division</Link></li>
-              <li><Link to="/projects" className="hover:text-white transition-all duration-300">Our Projects</Link></li>
-              <li><Link to="/solutions" className="hover:text-white transition-all duration-300">Solutions & Services</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-all duration-300">Contact Support</Link></li>
+              <li><AnimatedLink to="/about" className="hover:text-white transition-all duration-300">About Us</AnimatedLink></li>
+              <li><AnimatedLink to="/act-ict" className="hover:text-white transition-all duration-300">ACT-ICT Division</AnimatedLink></li>
+              <li><AnimatedLink to="/act-global" className="hover:text-white transition-all duration-300">ACTGlobal Division</AnimatedLink></li>
+              <li><AnimatedLink to="/projects" className="hover:text-white transition-all duration-300">Our Projects</AnimatedLink></li>
+              <li><AnimatedLink to="/solutions" className="hover:text-white transition-all duration-300">Solutions & Services</AnimatedLink></li>
+              <li><AnimatedLink to="/contact" className="hover:text-white transition-all duration-300">Contact Support</AnimatedLink></li>
             </ul>
           </div>
 

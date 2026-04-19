@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useContent } from "../context/ContentContext";
+import ScrollReveal from "../components/ScrollReveal";
+import StaggeredGrid from "../components/StaggeredGrid";
+import AnimatedButton from "../components/AnimatedButton";
 import * as LucideIcons from "lucide-react";
 import { Zap } from "lucide-react";
 
@@ -29,36 +32,41 @@ const Solutions: React.FC = () => {
   return (
     <div className="pt-32 min-h-screen bg-[#0A1628] pb-20">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="font-display text-5xl md:text-6xl font-bold mb-4">Our Solutions</h1>
-          <p className="text-[#7A9ABD] text-lg max-w-2xl">
-            Comprehensive technology and engineering solutions built to meet the
-            demanding needs of modern industry.
-          </p>
+      <ScrollReveal slideDistance={30}>
+        <div className="bg-gradient-to-r from-[#0A1628] via-[#1E3A5F] to-[#0A1628] text-white py-20 mb-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <h1 className="font-display text-5xl md:text-6xl font-bold mb-4">Our Solutions</h1>
+            <p className="text-[#7A9ABD] text-lg max-w-2xl">
+              Comprehensive technology and engineering solutions built to meet the
+              demanding needs of modern industry.
+            </p>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap gap-3 mb-12 justify-center md:justify-start">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
-                activeCategory === category
-                  ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50"
-                  : "bg-[#0F2137] text-[#7A9ABD] border border-[#1E3A5F] hover:border-[#00A8E8] hover:text-[#00A8E8]"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        <ScrollReveal slideDistance={20} delay={0.1}>
+          <div className="flex flex-wrap gap-3 mb-12 justify-center md:justify-start">
+            {categories.map((category) => (
+              <AnimatedButton
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 btn-lift ${
+                  activeCategory === category
+                    ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50"
+                    : "bg-[#0F2137] text-[#7A9ABD] border border-[#1E3A5F] hover:border-[#00A8E8] hover:text-[#00A8E8]"
+                }`}
+                hoverScale={1.05}
+              >
+                {category}
+              </AnimatedButton>
+            ))}
+          </div>
+        </ScrollReveal>
 
         {/* Solutions Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggeredGrid staggerDelay={0.1} containerDelay={0.15} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredSolutions.map((sol) => (
             <div
               key={sol.id}
@@ -94,15 +102,17 @@ const Solutions: React.FC = () => {
               <div className="h-1 bg-gradient-to-r from-[#00A8E8] via-[#0090CC] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </div>
           ))}
-        </div>
+        </StaggeredGrid>
 
         {/* Empty State */}
         {filteredSolutions.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-[#7A9ABD] text-lg">
-              No solutions found in this category.
-            </p>
-          </div>
+          <ScrollReveal slideDistance={20}>
+            <div className="text-center py-16">
+              <p className="text-[#7A9ABD] text-lg">
+                No solutions found in this category.
+              </p>
+            </div>
+          </ScrollReveal>
         )}
       </div>
     </div>

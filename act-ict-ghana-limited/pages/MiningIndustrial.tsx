@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ScrollReveal from "../components/ScrollReveal";
+import StaggeredGrid from "../components/StaggeredGrid";
+import AnimatedLink from "../components/AnimatedLink";
 
 const SURFACE_IMG = "/images/mining/surface-mining.jpg";
 const UNDERGROUND_IMG = "/images/mining/underground-mining.jpg";
@@ -249,109 +252,9 @@ const MiningIndustrial: React.FC = () => {
         className="py-20"
         style={{ maxWidth: "1280px", margin: "0 auto", padding: "80px 2rem" }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div>
-            <p
-              style={{
-                color: "#00A8E8",
-                fontSize: "11px",
-                fontWeight: "700",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                margin: 0,
-              }}
-            >
-              Surface Operations
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Bebas Neue', sans-serif",
-                fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                color: "white",
-                marginTop: "8px",
-                marginBottom: "20px",
-                lineHeight: 1.1,
-              }}
-            >
-              Surface Mining Solutions
-            </h2>
-            <p
-              style={{
-                color: "#7A9ABD",
-                fontSize: "17px",
-                lineHeight: "1.7",
-                marginBottom: "28px",
-              }}
-            >
-              Comprehensive technology infrastructure for open-pit and surface
-              mining.
-            </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {SURFACE_SOLUTIONS.map((item, i) => (
-                <li
-                  key={i}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    color: "white",
-                    marginBottom: "12px",
-                    fontSize: "15px",
-                  }}
-                >
-                  <span
-                    style={{
-                      color: "#00A8E8",
-                      marginRight: "12px",
-                      fontSize: "18px",
-                      flexShrink: 0,
-                    }}
-                  >
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div
-            style={{
-              position: "relative",
-              height: "420px",
-              borderRadius: "12px",
-              overflow: "hidden",
-              border: "1px solid #1E3A5F",
-            }}
-          >
-            <MiningImage src={SURFACE_IMG} alt="Surface Mining Solutions" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── UNDERGROUND SOLUTIONS ── */}
-      <section style={{ backgroundColor: "#060F1E", padding: "80px 0" }}>
-        <div
-          style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
-        >
+        <ScrollReveal slideDistance={30}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-            <div
-              style={{
-                position: "relative",
-                height: "420px",
-                borderRadius: "12px",
-                overflow: "hidden",
-                border: "1px solid #1E3A5F",
-                order: 2,
-              }}
-              className="md:order-1"
-            >
-              <MiningImage
-                src={UNDERGROUND_IMG}
-                alt="Underground Mining Connectivity"
-              />
-            </div>
-
-            <div className="md:order-2">
+            <div>
               <p
                 style={{
                   color: "#00A8E8",
@@ -362,7 +265,7 @@ const MiningIndustrial: React.FC = () => {
                   margin: 0,
                 }}
               >
-                Underground Operations
+                Surface Operations
               </p>
               <h2
                 style={{
@@ -374,7 +277,7 @@ const MiningIndustrial: React.FC = () => {
                   lineHeight: 1.1,
                 }}
               >
-                Underground Mining Solutions
+                Surface Mining Solutions
               </h2>
               <p
                 style={{
@@ -384,11 +287,11 @@ const MiningIndustrial: React.FC = () => {
                   marginBottom: "28px",
                 }}
               >
-                Specialist underground connectivity using leaky feeder, fiber
-                optic networks, and wireless systems.
+                Comprehensive technology infrastructure for open-pit and surface
+                mining.
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                {UNDERGROUND_SOLUTIONS.map((item, i) => (
+                {SURFACE_SOLUTIONS.map((item, i) => (
                   <li
                     key={i}
                     style={{
@@ -414,8 +317,112 @@ const MiningIndustrial: React.FC = () => {
                 ))}
               </ul>
             </div>
+
+            <div
+              style={{
+                position: "relative",
+                height: "420px",
+                borderRadius: "12px",
+                overflow: "hidden",
+                border: "1px solid #1E3A5F",
+              }}
+            >
+              <MiningImage src={SURFACE_IMG} alt="Surface Mining Solutions" />
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── UNDERGROUND SOLUTIONS ── */}
+      <section style={{ backgroundColor: "#060F1E", padding: "80px 0" }}>
+        <ScrollReveal slideDistance={30} delay={0.15}>
+          <div
+            style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div
+                style={{
+                  position: "relative",
+                  height: "420px",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  border: "1px solid #1E3A5F",
+                  order: 2,
+                }}
+                className="md:order-1"
+              >
+                <MiningImage
+                  src={UNDERGROUND_IMG}
+                  alt="Underground Mining Connectivity"
+                />
+              </div>
+
+              <div className="md:order-2">
+                <p
+                  style={{
+                    color: "#00A8E8",
+                    fontSize: "11px",
+                    fontWeight: "700",
+                    letterSpacing: "0.3em",
+                    textTransform: "uppercase",
+                    margin: 0,
+                  }}
+                >
+                  Underground Operations
+                </p>
+                <h2
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: "clamp(2.5rem, 5vw, 4rem)",
+                    color: "white",
+                    marginTop: "8px",
+                    marginBottom: "20px",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Underground Mining Solutions
+                </h2>
+                <p
+                  style={{
+                    color: "#7A9ABD",
+                    fontSize: "17px",
+                    lineHeight: "1.7",
+                    marginBottom: "28px",
+                  }}
+                >
+                  Specialist underground connectivity using leaky feeder, fiber
+                  optic networks, and wireless systems.
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {UNDERGROUND_SOLUTIONS.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        color: "white",
+                        marginBottom: "12px",
+                        fontSize: "15px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          color: "#00A8E8",
+                          marginRight: "12px",
+                          fontSize: "18px",
+                          flexShrink: 0,
+                        }}
+                      >
+                        ✓
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* ── MINING CLIENTS ── */}
