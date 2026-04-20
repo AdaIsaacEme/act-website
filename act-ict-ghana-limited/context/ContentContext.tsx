@@ -6,7 +6,7 @@ const defaultContent: SiteContent = {
     slides: [
       {
         id: "1",
-        title: "The Leading Technology Solutions Provider in Ghana",
+        title: "The Leading IT Solutions Provider in Ghana",
         subtitle:
           "Empowering businesses with cutting-edge IT, Communications, and Security systems.",
         image: "/images/hero/slide-1.jpg",
