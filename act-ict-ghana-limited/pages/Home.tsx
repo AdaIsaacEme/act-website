@@ -154,7 +154,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <PartnerCarousel />
+      <div id="partners" className="scroll-mt-24 md:scroll-mt-28">
+        <PartnerCarousel />
+      </div>
 
       {/* Solutions Overview */}
       <section className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: 'var(--bg-primary)' }}>

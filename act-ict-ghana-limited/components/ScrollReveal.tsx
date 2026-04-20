@@ -6,6 +6,7 @@ type Direction = 'up' | 'down' | 'left' | 'right' | 'none';
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
+  style?: React.CSSProperties;
   delay?: number;
   duration?: number;
   direction?: Direction;
@@ -22,6 +23,7 @@ const dirMap: Record<Direction, { x: number; y: number }> = {
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   className = '',
+  style,
   delay = 0,
   duration = 0.75,
   direction = 'up',
@@ -35,7 +37,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       ref={ref}
       className={className}
       layout={false}
-      style={{ willChange: 'transform, opacity' }}
+      style={{ willChange: 'transform, opacity', ...style }}
       initial={{ opacity: 0, x, y }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x, y }}
       transition={{

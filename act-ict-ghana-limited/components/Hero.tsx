@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import AnimatedButton from './AnimatedButton';
@@ -45,6 +46,13 @@ const Hero: React.FC = () => {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const navigate = useNavigate();
+  const slideLinks: Record<string, { primary: string; secondary: string }> = {
+    '1': { primary: '/solutions', secondary: '/projects' },
+    '2': { primary: '/about',     secondary: '/contact'  },
+    '3': { primary: '/solutions', secondary: '/projects' },
+    '4': { primary: '/solutions', secondary: '/projects' },
+  };
 
   const stats = [
     { number: '25+', label: 'Engineers' },
@@ -85,8 +93,8 @@ const Hero: React.FC = () => {
         >
 
               {/* Content — uses padding-top to clear navbar */}
-              <div className="relative w-full h-full flex items-end pb-16 md:items-center md:pb-0">
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 sm:pt-44 md:pt-44 lg:pt-40">
+              <div className="relative w-full h-full flex items-start pt-28 pb-24 md:pt-40 md:pb-28">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="max-w-2xl lg:max-w-3xl">
                     <motion.h2
                       key={`${slides[currentSlide].id}-title`}
@@ -124,28 +132,39 @@ const Hero: React.FC = () => {
                       ))}
                     </motion.div>
 
-                    <motion.div
-                      key={`${slides[currentSlide].id}-cta`}
-                      initial={{ opacity: 0, y: 20, scale: 0.96 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-                      className="flex flex-col sm:flex-row gap-3"
-                    >
-                      <AnimatedButton
-                        onClick={() => window.location.href = '/solutions'}
-                        className="inline-flex justify-center items-center px-6 sm:px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
-                        hoverScale={1.04}
+                    {currentSlide !== 0 && (
+                      <motion.div
+                        key={`${slides[currentSlide].id}-cta`}
+                        initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+                        className="flex flex-col sm:flex-row gap-3"
                       >
-                        {slides[currentSlide].ctaPrimary} <ArrowRight className="ml-2 flex-shrink-0" size={16} />
-                      </AnimatedButton>
-                      <AnimatedButton
-                        onClick={() => window.location.href = '/projects'}
-                        className="inline-flex justify-center items-center px-6 sm:px-8 py-3 border border-white/40 hover:border-[#00A8E8] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
-                        hoverScale={1.03}
-                      >
-                        {slides[currentSlide].ctaSecondary}
-                      </AnimatedButton>
-                    </motion.div>
+                        <AnimatedButton
+                          onClick={() => {
+                            if (slides[currentSlide].id === '2') {
+                              navigate('/');
+                              setTimeout(() => {
+                                document.getElementById('partners')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }, 100);
+                            } else {
+                              navigate(slideLinks[slides[currentSlide].id]?.primary ?? '/solutions');
+                            }
+                          }}
+                          className="inline-flex justify-center items-center px-6 sm:px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
+                          hoverScale={1.04}
+                        >
+                          {slides[currentSlide].ctaPrimary} <ArrowRight className="ml-2 flex-shrink-0" size={16} />
+                        </AnimatedButton>
+                        <AnimatedButton
+                          onClick={() => navigate(slideLinks[slides[currentSlide].id]?.secondary ?? '/projects')}
+                          className="inline-flex justify-center items-center px-6 sm:px-8 py-3 border border-white/40 hover:border-[#00A8E8] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
+                          hoverScale={1.03}
+                        >
+                          {slides[currentSlide].ctaSecondary}
+                        </AnimatedButton>
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               </div>
