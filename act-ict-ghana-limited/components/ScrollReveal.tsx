@@ -10,6 +10,8 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   direction?: Direction;
+  distance?: number;
+  slideDistance?: number;
 }
 
 const dirMap: Record<Direction, { x: number; y: number }> = {
@@ -27,10 +29,21 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   delay = 0,
   duration = 0.75,
   direction = 'up',
+  distance,
+  slideDistance,
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
-  const { x, y } = dirMap[direction];
+
+  // Use slideDistance or distance to override the default direction offset
+  const defaultOffset = dirMap[direction];
+  const dist = distance ?? slideDistance;
+  const x = dist !== undefined
+    ? (direction === 'left' ? dist : direction === 'right' ? -dist : defaultOffset.x)
+    : defaultOffset.x;
+  const y = dist !== undefined
+    ? (direction === 'up' || direction === 'none' ? dist : direction === 'down' ? -dist : defaultOffset.y)
+    : defaultOffset.y;
 
   return (
     <motion.div
