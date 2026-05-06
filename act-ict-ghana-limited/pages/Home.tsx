@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Hero from "../components/Hero";
 import AwardsTicker from "../components/AwardsTicker";
@@ -18,6 +18,7 @@ import {
 import * as LucideIcons from "lucide-react";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const { solutions, projects } = useContent();
   const featuredSolutions = solutions.slice(0, 4);
   const recentProjects = projects.slice(0, 3);
@@ -288,7 +289,7 @@ const Home: React.FC = () => {
           <div className="flex justify-between items-center mb-12">
               <h2 className="font-display text-3xl sm:text-4xl" style={{ color: 'var(--text-heading)' }}>Recent Projects</h2>
             <AnimatedButton
-              onClick={() => window.location.href = '/projects'}
+              onClick={() => navigate('/projects')}
               className="hidden md:inline-flex px-6 py-2 border border-[#00A8E8] text-[#00A8E8] font-semibold rounded-full hover:bg-[#00A8E8] hover:text-white transition-all duration-300 btn-lift"
               hoverScale={1.05}
             >
@@ -334,7 +335,7 @@ const Home: React.FC = () => {
         <ScrollReveal delay={0.25} slideDistance={20}>
           <div className="mt-8 text-center md:hidden">
             <AnimatedButton
-              onClick={() => window.location.href = '/projects'}
+              onClick={() => navigate('/projects')}
               className="inline-block px-6 py-3 bg-[#00A8E8] text-white font-semibold rounded-md shadow-lg hover:bg-[#0090CC] transition-all duration-300 btn-lift"
               hoverScale={1.08}
             >

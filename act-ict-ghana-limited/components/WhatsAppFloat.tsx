@@ -114,16 +114,12 @@ const WhatsAppFloat: React.FC = () => {
 
       {/* Chat Panel Backdrop + Container */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center md:justify-end p-4 pointer-events-none">
+        <div className="fixed inset-0 z-50 flex items-end justify-center md:justify-end p-4 pointer-events-none md:pb-6 md:pr-6">
           {/* Panel */}
           <div
-            className={`bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto w-full max-w-sm ${
+            className={`bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto w-full max-w-sm max-h-[85vh] md:max-h-[520px] ${
               prefersReducedMotion ? "" : "animate-slide-up-fade"
             }`}
-            style={{
-              maxHeight: "calc(100vh - 96px)",
-              height: "520px",
-            }}
             role="dialog"
             aria-modal="false"
             aria-labelledby="whatsapp-panel-title"
