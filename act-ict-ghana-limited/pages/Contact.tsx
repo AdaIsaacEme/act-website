@@ -190,11 +190,11 @@ const Contact: React.FC = () => {
               title="ACT-ICT Location"
               width="100%"
               height="100%"
-              frameBorder="0"
-              scrolling="no"
-              marginHeight={0}
-              marginWidth={0}
-              src={content.contact.mapUrl}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d239844.67066752896!2d-0.25359755684031976!3d5.628474630122922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd!5e0!3m2!1sen!2sgh!4v1778021865165!5m2!1sen!2sgh"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full"
             ></iframe>
           </div>

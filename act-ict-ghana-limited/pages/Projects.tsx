@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
@@ -10,6 +11,7 @@ import AnimatedLink from "../components/AnimatedLink";
 
 const Projects: React.FC = () => {
   const { projects } = useContent();
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
 
   const categories = [
@@ -127,12 +129,13 @@ const Projects: React.FC = () => {
             <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               We have completed 100+ projects across Ghana and West Africa. Contact us for a full portfolio of our engineering excellence and proven track record.
             </p>
-            <AnimatedLink
-              to="/contact"
-              className="inline-block px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
+            <AnimatedButton
+              onClick={() => navigate("/contact")}
+              className="inline-flex justify-center items-center px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
+              hoverScale={1.04}
             >
-              Get in Touch →
-            </AnimatedLink>
+              Get in Touch <ArrowRight className="ml-2 flex-shrink-0" size={16} />
+            </AnimatedButton>
           </div>
         </ScrollReveal>
       </div>

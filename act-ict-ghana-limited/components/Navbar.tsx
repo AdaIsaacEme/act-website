@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import AnimatedLink from "./AnimatedLink";
 import AnimatedButton from "./AnimatedButton";
@@ -10,22 +10,23 @@ const Navbar: React.FC = () => {
   const [divisionOpen, setDivisionOpen] = useState(false);
   const { theme, toggleTheme, isDark } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const isActive = (path: string) =>
     location.pathname === path
-      ? "text-[#00A8E8] font-bold"
+      ? "text-[#006bb7] font-bold"
       : isDark
-        ? "text-white hover:text-[#00A8E8]"
-        : "text-gray-800 hover:text-[#00A8E8]";
+        ? "text-white hover:text-[#006bb7]"
+        : "text-gray-800 hover:text-[#006bb7]";
 
   const navBg = isDark
     ? "bg-[#0A1628]/95 border-[#1E3A5F]"
     : "bg-white/95 border-gray-200";
   const linkColor = isDark
-    ? "text-white hover:text-[#00A8E8]"
-    : "text-gray-800 hover:text-[#00A8E8]";
+    ? "text-white hover:text-[#006bb7]"
+    : "text-gray-800 hover:text-[#006bb7]";
   const topBarBg = isDark
     ? "bg-[#060F1E] text-[#7A9ABD] border-[#1E3A5F]"
     : "bg-gray-100 text-gray-600 border-gray-200";
@@ -42,13 +43,13 @@ const Navbar: React.FC = () => {
           <div className="flex space-x-6">
             <a
               href="tel:+233577700555"
-              className="flex items-center space-x-2 hover:text-[#00A8E8] transition-all duration-300"
+              className="flex items-center space-x-2 hover:text-[#006bb7] transition-all duration-300"
             >
               <Phone size={14} /> <span>+233 577 700 555</span>
             </a>
             <a
               href="mailto:office@act-ict.com.gh"
-              className="flex items-center space-x-2 hover:text-[#00A8E8] transition-all duration-300"
+              className="flex items-center space-x-2 hover:text-[#006bb7] transition-all duration-300"
             >
               <Mail size={14} />{" "}
               <span className="overflow-hidden text-ellipsis">
@@ -86,7 +87,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-4 lg:space-x-8 items-center">
             <AnimatedLink
               to="/"
-              className="transition-all duration-300 text-[#2596be] hover:text-[#2596be] font-semibold"
+              className="transition-all duration-300 text-[#006bb7] hover:text-[#006bb7] font-semibold"
             >
               Home
             </AnimatedLink>
@@ -98,7 +99,7 @@ const Navbar: React.FC = () => {
             </AnimatedLink>
 
             <div className="relative group">
-              <button className="flex items-center space-x-1 transition-all duration-300 text-[#2596be] hover:text-[#2596be] font-semibold">
+              <button className="flex items-center space-x-1 transition-all duration-300 text-[#006bb7] hover:text-[#006bb7] font-semibold">
                 <span>Global Presence</span>
                 <ChevronDown size={16} />
               </button>
@@ -107,13 +108,13 @@ const Navbar: React.FC = () => {
               >
                 <Link
                   to="/act-ict"
-                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-100"}`}
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#006bb7] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#006bb7] hover:bg-gray-100"}`}
                 >
                   ACT-ICT
                 </Link>
                 <Link
                   to="/act-global"
-                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-100"}`}
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#006bb7] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#006bb7] hover:bg-gray-100"}`}
                 >
                   ACT Global
                 </Link>
@@ -132,7 +133,7 @@ const Navbar: React.FC = () => {
               >
                 <Link
                   to="/mining"
-                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#00A8E8] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#00A8E8] hover:bg-gray-100"}`}
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#006bb7] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#006bb7] hover:bg-gray-100"}`}
                 >
                   Mining & Industrial
                 </Link>
@@ -178,8 +179,8 @@ const Navbar: React.FC = () => {
             </button>
 
             <AnimatedButton
-              onClick={() => (window.location.href = "/contact")}
-              className="bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold px-3 sm:px-6 py-1.5 sm:py-2 text-sm transition-all duration-300 shadow-lg btn-lift rounded-lg"
+              onClick={() => navigate("/contact")}
+              className="bg-[#006bb7] hover:bg-[#005192] text-white font-semibold px-3 sm:px-6 py-1.5 sm:py-2 text-sm transition-all duration-300 shadow-lg btn-lift rounded-lg"
               hoverScale={1.05}
             >
               Get Quote
@@ -236,7 +237,7 @@ const Navbar: React.FC = () => {
               <Link
                 to="/"
                 onClick={toggleMenu}
-                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 text-[#2596be]`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 text-[#006bb7]`}
               >
                 Home
               </Link>
@@ -247,8 +248,8 @@ const Navbar: React.FC = () => {
                   location.pathname === "/about"
                     ? "text-[#00A8E8] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
                 }`}
               >
                 About Us
@@ -259,7 +260,7 @@ const Navbar: React.FC = () => {
               >
                 <button
                   onClick={() => setDivisionOpen(!divisionOpen)}
-                  className="w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 text-[#2596be]"
+                  className="w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 text-[#006bb7]"
                 >
                   <span>Global Presence</span>
                   <ChevronDown
@@ -278,8 +279,8 @@ const Navbar: React.FC = () => {
                         location.pathname === "/act-ict"
                           ? "text-[#00A8E8] bg-[#00A8E8]/10"
                           : isDark
-                            ? "text-[#7A9ABD] hover:text-[#00A8E8] hover:bg-[#1E3A5F]/40"
-                            : "text-gray-600 hover:text-[#00A8E8] hover:bg-gray-100"
+                            ? "text-[#7A9ABD] hover:text-[#006bb7] hover:bg-[#1E3A5F]/40"
+                            : "text-gray-600 hover:text-[#006bb7] hover:bg-gray-100"
                       }`}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#00A8E8] flex-shrink-0" />
@@ -292,8 +293,8 @@ const Navbar: React.FC = () => {
                         location.pathname === "/act-global"
                           ? "text-[#00A8E8] bg-[#00A8E8]/10"
                           : isDark
-                            ? "text-[#7A9ABD] hover:text-[#00A8E8] hover:bg-[#1E3A5F]/40"
-                            : "text-gray-600 hover:text-[#00A8E8] hover:bg-gray-100"
+                            ? "text-[#7A9ABD] hover:text-[#006bb7] hover:bg-[#1E3A5F]/40"
+                            : "text-gray-600 hover:text-[#006bb7] hover:bg-gray-100"
                       }`}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" />
@@ -311,8 +312,8 @@ const Navbar: React.FC = () => {
                   location.pathname === "/mining"
                     ? "text-[#00A8E8] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
                 }`}
               >
                 Mining & Industrial
@@ -325,8 +326,8 @@ const Navbar: React.FC = () => {
                   location.pathname === "/solutions"
                     ? "text-[#00A8E8] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
                 }`}
               >
                 Solutions
@@ -338,8 +339,8 @@ const Navbar: React.FC = () => {
                   location.pathname === "/projects"
                     ? "text-[#00A8E8] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
                 }`}
               >
                 Projects
@@ -351,8 +352,8 @@ const Navbar: React.FC = () => {
                   location.pathname === "/contact"
                     ? "text-[#00A8E8] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#00A8E8]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#00A8E8]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
                 }`}
               >
                 Contact
@@ -367,7 +368,7 @@ const Navbar: React.FC = () => {
               <Link
                 to="/contact"
                 onClick={toggleMenu}
-                className="flex items-center justify-center w-full px-4 py-3.5 rounded-lg text-base font-semibold bg-[#00A8E8] text-white hover:bg-[#0090CC] transition-all duration-200 shadow-lg shadow-[#00A8E8]/20"
+                className="flex items-center justify-center w-full px-4 py-3.5 rounded-lg text-base font-semibold bg-[#006bb7] text-white hover:bg-[#005192] transition-all duration-200 shadow-lg shadow-[#006bb7]/20"
               >
                 Get Quote
               </Link>

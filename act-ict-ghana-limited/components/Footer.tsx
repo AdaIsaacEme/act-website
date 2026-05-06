@@ -20,7 +20,8 @@ const Footer: React.FC = () => {
   const location = useLocation();
   const isMiningPage = location.pathname === "/mining";
   const isProjectsPage = location.pathname === "/projects";
-  const hideCTA = isMiningPage || isProjectsPage;
+  const isContactPage = location.pathname === "/contact";
+  const hideCTA = isMiningPage || isProjectsPage || isContactPage;
 
   return (
     <footer
