@@ -114,7 +114,7 @@ const WhatsAppFloat: React.FC = () => {
 
       {/* Chat Panel Backdrop + Container */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-end p-4 pointer-events-none">
+        <div className="fixed inset-0 z-50 flex items-end justify-center md:justify-end p-4 pointer-events-none">
           {/* Panel */}
           <div
             className={`bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto w-full max-w-sm ${
