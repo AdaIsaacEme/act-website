@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
                   to="/act-ict"
                   className="hover:text-[#00A8E8] transition-all duration-300"
                 >
-                  ACT-ICT Division
+                  ACT-ICT
                 </AnimatedLink>
               </li>
               <li>
@@ -168,7 +168,7 @@ const Footer: React.FC = () => {
                   to="/act-global"
                   className="hover:text-[#00A8E8] transition-all duration-300"
                 >
-                  ACTGlobal Division
+                  ACT Global
                 </AnimatedLink>
               </li>
               <li>

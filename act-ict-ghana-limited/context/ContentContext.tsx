@@ -173,7 +173,7 @@ const defaultSolutions: Solution[] = [
     id: "3",
     title: "Engineering Services",
     description:
-      "Civil works, tower construction, and specialized engineering.",
+      "Shelter in tower construction, tower construction, and specialized engineering.",
     iconName: "HardHat",
   },
   {
@@ -202,12 +202,6 @@ const defaultSolutions: Solution[] = [
     description: "Energy-efficient high-bay and street lighting solutions.",
     iconName: "Lightbulb",
   },
-  {
-    id: "8",
-    title: "Industrial Tires",
-    description: "Heavy-duty tires for mining and construction vehicles.",
-    iconName: "Disc",
-  }, // Using Disc as tire proxy
   {
     id: "9",
     title: "Radio Communications",
@@ -314,26 +308,26 @@ const defaultPartners: Partner[] = [
   },
   {
     id: "2",
-    name: "CISCO",
-    logoUrl: "/images/partners/cisco.png",
-    tier: "Select Partner",
+    name: "Schauenburg",
+    logoUrl: "/images/partners/schauenburg.png",
+    tier: "Partner",
   },
   {
     id: "3",
+    name: "Avigilon",
+    logoUrl: "/images/partners/avigilon.png",
+    tier: "Technology Partner",
+  },
+  {
+    id: "4",
     name: "BEKA Schréder",
     logoUrl: "/images/partners/beka-schreder.png",
     tier: "Authorized Partner",
   },
   {
-    id: "4",
-    name: "GM Afcon",
-    logoUrl: "/images/partners/gm-afcon.png",
-    tier: "Authorized Partner",
-  },
-  {
     id: "5",
-    name: "Avigilon",
-    logoUrl: "/images/partners/avigilon.png",
+    name: "Moxa",
+    logoUrl: "/images/partners/moxa.png",
     tier: "Technology Partner",
   },
   {
@@ -344,44 +338,38 @@ const defaultPartners: Partner[] = [
   },
   {
     id: "7",
-    name: "Continental",
-    logoUrl: "/images/partners/continental.png",
-    tier: "Partner",
+    name: "CISCO",
+    logoUrl: "/images/partners/cisco.png",
+    tier: "Select Partner",
   },
   {
     id: "8",
-    name: "Huawei",
-    logoUrl: "/images/partners/huawei.png",
-    tier: "Technology Partner",
+    name: "GM Afcon",
+    logoUrl: "/images/partners/gm-afcon.png",
+    tier: "Authorized Partner",
   },
   {
     id: "9",
-    name: "Moxa",
-    logoUrl: "/images/partners/moxa.png",
-    tier: "Technology Partner",
-  },
-  {
-    id: "10",
     name: "RT",
     logoUrl: "/images/partners/rt.png",
     tier: "Partner",
   },
   {
+    id: "10",
+    name: "Huawei",
+    logoUrl: "/images/partners/huawei.png",
+    tier: "Technology Partner",
+  },
+  {
     id: "11",
-    name: "Schauenburg",
-    logoUrl: "/images/partners/schauenburg.png",
+    name: "Watergen",
+    logoUrl: "/images/partners/watergen.png",
     tier: "Partner",
   },
   {
     id: "12",
     name: "Thuraya",
     logoUrl: "/images/partners/thuraya.png",
-    tier: "Partner",
-  },
-  {
-    id: "13",
-    name: "Watergen",
-    logoUrl: "/images/partners/watergen.png",
     tier: "Partner",
   },
 ];

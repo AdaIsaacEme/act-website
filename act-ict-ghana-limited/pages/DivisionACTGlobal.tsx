@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Lightbulb,
-  Disc,
   HardHat,
   Truck,
   Sun,
@@ -18,12 +17,6 @@ const DivisionACTGlobal: React.FC = () => {
       title: "Industrial LED Lights",
       icon: <Lightbulb size={24} />,
       desc: "High-performance industrial LED lighting by Beka Schréder, powering safer and more efficient mining and industrial operations with expert support.",
-    },
-
-    {
-      title: "Industrial Tires",
-      icon: <Disc size={24} />,
-      desc: "Heavy-duty tires for earthmovers and industrial vehicles, built to withstand extreme terrain.",
     },
     {
       title: "Solar Lighting Solutions",
@@ -58,7 +51,7 @@ const DivisionACTGlobal: React.FC = () => {
               Division
             </span>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mt-2 mb-6 text-white">
-              ACTGlobal
+              ACT Global
             </h1>
             <p className="text-xl max-w-2xl text-white/80">
               From industrial automation to advanced lighting and monitoring

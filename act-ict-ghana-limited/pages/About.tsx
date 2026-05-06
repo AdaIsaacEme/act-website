@@ -29,7 +29,7 @@ const About: React.FC = () => {
     { number: "2011", label: "Founded" },
     { number: "25+", label: "Engineers" },
     { number: "10", label: "Service Vans" },
-    { number: "4", label: "Industry Awards" },
+    { number: "8", label: "Industry Awards" },
   ];
 
   const clients = [
@@ -151,36 +151,6 @@ const About: React.FC = () => {
             </div>
           ))}
         </StaggeredGrid>
-
-        {/* Awards Section */}
-        <ScrollReveal slideDistance={25} delay={0.2}>
-          <div>
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-center mb-8 sm:mb-12" style={{ color: 'var(--text-heading)' }}>
-              Awards & Recognition
-            </h2>
-            <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {awards.map((award, idx) => (
-                <div
-                  key={idx}
-                  className="border-l-4 border-[#F59E0B] rounded-xl p-6 hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300"
-                  style={{ backgroundColor: 'var(--bg-surface)' }}
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className="text-3xl">{award.emoji}</div>
-                    <div className="flex-1">
-                      <div className="text-[#F59E0B] font-bold text-sm">
-                        {award.year}
-                      </div>
-                      <h3 className="font-semibold mt-1" style={{ color: 'var(--text-primary)' }}>
-                        {award.title}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </StaggeredGrid>
-          </div>
-        </ScrollReveal>
 
         {/* Mission & Vision */}
         <ScrollReveal slideDistance={25} delay={0.2}>

@@ -58,8 +58,8 @@ const Hero: React.FC = () => {
   const stats = [
     { number: "25+", label: "Engineers" },
     { number: "10", label: "Service Vans" },
-    { number: "14", label: "Years Experience" },
-    { number: "4", label: "Industry Awards" },
+    { number: "15+", label: "Years of Experience" },
+    { number: "8", label: "Industry Awards" },
   ];
 
   return (

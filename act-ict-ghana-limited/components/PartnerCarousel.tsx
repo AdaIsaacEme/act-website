@@ -70,7 +70,7 @@ const PartnerCarousel: React.FC = () => {
                       cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = "#00A8E8";
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "#2596be";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border-color)";

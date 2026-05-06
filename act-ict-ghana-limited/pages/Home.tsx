@@ -48,8 +48,8 @@ const Home: React.FC = () => {
     },
     {
       id: "eng",
-      title: "Engineering",
-      desc: "Civil and electrical engineering projects delivered with precision.",
+      title: "Engineering Services",
+      desc: "Shelter in tower construction, tower construction, and specialized engineering.",
       details:
         "Tower construction, power substations, and industrial civil works.",
     },
@@ -89,7 +89,6 @@ const Home: React.FC = () => {
           <ScrollReveal direction="left" delay={0.12} duration={0.6} distance={40}>
             <div className="flex items-center px-6 sm:px-8 md:px-16 py-12 sm:py-16 md:py-20 order-1 md:order-2" style={{ backgroundColor: 'var(--bg-primary)' }}>
               <div>
-                  <span className="text-[#00A8E8] text-sm font-bold tracking-[0.3em] uppercase">Division One</span>
                   <h2 className="font-display text-4xl sm:text-5xl md:text-6xl mt-2 mb-4 sm:mb-6" style={{ color: 'var(--text-heading)' }}>ACT-ICT</h2>
                   <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)' }}>
                     Radio & mission-critical communications, network infrastructure, intelligent CCTV, and security systems.
@@ -104,7 +103,7 @@ const Home: React.FC = () => {
                     to="/act-ict"
                     className="inline-flex items-center text-[#00A8E8] hover:text-[#0090CC] font-semibold transition-all duration-300"
                   >
-                    Explore Division <ArrowRight className="ml-2" size={18} />
+                    Explore <ArrowRight className="ml-2" size={18} />
                   </AnimatedLink>
                 </div>
               </div>
@@ -116,8 +115,7 @@ const Home: React.FC = () => {
           <ScrollReveal direction="left" delay={0} duration={0.6} distance={40}>
             <div className="flex items-center px-6 sm:px-8 md:px-16 py-12 sm:py-16 md:py-20" style={{ backgroundColor: 'var(--bg-secondary)' }}>
               <div>
-                <span className="text-[#F59E0B] text-sm font-bold tracking-[0.3em] uppercase">Division Two</span>
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl mt-2 mb-4 sm:mb-6" style={{ color: 'var(--text-heading)' }}>ACTGlobal</h2>
+                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl mt-2 mb-4 sm:mb-6" style={{ color: 'var(--text-heading)' }}>ACT Global</h2>
                 <p className="text-lg mb-8" style={{ color: 'var(--text-secondary)' }}>
                   Industrial equipment, safety systems, and specialized solutions for demanding environments.
                 </p>
@@ -131,7 +129,7 @@ const Home: React.FC = () => {
                   to="/act-global"
                   className="inline-flex items-center text-[#F59E0B] hover:text-amber-400 font-semibold transition-all duration-300"
                 >
-                  Explore Division <ArrowRight className="ml-2" size={18} />
+                  Explore <ArrowRight className="ml-2" size={18} />
                 </AnimatedLink>
               </div>
             </div>
