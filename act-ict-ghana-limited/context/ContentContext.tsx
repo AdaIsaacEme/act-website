@@ -78,22 +78,15 @@ const defaultProjects: Project[] = [
   {
     id: "3",
     title: "Leaky Feeder Project",
-    description: "Underground communication installed for AngloGold Ashanti.",
+    description: "Underground communication installed for the Mines.",
     category: "Communications",
     image: "/images/projects/leaky-feeder.jpg",
-  },
-  {
-    id: "4",
-    title: "TETRA Installation",
-    description: " TETRA radio network setup for Ahafo North.",
-    category: "Communications",
-    image: "/images/projects/tetra-installation.jpg",
   },
   {
     id: "5",
     title: " RT Tactical Aerostat System",
     description:
-      "A tactical aerostat system enabling continuous day-and-night operations for up to 72 hours at heights of up to 1,000 feet, installed at Newmont Ahafo South.",
+      "A tactical aerostat system enabling continuous day-and-night operations for up to 72 hours at heights of up to 1,000 feet, installed at the Mines.",
     category: "Security",
     image: "/images/projects/weather-balloon.jpg",
   },
@@ -101,7 +94,7 @@ const defaultProjects: Project[] = [
     id: "6",
     title: "Security Fence Installation",
     description:
-      "Installation of perimeter intrusion detection fence at Perseus Mining.",
+      "Installation of perimeter intrusion detection fence at the Mines.",
     category: "Security",
     image: "/images/projects/perseus-fence.jpg",
   },
@@ -114,42 +107,25 @@ const defaultProjects: Project[] = [
     image: "/images/projects/zambia-military-hospital.jpg",
   },
   {
-    id: "8",
-    title: "Newmont Ahafo — SkyStar Aerostat",
-    description:
-      "Deployment of RT SkyStar™ 180 tactical aerostat system enabling continuous 72-hour day & night surveillance at 1,000 feet altitude.",
-    category: "Security",
-    image: "/images/projects/newmont-aerostat.jpg",
-  },
-  {
     id: "9",
-    title: "AngloGold Ashanti — Underground CCTV",
+    title: "Underground CCTV",
     description:
-      "Design, installation and maintenance of IP CCTV systems across AngloGold Ashanti underground mining operations.",
+      "Design, installation and maintenance of IP CCTV systems across underground mining operations.",
     category: "Security",
     image: "/images/projects/anglogold-cctv.jpg",
   },
   {
-    id: "10",
-    title: "MOFA — 20 Weather Stations",
-    description:
-      "Supply and installation of 20 automated weather monitoring stations across Ghana for the Ministry of Food and Agriculture.",
-    category: "Engineering",
-    image: "/images/projects/mofa-weather-stations.jpg",
-  },
-  {
     id: "11",
-    title: "Ahafo North — TETRA Radio Network",
+    title: "TETRA Radio Network",
     description:
-      "Full TETRA digital radio network deployment for mission-critical communications at Ahafo North mining operations.",
+      "Full TETRA digital radio network deployment for mission-critical communications at mining operations.",
     category: "Communications",
     image: "/images/projects/ahafo-tetra.jpg",
   },
   {
     id: "12",
-    title: "GSR Prestea & Wassa — CCTV",
-    description:
-      "Multi-site CCTV deployment across Golden Star Resources Prestea and Wassa mining facilities.",
+    title: "CCTV",
+    description: "Multi-site CCTV deployment across mining facilities.",
     category: "Security",
     image: "/images/projects/gsr-cctv.jpg",
   },

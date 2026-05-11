@@ -121,24 +121,12 @@ const Navbar: React.FC = () => {
               </div>
             </div>
 
-            <div className="relative group">
-              <button
-                className={`flex items-center space-x-1 transition-all duration-300 ${linkColor}`}
-              >
-                <span>Industries</span>
-                <ChevronDown size={16} />
-              </button>
-              <div
-                className={`absolute left-0 mt-2 w-48 rounded-md shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50 border ${isDark ? "bg-[#0F2137] border-[#1E3A5F]" : "bg-white border-gray-200"}`}
-              >
-                <Link
-                  to="/mining"
-                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#006bb7] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#006bb7] hover:bg-gray-100"}`}
-                >
-                  Mining & Industrial
-                </Link>
-              </div>
-            </div>
+            <AnimatedLink
+              to="/mining"
+              className={`transition-all duration-300 ${linkColor}`}
+            >
+              Mining
+            </AnimatedLink>
 
             <AnimatedLink
               to="/solutions"
@@ -304,7 +292,7 @@ const Navbar: React.FC = () => {
                 )}
               </div>
 
-              {/* Industries */}
+              {/* Mining */}
               <Link
                 to="/mining"
                 onClick={toggleMenu}
@@ -316,7 +304,7 @@ const Navbar: React.FC = () => {
                       : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
                 }`}
               >
-                Mining & Industrial
+                Mining
               </Link>
 
               <Link

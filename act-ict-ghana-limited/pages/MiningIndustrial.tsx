@@ -38,11 +38,12 @@ const MINING_CLIENTS = [
 ];
 
 const SURFACE_SOLUTIONS = [
-  "Digital Radio — TETRA, DMR, MotoTrbo",
+  "Digital Radio",
   "IP CCTV & AI Video Analytics",
-  "WAN / LAN / Fiber Optic Networks",
+  "WAN / LAN",
   "Surface Proximity & Collision Detection",
   "Personnel & Equipment Tracking",
+  "Lamp Room Management",
   "Safety & Fire Detection Systems",
   "Solar Lighting Trailers",
   "Plant and Power Solutions",
@@ -55,7 +56,6 @@ const UNDERGROUND_SOLUTIONS = [
   "CCTV & IP Telephony",
   "Personnel Tracking — RFID / UWB",
   "Gas Detection & Safety Monitoring",
-  "Ventilation Control Systems",
   "Cap Lamps & Rescue Packs",
 ];
 
@@ -134,12 +134,10 @@ const ClientLogo: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
             opacity: 0.85,
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLImageElement).style.opacity =
-              "1";
+            (e.currentTarget as HTMLImageElement).style.opacity = "1";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLImageElement).style.opacity =
-              "0.85";
+            (e.currentTarget as HTMLImageElement).style.opacity = "0.85";
           }}
         />
       )}
@@ -153,7 +151,7 @@ const MiningIndustrial: React.FC = () => {
 
   return (
     <div
-      style={{ backgroundColor: 'var(--bg-primary)', minHeight: "100vh" }}
+      style={{ backgroundColor: "var(--bg-primary)", minHeight: "100vh" }}
       className="pt-28 sm:pt-32"
     >
       {/* ── HERO ── */}
@@ -337,7 +335,9 @@ const MiningIndustrial: React.FC = () => {
       </section>
 
       {/* ── UNDERGROUND SOLUTIONS ── */}
-      <section style={{ backgroundColor: 'var(--bg-secondary)', padding: "80px 0" }}>
+      <section
+        style={{ backgroundColor: "var(--bg-secondary)", padding: "80px 0" }}
+      >
         <ScrollReveal slideDistance={30} delay={0.15}>
           <div
             style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 2rem" }}
@@ -393,8 +393,8 @@ const MiningIndustrial: React.FC = () => {
                     marginBottom: "28px",
                   }}
                 >
-                  Specialist underground connectivity using leaky feeder, fiber
-                  optic networks, and wireless systems.
+                  Specialized in underground connectivity using leaky feeder,
+                  fiber optic networks, and wireless systems.
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {UNDERGROUND_SOLUTIONS.map((item, i) => (
@@ -426,101 +426,6 @@ const MiningIndustrial: React.FC = () => {
             </div>
           </div>
         </ScrollReveal>
-      </section>
-
-      {/* ── MINING CLIENTS ── */}
-      <section
-        style={{
-          backgroundColor: "#0F2137",
-          padding: "80px 2rem",
-        }}
-      >
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "48px" }}>
-          <p
-            style={{
-              color: "#00A8E8",
-              fontSize: "11px",
-              fontWeight: "700",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              margin: 0,
-            }}
-          >
-            Trusted By
-          </p>
-          <h2
-            style={{
-              fontFamily: "'Bebas Neue', sans-serif",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              color: "#ffffff",
-              marginTop: "8px",
-              marginBottom: "12px",
-            }}
-          >
-            Our Mining Clients
-          </h2>
-          <p
-            style={{
-              color: "#7A9ABD",
-              fontSize: "16px",
-              maxWidth: "480px",
-              margin: "0 auto",
-            }}
-          >
-            Ghana and West Africa's leading mining companies trust ACT-ICT.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
-          {MINING_CLIENTS.map((client, i) => (
-            <div
-              key={i}
-              style={{
-                backgroundColor: "#1E3A5F",
-                border: "1px solid #2a4f7a",
-                borderRadius: "12px",
-                padding: "24px 16px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                transition: "border-color 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "#00A8E8";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor =
-                  "#2a4f7a";
-              }}
-            >
-              <ClientLogo src={client.logo} alt={client.name} />
-              <h4
-                style={{
-                  color: "#ffffff",
-                  fontWeight: "700",
-                  fontSize: "14px",
-                  margin: "0 0 6px 0",
-                }}
-              >
-                {client.name}
-              </h4>
-              <p
-                style={{
-                  color: "#7A9ABD",
-                  fontSize: "12px",
-                  lineHeight: "1.5",
-                  margin: 0,
-                }}
-              >
-                {client.projects}
-              </p>
-            </div>
-          ))}
-        </div>
-        </div>
       </section>
 
       {/* ── CTA ── */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Radio, Server, Video, Check, MapPin, Cable } from "lucide-react";
+import { Radio, Server, Video, Check, MapPin } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import AnimatedWrapper from "../components/AnimatedWrapper";
 
@@ -10,7 +10,7 @@ const DivisionACTICT: React.FC = () => {
       title: "Radio Communications",
       icon: <Radio size={48} />,
       content:
-        "We provide mission-critical communication systems including TETRA, DMR, and analogue radios. As Platinum Partners of Motorola Solutions, we deploy robust networks for mining, public safety, and logistics.",
+        "We provide mission-critical communication systems, including TETRA, DMR, and analogue radios. As a Platinum Partner of Motorola Solutions, we deploy robust network systems for Mining, Defence, Oil & Gas, and other Industries in Ghana.",
       features: [
         "Two-way Radio Systems",
         "Wide Area Networks",
@@ -25,10 +25,8 @@ const DivisionACTICT: React.FC = () => {
       content:
         "Building the backbone of modern enterprise. We specialize in structured cabling, fiber optics, and wireless broadband solutions designed for high availability and speed.",
       features: [
-        "Fiber Optic Splicing & Termination",
         "Data Center Cabling",
         "Wireless Point-to-Point",
-        "Network Audits",
       ],
     },
     {
@@ -49,27 +47,16 @@ const DivisionACTICT: React.FC = () => {
       title: "Personnel & Equipment Tracking",
       icon: <MapPin size={48} />,
       content:
-        "Real-time tracking of personnel and vehicles using RFID, GPS, and wireless sensor networks — critical for underground mining safety compliance.",
+        "Real-time tracking of personnel and vehicles using RFID, GPS, and wireless sensor networks, critical for surface and underground mining safety compliance.",
       features: [
         "Underground Personnel Tracking",
         "Vehicle Location Systems",
+        "Driver fatigue management",
         "Asset Management",
-        "Compliance Reporting",
+        "Lamp Room Management",
       ],
     },
-    {
-      id: "fiber",
-      title: "Fiber Optic Networks",
-      icon: <Cable size={48} />,
-      content:
-        "ADSS, mine-shaft, buried and underground fiber cable supply, installation and splicing. Authorised distributors for Fujikura, VIAVI, AFL, Teldor and OPTRAL.",
-      features: [
-        "Underground Fiber in Mines",
-        "OTDR Testing & Certification",
-        "Splicing & Termination",
-        "Mine Shaft Fiber",
-      ],
-    },
+
   ];
 
   return (

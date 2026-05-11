@@ -5,7 +5,6 @@ import {
   Truck,
   Sun,
   Navigation,
-  Wind,
 } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
@@ -26,12 +25,7 @@ const DivisionACTGlobal: React.FC = () => {
     {
       title: "Drone & Aerostat Systems",
       icon: <Navigation size={24} />,
-      desc: "RT SkyStar™ tactical aerostat systems and drone services for aerial surveillance, mapping, 3D scanning, and security operations across Ghana and West Africa.",
-    },
-    {
-      title: "Ventilation Solutions",
-      icon: <Wind size={24} />,
-      desc: "Underground mine ventilation monitoring and control systems ensuring safe air quality and regulatory compliance in tunnel and shaft environments.",
+      desc: "RT SkyStar™ tactical aerostat systems and drone services for aerial surveillance across Ghana.",
     },
   ];
 
@@ -86,12 +80,12 @@ const DivisionACTGlobal: React.FC = () => {
               </p>
 
               {/* Image */}
-              <div className="h-40 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F]">
+              <div className="min-h-48 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F] flex items-center justify-center">
                 <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
                     src={`/images/divisions/act-global-${idx + 1}.jpg`}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain max-h-96 p-2"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}

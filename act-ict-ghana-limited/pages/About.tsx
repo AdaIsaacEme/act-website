@@ -56,6 +56,9 @@ const About: React.FC = () => {
     },
     { name: "G4S", logo: "/images/logo/g4s.png" },
     { name: "Perseus Mining", logo: "/images/logo/perseus-logo.png" },
+    { name: "Goldfields", logo: "/images/logo/goldfields.jpg" },
+    { name: "GWL", logo: "/images/logo/gwl.jpg" },
+    { name: "MPS", logo: "/images/logo/mps.jpg" },
   ];
 
   const sectors = [
