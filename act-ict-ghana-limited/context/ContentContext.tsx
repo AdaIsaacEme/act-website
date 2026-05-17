@@ -132,146 +132,194 @@ const defaultProjects: Project[] = [
 ];
 
 const defaultSolutions: Solution[] = [
+  // COMMUNICATIONS CATEGORY
   {
     id: "1",
     title: "IT & Communications",
-    description:
-      "Enterprise networking, data centers, and unified communications.",
+    description: "Enterprise networking, communications, and connectivity solutions.",
     iconName: "Network",
-  },
-  {
-    id: "2",
-    title: "Security Solutions",
-    description: "CCTV, Access Control, and Perimeter Intrusion Detection.",
-    iconName: "ShieldCheck",
-  },
-  {
-    id: "3",
-    title: "Engineering Services",
-    description:
-      "Shelter in tower construction, tower construction, and specialized engineering.",
-    iconName: "HardHat",
-  },
-  {
-    id: "4",
-    title: "Electricals",
-    description: "Industrial power solutions, lighting, and backup systems.",
-    iconName: "Zap",
-  },
-  {
-    id: "5",
-    title: "Network Infrastructure",
-    description:
-      "Fiber optics, MOXA industrial network switches, Cisco networking solutions, Fiber optic infrastructure, APC power solutions, Dell and HPE servers and storage, Centralized data center solutions",
-    iconName: "Server",
-  },
-  {
-    id: "6",
-    title: "Video Surveillance",
-    description: "AI-powered video analytics and monitoring centers.",
-    iconName: "Video",
+    category: "Communications",
+    productGroups: [
+      {
+        id: "pg-1-1",
+        title: "RADIOS",
+        products: [
+          {
+            id: "prod-1-1-1",
+            title: "MOTOROLA R7",
+            specs: [
+              { text: "Digital Portable Two-Way Radio" },
+              { text: "IP 68" },
+              { text: "Intrinsically Safe" },
+              { text: "Battery: Li-Ion 2850 mAH" },
+            ],
+            image: "/images/products/motorola-r7.png",
+          },
+          {
+            id: "prod-1-1-2",
+            title: "MOTOROLA R5",
+            specs: [
+              { text: "Digital Portable Two-Way Radio" },
+              { text: "IP67" },
+              { text: "Intrinsically safe" },
+            ],
+            image: "/images/products/motorola-r5.png",
+          },
+          {
+            id: "prod-1-1-3",
+            title: "MOTOROLA R2",
+            specs: [
+              { text: "Digital Two-Way Radio" },
+              { text: "IP55" },
+            ],
+            image: "/images/products/motorola-r2.png",
+          },
+        ],
+      },
+      {
+        id: "pg-1-2",
+        title: "MOXA",
+        products: [
+          {
+            id: "prod-1-2-1",
+            title: "Secure Routers",
+            specs: [
+              { text: "IEC 62443-4-2 cybersecurity standard" },
+              { text: "Intrusion prevention system" },
+              { text: "Intrusion detection system" },
+            ],
+            image: "/images/products/moxa-secure-routers.png",
+          },
+        ],
+      },
+      {
+        id: "pg-1-3",
+        title: "CISCO",
+        products: [
+          {
+            id: "prod-1-3-1",
+            title: "Switches for every network",
+            specs: [
+              { text: "Cisco C9350 Series Smart Switches" },
+              { text: "Cisco Catalyst 9300 Series Switches" },
+              { text: "Cisco Catalyst 9400 Series Switches" },
+              { text: "Cisco Catalyst 9200 Series Switches" },
+            ],
+            image: "/images/products/cisco-switches.png",
+          },
+          {
+            id: "prod-1-3-2",
+            title: "Transceiver GLC-LH-SMD",
+            specs: [
+              { text: "1000BASE-LX/LH SFP" },
+            ],
+            image: "/images/products/cisco-transceiver.png",
+          },
+        ],
+      },
+      {
+        id: "pg-1-4",
+        title: "LEAKY FEEDER",
+        products: [
+          {
+            id: "prod-1-4-1",
+            title: "Leaky Feeder Systems",
+            specs: [
+              { text: "Underground mine connectivity" },
+              { text: "Radiating cable systems" },
+            ],
+            image: "/images/products/leaky-feeder.png",
+          },
+        ],
+      },
+    ],
   },
 
+  // SAFETY CATEGORY
   {
-    id: "7",
-    title: "LED Industrial Lights",
-    description: "Energy-efficient high-bay and street lighting solutions.",
-    iconName: "Lightbulb",
+    id: "2",
+    title: "Safety Solutions",
+    description: "Comprehensive safety and worker protection solutions.",
+    iconName: "ShieldCheck",
+    category: "Safety",
+    productGroups: [
+      {
+        id: "pg-2-1",
+        title: "SCHUAENBURG SYSTEMS",
+        products: [
+          {
+            id: "prod-2-1-1",
+            title: "GDI Sentinel",
+            specs: [
+              { text: "Multi-gas precision" },
+              { text: "Uninterrupted Power" },
+              { text: "Rugged Durability" },
+              { text: "MHSC & DMRE Compliant" },
+            ],
+            image: "/images/products/schuaenburg-gdi-sentinel.png",
+          },
+          {
+            id: "prod-2-1-2",
+            title: "SmartIntellisens Fixed Multi Gas Detector",
+            specs: [
+              { text: "SO2, H2S, EX, O2, CO2, CH4, CO, NO, NO2, NH3" },
+              { text: "Other gases can be requested" },
+              { text: "Environmental Sensors" },
+            ],
+            image: "/images/products/schuaenburg-smartintellisens.png",
+          },
+          {
+            id: "prod-2-1-3",
+            title: "Fatigue monitoring solutions",
+            specs: [
+              { text: "Worker fatigue detection" },
+              { text: "Safety compliance" },
+            ],
+            image: "/images/products/schuaenburg-fatigue-monitoring.png",
+          },
+          {
+            id: "prod-2-1-4",
+            title: "Underground Mining Collision Avoidance Solutions",
+            specs: [
+              { text: "Vehicle checklist Capability" },
+              { text: "Onboard gas detection interlocking" },
+              { text: "Personnel 2-way page communication" },
+              { text: "Productivity monitoring and optimization application" },
+            ],
+            image: "/images/products/schuaenburg-collision-avoidance.png",
+          },
+          {
+            id: "prod-2-1-5",
+            title: "SmartLite Basic LFP Caplamp",
+            specs: [
+              { text: "Intelligent lighting" },
+              { text: "Long battery life" },
+            ],
+            image: "/images/products/schuaenburg-smartlite-caplamp.png",
+          },
+        ],
+      },
+    ],
   },
+
+  // SECURITY CATEGORY
   {
-    id: "9",
-    title: "Radio Communications",
-    description: "Two-way radios, TETRA, and DMR systems.",
-    iconName: "Radio",
-    category: "Communications",
-  },
-  {
-    id: "10",
-    title: "TETRA Radio Networks",
-    description:
-      "Mission-critical digital trunked radio systems for mining, public safety, and industrial operations. Deployed and supported across Ghana.",
-    iconName: "Radio",
-    category: "Communications",
-  },
-  {
-    id: "11",
-    title: "Leaky Feeder Systems",
-    description:
-      "Underground mine connectivity using radiating cable systems for voice, data, and tracking in tunnels and shafts.",
-    iconName: "Cable",
-    category: "Communications",
-  },
-  {
-    id: "12",
-    title: "PTT over Cellular (PoC)",
-    description:
-      "ActiTalk push-to-talk over cellular with nationwide coverage, GPS tracking, dispatch and recording capabilities.",
-    iconName: "Smartphone",
-    category: "Communications",
-  },
-  {
-    id: "13",
-    title: "Aerostat Surveillance",
-    description:
-      "RT SkyStar™ tactical aerostat systems enabling continuous day & night ISR at 1,000–1,500 ft. Deployed at Newmont Ahafo South.",
+    id: "3",
+    title: "Security Solutions",
+    description: "CCTV, Access Control, and Perimeter Intrusion Detection.",
     iconName: "Eye",
     category: "Security",
+    productGroups: [],
   },
+
+  // ELECTRICALS CATEGORY
   {
-    id: "14",
-    title: "Perimeter Intrusion Detection",
-    description:
-      "Smart fence sensors, radar integration, and drone surveillance for critical asset protection.",
-    iconName: "ShieldAlert",
-    category: "Security",
-  },
-  {
-    id: "15",
-    title: "Fire Detection Systems",
-    description:
-      "Simplex fire detection and alarm systems, designed and installed for hospital and industrial facilities.",
-    iconName: "Flame",
-    category: "Security",
-  },
-  {
-    id: "16",
-    title: "Data Center Infrastructure",
-    description:
-      "APC & Schneider Electric-based data center design, supply and installation for enterprise and hospital environments.",
-    iconName: "Database",
-    category: "Infrastructure",
-  },
-  {
-    id: "17",
-    title: "Fiber Optic Networks",
-    description:
-      "ADSS, mine-shaft, buried & underground fiber supply, installation, and splicing. Distributors for Fujikura, VIAVI OTDR, AFL.",
+    id: "4",
+    title: "Electrical Solutions",
+    description: "Industrial power solutions, lighting, and backup systems.",
     iconName: "Zap",
-    category: "Infrastructure",
-  },
-  {
-    id: "18",
-    title: "Solar Lighting & Trailers",
-    description:
-      "BEKA Schréder solar-powered lighting trailers for rapid deployment — Wi-Fi, radio, CCTV, and lighting from a single unit.",
-    iconName: "Sun",
-    category: "Electrical",
-  },
-  {
-    id: "19",
-    title: "SCADA & Process Automation",
-    description:
-      "Industrial automation and remote monitoring solutions for mining and oil & gas process control.",
-    iconName: "Settings",
-    category: "Engineering",
-  },
-  {
-    id: "20",
-    title: "Drone Services",
-    description:
-      "Drones for security, mapping, 3D scanning, and measurements. Integrated with CCTV command centers.",
-    iconName: "Navigation",
-    category: "Security",
+    category: "Electricals",
+    productGroups: [],
   },
 ];
 

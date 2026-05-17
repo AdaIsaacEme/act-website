@@ -208,8 +208,7 @@ const MiningIndustrial: React.FC = () => {
                 margin: "0 0 24px 0",
               }}
             >
-              MINING &<br />
-              INDUSTRIAL
+              MINING
             </h1>
             <p
               style={{

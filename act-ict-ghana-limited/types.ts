@@ -6,12 +6,30 @@ export interface Project {
   image: string;
 }
 
+export interface ProductSpec {
+  text: string;
+}
+
+export interface Product {
+  id: string;
+  title: string;
+  specs: ProductSpec[];
+  image?: string;
+}
+
+export interface ProductGroup {
+  id: string;
+  title: string;
+  products: Product[];
+}
+
 export interface Solution {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   iconName: string; // We'll map string names to Lucide icons
   category?: string; // Added for filtering
+  productGroups?: ProductGroup[]; // NEW: nested hierarchical structure
 }
 
 export interface Partner {
