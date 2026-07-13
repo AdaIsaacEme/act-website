@@ -67,7 +67,7 @@ const About: React.FC = () => {
     "Oil & Gas",
     "Healthcare",
     "Government",
-    "Commercial & Industrial",
+    "Other Sectors",
   ];
 
   return (
