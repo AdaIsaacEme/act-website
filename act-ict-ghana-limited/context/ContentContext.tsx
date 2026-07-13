@@ -174,6 +174,16 @@ const defaultSolutions: Solution[] = [
             ],
             image: "/images/products/motorola-r2.png",
           },
+          {
+            id: "prod-1-1-4",
+            title: "PTT OVER CELLULAR (POC)",
+            specs: [
+              { text: "ActiTalk push-to-talk over cellular with nationwide coverage" },
+              { text: "GPS tracking" },
+              { text: "Dispatch and recording capabilities" },
+            ],
+            image: "/images/products/poc-radio.jpg",
+          },
         ],
       },
       {
@@ -227,8 +237,11 @@ const defaultSolutions: Solution[] = [
             specs: [
               { text: "Underground mine connectivity" },
               { text: "Radiating cable systems" },
+              { text: "Automatic Gain Control (AGC)" },
+              { text: "Local and Remote Diagnostics" },
+              { text: "Interference Reduction" },
             ],
-            image: "/images/products/leaky-feeder.png",
+            image: "/images/products/leaky-feeder.jpg",
           },
         ],
       },
@@ -297,6 +310,16 @@ const defaultSolutions: Solution[] = [
             ],
             image: "/images/products/schuaenburg-smartlite-caplamp.png",
           },
+          {
+            id: "prod-2-1-6",
+            title: "Self Rescuer",
+            specs: [
+              { text: "Protection time - up to 40 minutes" },
+              { text: "Weight – Approx 2.25-2.3kg" },
+              { text: "Shelf life up to years" },
+            ],
+            image: "/images/products/self-rescuer.jpg",
+          },
         ],
       },
     ],
@@ -309,7 +332,92 @@ const defaultSolutions: Solution[] = [
     description: "CCTV, Access Control, and Perimeter Intrusion Detection.",
     iconName: "Eye",
     category: "Security",
-    productGroups: [],
+    productGroups: [
+      {
+        id: "pg-3-1",
+        title: "CCTV",
+        products: [
+          {
+            id: "prod-3-1-1",
+            title: "Avigilon",
+            specs: [
+              { text: "Premium AI-powered security cameras featuring advanced video analytics and high-definition clarity." },
+              { text: "Engineered for enterprise-level surveillance with smart detection to pinpoint critical events instantly." },
+            ],
+            image: "/images/products/avigilon.jpg",
+          },
+          {
+            id: "prod-3-1-2",
+            title: "Axis Communications",
+            specs: [
+              { text: "Top-tier network cameras delivering elite cybersecurity protections and exceptional image quality." },
+              { text: "The industry standard for durable, high-end IP video surveillance in demanding environments." },
+            ],
+            image: "/images/products/axis.jpg",
+          },
+          {
+            id: "prod-3-1-3",
+            title: "Hikvision",
+            specs: [
+              { text: "Highly reliable and cost-effective cameras offering crystal-clear video and excellent night vision." },
+              { text: "The world-leading choice for versatile, user-friendly security across homes and commercial properties." },
+            ],
+            image: "/images/products/hikvision.jpg",
+          },
+          {
+            id: "prod-3-1-4",
+            title: "Dahua",
+            specs: [
+              { text: "Innovative surveillance systems combining high-resolution imaging with smart automation features." },
+              { text: "Budget-friendly, high-performance cameras built for dependable indoor and outdoor monitoring." },
+            ],
+            image: "/images/products/dahua.jpg",
+          },
+          {
+            id: "prod-3-1-5",
+            title: "Holowits",
+            specs: [
+              { text: "Next-generation IP surveillance systems powered by cutting-edge AIoT technology and intelligent deep-learning analytics." },
+              { text: "Designed for smart city and commercial security, featuring advanced object tracking and ultra-low light color vision." },
+            ],
+            image: "/images/products/holowits.jpg",
+          },
+        ],
+      },
+      {
+        id: "pg-3-2",
+        title: "GMAfcon",
+        products: [
+          {
+            id: "prod-3-2-1",
+            title: "Intrusion Detection System (IDS)",
+            specs: [
+              { text: "An advanced, high-precision perimeter security solution designed for both indoor and outdoor threats." },
+            ],
+            image: "/images/products/gmafcon.jpg",
+          },
+        ],
+      },
+      {
+        id: "pg-3-3",
+        title: "RT Aerostat System",
+        products: [
+          {
+            id: "prod-3-3-1",
+            title: "RT Aerostat System",
+            specs: [
+              { text: "Rapid deployment capability" },
+              { text: "Cost-effective surveillance solution" },
+              { text: "Designed for extended surveillance and reconnaissance missions" },
+              { text: "Provides day and night situational awareness" },
+              { text: "Operates at altitudes up to 1,000 ft" },
+              { text: "Requires only a minimal crew" },
+            ],
+            image: "/images/products/rt-trailer.jpg",
+          },
+        ],
+      },
+    ],
   },
 
   // ELECTRICALS CATEGORY
@@ -319,7 +427,69 @@ const defaultSolutions: Solution[] = [
     description: "Industrial power solutions, lighting, and backup systems.",
     iconName: "Zap",
     category: "Electricals",
-    productGroups: [],
+    productGroups: [
+      {
+        id: "pg-4-1",
+        title: "BEKA - Industrial LED Lighting Solutions",
+        products: [
+          {
+            id: "prod-4-1-1",
+            title: "LEDNOVA",
+            specs: [
+              { text: "Marine grade high-pressure die-cast aluminium (EN 1706 AC-44300)" },
+              { text: "IP 66" },
+              { text: "Up to 100,000h - L90B10" },
+              { text: "Standard: 90-305V – 50Hz" },
+              { text: "230V +3%/-10% - 50Hz" },
+              { text: "Large Area & Floodlighting" },
+            ],
+            image: "/images/products/lednova.jpg",
+          },
+          {
+            id: "prod-4-1-2",
+            title: "LED SOLAR LIGHTING",
+            specs: [
+              { text: "Off-grid areas & security lighting" },
+              { text: "Normal Flux (lm) 10928" },
+              { text: "Neutral White 740 & Warm White 730" },
+              { text: "IP 66" },
+              { text: "60,000h - L90B10 - 50,000h - L80B10" },
+              { text: "12V DC" },
+            ],
+            image: "/images/products/beka-solar.jpg",
+          },
+          {
+            id: "prod-4-1-3",
+            title: "OMNIBLAST",
+            specs: [
+              { text: "Marine grade high-pressure die-cast aluminium (EN 1706 AC-44300)" },
+              { text: "Mining, Car Parks, Large Area & Floodlighting" },
+              { text: "Flux (lm) - 230413198-264V – 50Hz" },
+              { text: "100,000h - Up to L95B10" },
+            ],
+            image: "/images/products/omniblast.jpg",
+          },
+        ],
+      },
+      {
+        id: "pg-4-2",
+        title: "ACT ICT Solar Trailer",
+        products: [
+          {
+            id: "prod-4-2-1",
+            title: "ACT ICT Solar Trailer",
+            specs: [
+              { text: "4 x 380-Watt Solar panels" },
+              { text: "8 x 200 Ah Gel Batteries" },
+              { text: "9-meter manual mast" },
+              { text: "Single Axle Trailer (Aus/US standard)" },
+              { text: "Used for Network, Radio, CCTV and lighting" },
+            ],
+            image: "/images/products/solar-trailer.jpg",
+          },
+        ],
+      },
+    ],
   },
 ];
 

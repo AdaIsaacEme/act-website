@@ -56,22 +56,22 @@ const About: React.FC = () => {
     },
     { name: "G4S", logo: "/images/logo/g4s.png" },
     { name: "Perseus Mining", logo: "/images/logo/perseus-logo.png" },
-    { name: "Goldfields", logo: "/images/logo/goldfields.jpg" },
+    { name: "Goldfields", logo: "/images/logo/goldfields.png" },
     { name: "GWL", logo: "/images/logo/gwl.jpg" },
     { name: "MPS", logo: "/images/logo/mps.jpg" },
+    { name: "Asante Gold", logo: "/images/logo/asante-gold.jpg" },
   ];
 
   const sectors = [
     "Mining",
     "Oil & Gas",
     "Healthcare",
-    "Military & Government",
+    "Government",
     "Commercial & Industrial",
-    "Public Safety",
   ];
 
   return (
-    <div className="pt-32" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <div className="pt-32" style={{ backgroundColor: "var(--bg-primary)" }}>
       {/* Header with Banner */}
       <ScrollReveal slideDistance={30}>
         <div className="relative overflow-hidden py-20">
@@ -96,33 +96,57 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 space-y-20">
         {/* Company Background */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <ScrollReveal direction="right" delay={0} duration={0.35} distance={40}>
+          <ScrollReveal
+            direction="right"
+            delay={0}
+            duration={0.35}
+            distance={40}
+          >
             <div>
-              <h2 className="font-display text-4xl font-black mb-6" style={{ color: 'var(--text-heading)' }}>
+              <h2
+                className="font-display text-4xl font-black mb-6"
+                style={{ color: "var(--text-heading)" }}
+              >
                 Company Background
               </h2>
-              <div className="space-y-4 leading-relaxed text-lg" style={{ color: 'var(--text-secondary)' }}>
+              <div
+                className="space-y-4 leading-relaxed text-lg"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 <p>
-                  ACT-ICT Ghana Limited was established with a clear mandate: to
-                  bridge the technological gap in the region by providing superior
-                  Engineering, IT, Security, and Electrical solutions.
+                  ACT ICT Ghana Ltd is a leading technology and engineering
+                  solutions provider across Ghana and the West African region.
                 </p>
                 <p>
-                  Over the years, we have grown into a powerhouse of innovation,
-                  partnering with global giants like Motorola Solutions, CISCO,
-                  and BEKA Schréder to bring state-of-the-art infrastructure to
-                  Ghana. Our commitment to quality and excellence has earned us
-                  the trust of major government and private sector entities.
+                  We specialize in designing, deploying, and supporting
+                  integrated solutions including Radio Communication Systems, IP
+                  CCTV Surveillance, Underground and Surface Mining Solutions,
+                  Security Systems, Industrial LED Lighting, and Turnkey ICT
+                  Infrastructure for Mining, Oil & Gas, and Other Industries.
                 </p>
                 <p>
-                  From complex radio communication networks in remote mining areas
-                  to sophisticated security surveillance in urban centers, ACT-ICT
-                  delivers reliability where it matters most.
+                  Through our partnerships with global technology leaders such
+                  as Motorola Solutions, Avigilon, Schauenburg Systems, BEKA
+                  Schréder, MOXA, Cisco, among others, we provide innovative and
+                  dependable solutions tailored to challenging operational
+                  environments.
+                </p>
+                <p>
+                  From enabling underground and surface mine communications to
+                  implementing advanced security and connectivity systems for
+                  critical operations, we focus on delivering technology that
+                  improves safety, efficiency, communication, and operational
+                  reliability where it matters most.
                 </p>
               </div>
             </div>
           </ScrollReveal>
-          <ScrollReveal direction="left" delay={0.08} duration={0.35} distance={40}>
+          <ScrollReveal
+            direction="left"
+            delay={0.08}
+            duration={0.35}
+            distance={40}
+          >
             <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl bg-[#0F2137] ring-1 ring-[#1E3A5F] will-change-transform">
               <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                 <img
@@ -140,17 +164,30 @@ const About: React.FC = () => {
         </div>
 
         {/* Stats Row */}
-        <StaggeredGrid fromDirection="alternating" staggerDelay={0.08} containerDelay={0.15} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <StaggeredGrid
+          fromDirection="alternating"
+          staggerDelay={0.08}
+          containerDelay={0.15}
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
+        >
           {stats.map((stat, idx) => (
             <div
               key={idx}
               className="rounded-xl p-6 text-center"
-              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "var(--border-color)",
+              }}
             >
               <div className="font-display text-4xl font-black text-[#00A8E8] mb-2">
                 <AnimatedCounter value={stat.number} duration={1.2} />
               </div>
-              <div className="font-semibold" style={{ color: 'var(--text-secondary)' }}>{stat.label}</div>
+              <div
+                className="font-semibold"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {stat.label}
+              </div>
             </div>
           ))}
         </StaggeredGrid>
@@ -158,21 +195,45 @@ const About: React.FC = () => {
         {/* Mission & Vision */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="border p-8 rounded-xl" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
-              <h3 className="font-display text-2xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
+            <div
+              className="border p-8 rounded-xl"
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "var(--border-color)",
+              }}
+            >
+              <h3
+                className="font-display text-2xl font-black mb-4"
+                style={{ color: "var(--text-heading)" }}
+              >
                 Our Mission
               </h3>
-              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p
+                className="leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 To provide innovative, reliable, and sustainable technological
                 solutions that empower businesses and communities to thrive in a
                 connected world.
               </p>
             </div>
-            <div className="border p-8 rounded-xl" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
-              <h3 className="font-display text-2xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
+            <div
+              className="border p-8 rounded-xl"
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "var(--border-color)",
+              }}
+            >
+              <h3
+                className="font-display text-2xl font-black mb-4"
+                style={{ color: "var(--text-heading)" }}
+              >
                 Our Vision
               </h3>
-              <p className="leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p
+                className="leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 To be the premier technology infrastructure provider in West
                 Africa, known for engineering excellence and uncompromising
                 quality.
@@ -183,25 +244,40 @@ const About: React.FC = () => {
 
         {/* Key Clients */}
         <ScrollReveal slideDistance={25} delay={0.2}>
-          <div style={{ backgroundColor: '#0F2137', borderRadius: '16px', padding: 'clamp(40px, 8vw, 80px) clamp(16px, 4vw, 32px)' }}>
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-center mb-4" style={{ color: '#ffffff' }}>
+          <div
+            style={{
+              backgroundColor: "#0F2137",
+              borderRadius: "16px",
+              padding: "clamp(40px, 8vw, 80px) clamp(16px, 4vw, 32px)",
+            }}
+          >
+            <h2
+              className="font-display text-3xl sm:text-4xl font-black text-center mb-4"
+              style={{ color: "#ffffff" }}
+            >
               Our Clients
             </h2>
             <div className="text-center">
-              <p className="mb-12" style={{ color: '#7A9ABD' }}>Among our clients:</p>
-              <StaggeredGrid staggerDelay={0.04} containerDelay={0.15} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <p className="mb-12" style={{ color: "#7A9ABD" }}>
+                Among our clients:
+              </p>
+              <StaggeredGrid
+                staggerDelay={0.04}
+                containerDelay={0.15}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+              >
                 {clients.map((client, idx) => (
                   <div
                     key={idx}
                     style={{
-                      backgroundColor: '#1E3A5F',
-                      border: '1px solid #2a4f7a',
-                      borderRadius: '12px',
-                      padding: '24px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      minHeight: '80px',
+                      backgroundColor: "#1E3A5F",
+                      border: "1px solid #2a4f7a",
+                      borderRadius: "12px",
+                      padding: "24px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      minHeight: "80px",
                     }}
                   >
                     <AnimatedWrapper hoverScale={1.1}>
@@ -212,12 +288,12 @@ const About: React.FC = () => {
                         onError={(e) => {
                           const img = e.currentTarget;
                           img.style.display = "none";
-                          const span = document.createElement('span');
+                          const span = document.createElement("span");
                           span.textContent = client.name;
-                          span.style.color = '#7A9ABD';
-                          span.style.fontSize = '13px';
-                          span.style.textAlign = 'center';
-                          span.style.fontWeight = '600';
+                          span.style.color = "#7A9ABD";
+                          span.style.fontSize = "13px";
+                          span.style.textAlign = "center";
+                          span.style.fontWeight = "600";
                           img.parentElement?.appendChild(span);
                         }}
                       />
@@ -232,17 +308,30 @@ const About: React.FC = () => {
         {/* Sectors */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div>
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-center mb-8 sm:mb-12" style={{ color: 'var(--text-heading)' }}>
+            <h2
+              className="font-display text-3xl sm:text-4xl font-black text-center mb-8 sm:mb-12"
+              style={{ color: "var(--text-heading)" }}
+            >
               Sectors We Serve
             </h2>
-            <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <StaggeredGrid
+              staggerDelay={0.05}
+              containerDelay={0.15}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+            >
               {sectors.map((sector, idx) => (
                 <div
                   key={idx}
                   className="border rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
-                  style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+                  style={{
+                    backgroundColor: "var(--bg-surface)",
+                    borderColor: "var(--border-color)",
+                  }}
                 >
-                  <h3 className="font-display text-2xl font-black" style={{ color: 'var(--text-heading)' }}>
+                  <h3
+                    className="font-display text-2xl font-black"
+                    style={{ color: "var(--text-heading)" }}
+                  >
                     {sector}
                   </h3>
                 </div>
@@ -254,10 +343,17 @@ const About: React.FC = () => {
         {/* Why Choose Us */}
         <ScrollReveal slideDistance={25} delay={0.2}>
           <div>
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-center mb-8 sm:mb-12" style={{ color: 'var(--text-heading)' }}>
+            <h2
+              className="font-display text-3xl sm:text-4xl font-black text-center mb-8 sm:mb-12"
+              style={{ color: "var(--text-heading)" }}
+            >
               Why Choose Us?
             </h2>
-            <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+            <StaggeredGrid
+              staggerDelay={0.05}
+              containerDelay={0.15}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
+            >
               {[
                 {
                   title: "Certified Experts",
@@ -275,15 +371,21 @@ const About: React.FC = () => {
                 <div
                   key={idx}
                   className="border rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
-                  style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+                  style={{
+                    backgroundColor: "var(--bg-surface)",
+                    borderColor: "var(--border-color)",
+                  }}
                 >
                   <div className="w-12 h-12 bg-[#00A8E8]/10 text-[#00A8E8] rounded-full flex items-center justify-center mb-4 mx-auto ring-1 ring-[#00A8E8]/30">
                     <CheckCircle size={24} />
                   </div>
-                  <h4 className="font-display text-xl font-black mb-2" style={{ color: 'var(--text-heading)' }}>
+                  <h4
+                    className="font-display text-xl font-black mb-2"
+                    style={{ color: "var(--text-heading)" }}
+                  >
                     {val.title}
                   </h4>
-                  <p style={{ color: 'var(--text-secondary)' }}>{val.desc}</p>
+                  <p style={{ color: "var(--text-secondary)" }}>{val.desc}</p>
                 </div>
               ))}
             </StaggeredGrid>
