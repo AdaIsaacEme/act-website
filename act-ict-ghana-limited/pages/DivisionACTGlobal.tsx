@@ -5,6 +5,7 @@ import {
   Truck,
   Sun,
   Navigation,
+  ShieldCheck,
 } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
@@ -26,6 +27,11 @@ const DivisionACTGlobal: React.FC = () => {
       title: "Drone & Aerostat Systems",
       icon: <Navigation size={24} />,
       desc: "RT SkyStar™ tactical aerostat systems and drone services for aerial surveillance across Ghana.",
+    },
+    {
+      title: "Safety Solutions",
+      icon: <ShieldCheck size={24} />,
+      desc: "Schauenburg Systems advanced technologies, including Driver Fatigue monitoring, Collision Avoidance, Gas Detection, Environmental Monitoring, Cap lamps, Self-Rescuer, and workforce safety systems.",
     },
   ];
 
