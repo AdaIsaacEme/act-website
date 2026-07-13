@@ -36,7 +36,7 @@ const defaultContent: SiteContent = {
   contact: {
     address: "F28/8 5th Circular Road Extension, Cantonments, Accra, Ghana",
     phone: "+233 577 700 555",
-    email: "office@act-ict.com.gh",
+    email: "office@act-ict.com",
     mapUrl: "https://maps.app.goo.gl/EVtgjcWg2ARddbLDA",
   },
   socials: {

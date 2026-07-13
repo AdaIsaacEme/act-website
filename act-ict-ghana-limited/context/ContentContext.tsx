@@ -45,7 +45,7 @@ const defaultContent: SiteContent = {
   contact: {
     address: "F28/8 Fifth Circular Rd., Cantonments, Accra, Ghana",
     phone: "+233-577-700-555",
-    email: "office@act-ict.com.gh",
+    email: "office@act-ict.com",
     mapUrl:
       "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31767.631074774617!2d-0.17039359999999998!3d5.5738368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!5e0!3m2!1sen!2sgh!4v1769185781477!5m2!1sen!2sgh",
   },
@@ -136,7 +136,8 @@ const defaultSolutions: Solution[] = [
   {
     id: "1",
     title: "IT & Communications",
-    description: "Enterprise networking, communications, and connectivity solutions.",
+    description:
+      "Enterprise networking, communications, and connectivity solutions.",
     iconName: "Network",
     category: "Communications",
     productGroups: [
@@ -168,17 +169,16 @@ const defaultSolutions: Solution[] = [
           {
             id: "prod-1-1-3",
             title: "MOTOROLA R2",
-            specs: [
-              { text: "Digital Two-Way Radio" },
-              { text: "IP55" },
-            ],
+            specs: [{ text: "Digital Two-Way Radio" }, { text: "IP55" }],
             image: "/images/products/motorola-r2.png",
           },
           {
             id: "prod-1-1-4",
             title: "PTT OVER CELLULAR (POC)",
             specs: [
-              { text: "ActiTalk push-to-talk over cellular with nationwide coverage" },
+              {
+                text: "ActiTalk push-to-talk over cellular with nationwide coverage",
+              },
               { text: "GPS tracking" },
               { text: "Dispatch and recording capabilities" },
             ],
@@ -220,9 +220,7 @@ const defaultSolutions: Solution[] = [
           {
             id: "prod-1-3-2",
             title: "Transceiver GLC-LH-SMD",
-            specs: [
-              { text: "1000BASE-LX/LH SFP" },
-            ],
+            specs: [{ text: "1000BASE-LX/LH SFP" }],
             image: "/images/products/cisco-transceiver.png",
           },
         ],
@@ -341,8 +339,12 @@ const defaultSolutions: Solution[] = [
             id: "prod-3-1-1",
             title: "Avigilon",
             specs: [
-              { text: "Premium AI-powered security cameras featuring advanced video analytics and high-definition clarity." },
-              { text: "Engineered for enterprise-level surveillance with smart detection to pinpoint critical events instantly." },
+              {
+                text: "Premium AI-powered security cameras featuring advanced video analytics and high-definition clarity.",
+              },
+              {
+                text: "Engineered for enterprise-level surveillance with smart detection to pinpoint critical events instantly.",
+              },
             ],
             image: "/images/products/avigilon.jpg",
           },
@@ -350,8 +352,12 @@ const defaultSolutions: Solution[] = [
             id: "prod-3-1-2",
             title: "Axis Communications",
             specs: [
-              { text: "Top-tier network cameras delivering elite cybersecurity protections and exceptional image quality." },
-              { text: "The industry standard for durable, high-end IP video surveillance in demanding environments." },
+              {
+                text: "Top-tier network cameras delivering elite cybersecurity protections and exceptional image quality.",
+              },
+              {
+                text: "The industry standard for durable, high-end IP video surveillance in demanding environments.",
+              },
             ],
             image: "/images/products/axis.jpg",
           },
@@ -359,8 +365,12 @@ const defaultSolutions: Solution[] = [
             id: "prod-3-1-3",
             title: "Hikvision",
             specs: [
-              { text: "Highly reliable and cost-effective cameras offering crystal-clear video and excellent night vision." },
-              { text: "The world-leading choice for versatile, user-friendly security across homes and commercial properties." },
+              {
+                text: "Highly reliable and cost-effective cameras offering crystal-clear video and excellent night vision.",
+              },
+              {
+                text: "The world-leading choice for versatile, user-friendly security across homes and commercial properties.",
+              },
             ],
             image: "/images/products/hikvision.jpg",
           },
@@ -368,8 +378,12 @@ const defaultSolutions: Solution[] = [
             id: "prod-3-1-4",
             title: "Dahua",
             specs: [
-              { text: "Innovative surveillance systems combining high-resolution imaging with smart automation features." },
-              { text: "Budget-friendly, high-performance cameras built for dependable indoor and outdoor monitoring." },
+              {
+                text: "Innovative surveillance systems combining high-resolution imaging with smart automation features.",
+              },
+              {
+                text: "Budget-friendly, high-performance cameras built for dependable indoor and outdoor monitoring.",
+              },
             ],
             image: "/images/products/dahua.jpg",
           },
@@ -377,8 +391,12 @@ const defaultSolutions: Solution[] = [
             id: "prod-3-1-5",
             title: "Holowits",
             specs: [
-              { text: "Next-generation IP surveillance systems powered by cutting-edge AIoT technology and intelligent deep-learning analytics." },
-              { text: "Designed for smart city and commercial security, featuring advanced object tracking and ultra-low light color vision." },
+              {
+                text: "Next-generation IP surveillance systems powered by cutting-edge AIoT technology and intelligent deep-learning analytics.",
+              },
+              {
+                text: "Designed for smart city and commercial security, featuring advanced object tracking and ultra-low light color vision.",
+              },
             ],
             image: "/images/products/holowits.jpg",
           },
@@ -392,7 +410,9 @@ const defaultSolutions: Solution[] = [
             id: "prod-3-2-1",
             title: "Intrusion Detection System (IDS)",
             specs: [
-              { text: "An advanced, high-precision perimeter security solution designed for both indoor and outdoor threats." },
+              {
+                text: "An advanced, high-precision perimeter security solution designed for both indoor and outdoor threats.",
+              },
             ],
             image: "/images/products/gmafcon.jpg",
           },
@@ -408,7 +428,9 @@ const defaultSolutions: Solution[] = [
             specs: [
               { text: "Rapid deployment capability" },
               { text: "Cost-effective surveillance solution" },
-              { text: "Designed for extended surveillance and reconnaissance missions" },
+              {
+                text: "Designed for extended surveillance and reconnaissance missions",
+              },
               { text: "Provides day and night situational awareness" },
               { text: "Operates at altitudes up to 1,000 ft" },
               { text: "Requires only a minimal crew" },
@@ -436,7 +458,9 @@ const defaultSolutions: Solution[] = [
             id: "prod-4-1-1",
             title: "LEDNOVA",
             specs: [
-              { text: "Marine grade high-pressure die-cast aluminium (EN 1706 AC-44300)" },
+              {
+                text: "Marine grade high-pressure die-cast aluminium (EN 1706 AC-44300)",
+              },
               { text: "IP 66" },
               { text: "Up to 100,000h - L90B10" },
               { text: "Standard: 90-305V – 50Hz" },
@@ -462,7 +486,9 @@ const defaultSolutions: Solution[] = [
             id: "prod-4-1-3",
             title: "OMNIBLAST",
             specs: [
-              { text: "Marine grade high-pressure die-cast aluminium (EN 1706 AC-44300)" },
+              {
+                text: "Marine grade high-pressure die-cast aluminium (EN 1706 AC-44300)",
+              },
               { text: "Mining, Car Parks, Large Area & Floodlighting" },
               { text: "Flux (lm) - 230413198-264V – 50Hz" },
               { text: "100,000h - Up to L95B10" },

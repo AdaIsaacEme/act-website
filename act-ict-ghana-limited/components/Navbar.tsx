@@ -48,12 +48,12 @@ const Navbar: React.FC = () => {
               <Phone size={14} /> <span>+233 577 700 555</span>
             </a>
             <a
-              href="mailto:office@act-ict.com.gh"
+              href="mailto:office@act-ict.com"
               className="flex items-center space-x-2 hover:text-[#006bb7] transition-all duration-300"
             >
               <Mail size={14} />{" "}
               <span className="overflow-hidden text-ellipsis">
-                office@act-ict.com.gh
+                office@act-ict.com
               </span>
             </a>
           </div>
