@@ -187,18 +187,6 @@ const MiningIndustrial: React.FC = () => {
           }}
         >
           <div>
-            <p
-              style={{
-                color: "#00A8E8",
-                fontSize: "12px",
-                fontWeight: "700",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                margin: "0 0 12px 0",
-              }}
-            >
-              Industries
-            </p>
             <h1
               style={{
                 fontFamily: "'Bebas Neue', sans-serif",
