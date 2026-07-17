@@ -97,12 +97,12 @@ const DivisionACTGlobal: React.FC = () => {
               </p>
 
               {/* Image */}
-              <div className="min-h-48 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F] flex items-center justify-center">
+              <div className="h-64 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F] grid">
                 <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
                     src={`/images/divisions/act-global-${idx + 1}.jpg`}
                     alt={item.title}
-                    className="w-full h-auto object-contain max-h-96 p-2"
+                    className="w-full h-full object-cover"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}

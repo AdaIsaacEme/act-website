@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
           <img
             src={slide.image}
             alt={slide.title}
-            className={`absolute inset-0 w-full h-full ${index === 0 ? 'object-contain' : 'object-cover'} ${index === currentSlide ? `kenburns-${index % 2 === 0 ? "a" : "b"}` : ""}`}
+            className={`absolute inset-0 w-full h-full object-cover ${index === currentSlide ? `kenburns-${index % 2 === 0 ? "a" : "b"}` : ""}`}
             style={{ willChange: "transform" }}
             loading="eager"
           />
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
                     ease: [0.22, 1, 0.36, 1],
                     delay: 0.15,
                   }}
-                  className="font-display leading-[0.9] tracking-tight text-white drop-shadow-2xl mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+                  className="font-display leading-[0.9] tracking-tight text-white drop-shadow-2xl mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
                 >
                   {slides[currentSlide].title}
                 </motion.h2>

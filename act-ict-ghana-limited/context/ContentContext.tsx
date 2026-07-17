@@ -5,8 +5,8 @@ const defaultContent: SiteContent = {
   hero: {
     slides: [
       {
-        id: "",
-        title: "",
+        id: "1",
+        title: "leading technology solutions provider in Africa",
         subtitle:
           "Empowering businesses with cutting-edge IT, Communications, and Security systems.",
         image: "/images/hero/slide-1.jpg",
@@ -406,7 +406,7 @@ const defaultSolutions: Solution[] = [
       },
       {
         id: "pg-3-2",
-        title: "GMAfcon",
+        title: " GM Afcon Intrusion Detection ",
         products: [
           {
             id: "prod-3-2-1",

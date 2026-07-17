@@ -114,7 +114,7 @@ const Projects: React.FC = () => {
               }}
             >
               {/* Image Container */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E] will-change-transform">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E] will-change-transform grid">
                 <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
                     src={project.image}
