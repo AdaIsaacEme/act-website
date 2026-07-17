@@ -6,13 +6,20 @@ import {
   Sun,
   Navigation,
   ShieldCheck,
+  Info,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedWrapper from "../components/AnimatedWrapper";
 
 const DivisionACTGlobal: React.FC = () => {
   const sections = [
+    {
+      title: "Safety Solutions",
+      icon: <ShieldCheck size={24} />,
+      desc: "Schauenburg Systems advanced technologies, including Driver Fatigue monitoring, Collision Avoidance, Gas Detection, Environmental Monitoring, Cap lamps, Self-Rescuer, and workforce safety systems.",
+    },
     {
       title: "Industrial LED Lights",
       icon: <Lightbulb size={24} />,
@@ -27,11 +34,6 @@ const DivisionACTGlobal: React.FC = () => {
       title: "Drone & Aerostat Systems",
       icon: <Navigation size={24} />,
       desc: "RT SkyStar™ tactical aerostat systems and drone services for aerial surveillance across Ghana.",
-    },
-    {
-      title: "Safety Solutions",
-      icon: <ShieldCheck size={24} />,
-      desc: "Schauenburg Systems advanced technologies, including Driver Fatigue monitoring, Collision Avoidance, Gas Detection, Environmental Monitoring, Cap lamps, Self-Rescuer, and workforce safety systems.",
     },
   ];
 
@@ -70,9 +72,18 @@ const DivisionACTGlobal: React.FC = () => {
               className="group rounded-xl p-8 hover:border-[#F59E0B] hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300 flex flex-col h-full"
               style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
             >
-              {/* Icon */}
-              <div className="p-3 bg-[#F59E0B]/10 text-[#F59E0B] rounded-lg w-fit mb-6 ring-1 ring-[#F59E0B]/30 group-hover:ring-[#F59E0B]/50 transition-all duration-300">
-                {item.icon}
+              {/* Icon row with info button */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="p-3 bg-[#F59E0B]/10 text-[#F59E0B] rounded-lg w-fit ring-1 ring-[#F59E0B]/30 group-hover:ring-[#F59E0B]/50 transition-all duration-300">
+                  {item.icon}
+                </div>
+                <Link
+                  to="/contact"
+                  aria-label="More info — contact us"
+                  className="w-6 h-6 rounded-full flex items-center justify-center border border-[#F59E0B] text-[#F59E0B] hover:bg-[#F59E0B]/10 transition-colors duration-200 flex-shrink-0"
+                >
+                  <Info size={14} />
+                </Link>
               </div>
 
               {/* Title */}

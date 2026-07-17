@@ -5,8 +5,8 @@ const defaultContent: SiteContent = {
   hero: {
     slides: [
       {
-        id: "1",
-        title: "The Leading IT Solutions Provider in Ghana",
+        id: "",
+        title: "",
         subtitle:
           "Empowering businesses with cutting-edge IT, Communications, and Security systems.",
         image: "/images/hero/slide-1.jpg",
@@ -45,6 +45,7 @@ const defaultContent: SiteContent = {
   contact: {
     address: "F28/8 Fifth Circular Rd., Cantonments, Accra, Ghana",
     phone: "+233-577-700-555",
+    phone2: "+233-501-533-712",
     email: "office@act-ict.com",
     mapUrl:
       "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31767.631074774617!2d-0.17039359999999998!3d5.5738368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!5e0!3m2!1sen!2sgh!4v1769185781477!5m2!1sen!2sgh",
@@ -71,14 +72,15 @@ const defaultProjects: Project[] = [
     id: "2",
     title: "Weather Stations Project",
     description:
-      "Supplied and installed 20 weather stations for the Ministry of Food and Agriculture ( MOFA) in 20 areas in Ghana.",
+      "Supplied and installed automated weather stations across Ghana. The project enhanced real-time weather monitoring and data collection.",
     category: "Engineering",
     image: "/images/projects/weather-stations.jpg",
   },
   {
     id: "3",
     title: "Leaky Feeder Project",
-    description: "Underground communication installed for the Mines.",
+    description:
+      "Designed and deployed a Leaky Feeder communication system for mining operations. The solution provides reliable voice and data communication throughout underground tunnels, ensuring continuous connectivity between personnel, vehicles, and control rooms.",
     category: "Communications",
     image: "/images/projects/leaky-feeder.jpg",
   },
@@ -564,7 +566,7 @@ const defaultPartners: Partner[] = [
   },
   {
     id: "8",
-    name: "GM Afcon",
+    name: "GM Afcon Intrusion Detection",
     logoUrl: "/images/partners/gm-afcon.png",
     tier: "Authorized Partner",
   },

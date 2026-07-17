@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
                     className="text-sm hover:text-[#00A8E8]"
                     style={{ color: "var(--text-secondary)" }}
                   >
-                    {content.contact.phone}
+                    {content.contact.phone} / {content.contact.phone2}
                   </p>
                 </div>
               </div>

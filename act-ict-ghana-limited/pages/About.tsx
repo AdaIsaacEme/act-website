@@ -87,7 +87,7 @@ const About: React.FC = () => {
             </h1>
             <p className="text-xl max-w-2xl mx-auto text-white/80">
               Your trusted partner in delivering world-class technology and
-              engineering solutions in West Africa.
+              engineering solutions in Africa.
             </p>
           </div>
         </div>
@@ -115,7 +115,7 @@ const About: React.FC = () => {
               >
                 <p>
                   ACT ICT Ghana Ltd is a leading technology and engineering
-                  solutions provider across Ghana and the West African region.
+                  solutions provider across Ghana and the African region.
                 </p>
                 <p>
                   We specialize in designing, deploying, and supporting
@@ -234,9 +234,8 @@ const About: React.FC = () => {
                 className="leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
-                To be the premier technology infrastructure provider in West
-                Africa, known for engineering excellence and uncompromising
-                quality.
+                To be the premier technology infrastructure provider in Africa,
+                known for engineering excellence and uncompromising quality.
               </p>
             </div>
           </div>

@@ -30,10 +30,24 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingBottom: '5rem' }} className="pt-28 sm:pt-32">
+    <div
+      style={{
+        backgroundColor: "var(--bg-primary)",
+        minHeight: "100vh",
+        paddingBottom: "5rem",
+      }}
+      className="pt-28 sm:pt-32"
+    >
       {/* Header Section with Banner */}
       <ScrollReveal slideDistance={30}>
-        <div className="relative overflow-hidden" style={{ paddingTop: '5rem', paddingBottom: '5rem', marginBottom: '4rem' }}>
+        <div
+          className="relative overflow-hidden"
+          style={{
+            paddingTop: "5rem",
+            paddingBottom: "5rem",
+            marginBottom: "4rem",
+          }}
+        >
           <img
             src="/images/projects/projects-banner.png"
             alt="Our Projects"
@@ -41,9 +55,11 @@ const Projects: React.FC = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
           <div className="relative max-w-7xl mx-auto px-4 text-center">
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white">Our Projects</h1>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white">
+              Our Projects
+            </h1>
             <p className="text-lg text-white/80">
-              Showcasing excellence in execution across Ghana and West Africa.
+              Showcasing excellence in execution across Ghana and Africa.
             </p>
           </div>
         </div>
@@ -62,7 +78,15 @@ const Projects: React.FC = () => {
                     ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50 scale-105"
                     : ""
                 }`}
-                style={filter !== cat ? { backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' } : undefined}
+                style={
+                  filter !== cat
+                    ? {
+                        backgroundColor: "var(--bg-surface)",
+                        borderColor: "var(--border-color)",
+                        color: "var(--text-secondary)",
+                      }
+                    : undefined
+                }
                 hoverScale={1.05}
               >
                 {cat}
@@ -72,14 +96,22 @@ const Projects: React.FC = () => {
         </ScrollReveal>
 
         {/* Projects Grid */}
-        <StaggeredGrid fromDirection="alternating" staggerDelay={0.07} containerDelay={0.2} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mb-12 md:mb-16">
+        <StaggeredGrid
+          fromDirection="alternating"
+          staggerDelay={0.07}
+          containerDelay={0.2}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mb-12 md:mb-16"
+        >
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
               whileHover={{ y: -8 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 25 }}
+              transition={{ type: "spring", stiffness: 500, damping: 25 }}
               className="group rounded-xl overflow-hidden hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full will-change-transform"
-              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "var(--border-color)",
+              }}
             >
               {/* Image Container */}
               <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E] will-change-transform">
@@ -99,7 +131,8 @@ const Projects: React.FC = () => {
                 <div
                   className="absolute top-4 left-4 px-4 py-2 rounded-full text-white text-xs font-bold uppercase tracking-wider"
                   style={{
-                    backgroundColor: categoryColors[project.category] || "#00A8E8",
+                    backgroundColor:
+                      categoryColors[project.category] || "#00A8E8",
                   }}
                 >
                   {project.category}
@@ -108,10 +141,16 @@ const Projects: React.FC = () => {
 
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="font-display text-xl font-black mb-2 group-hover:text-[#00A8E8] transition-all duration-300" style={{ color: 'var(--text-heading)' }}>
+                <h3
+                  className="font-display text-xl font-black mb-2 group-hover:text-[#00A8E8] transition-all duration-300"
+                  style={{ color: "var(--text-heading)" }}
+                >
                   {project.title}
                 </h3>
-                <p className="text-sm flex-1" style={{ color: 'var(--text-secondary)' }}>
+                <p
+                  className="text-sm flex-1"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {project.description}
                 </p>
               </div>
@@ -124,17 +163,34 @@ const Projects: React.FC = () => {
 
         {/* CTA Section */}
         <ScrollReveal slideDistance={25} delay={0.3}>
-          <div className="rounded-xl p-12 text-center" style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}>
-            <h3 className="font-display text-3xl mb-4" style={{ color: 'var(--text-heading)' }}>More Projects on Request</h3>
-            <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-              We have completed 100+ projects across Ghana and West Africa. Contact us for a full portfolio of our engineering excellence and proven track record.
+          <div
+            className="rounded-xl p-12 text-center"
+            style={{
+              backgroundColor: "var(--bg-surface)",
+              borderColor: "var(--border-color)",
+            }}
+          >
+            <h3
+              className="font-display text-3xl mb-4"
+              style={{ color: "var(--text-heading)" }}
+            >
+              More Projects on Request
+            </h3>
+            <p
+              className="mb-6 max-w-2xl mx-auto"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              We have completed 100+ projects across Ghana and Africa. Contact
+              us for a full portfolio of our engineering excellence and proven
+              track record.
             </p>
             <AnimatedButton
               onClick={() => navigate("/contact")}
               className="inline-flex justify-center items-center px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
               hoverScale={1.04}
             >
-              Get in Touch <ArrowRight className="ml-2 flex-shrink-0" size={16} />
+              Get in Touch{" "}
+              <ArrowRight className="ml-2 flex-shrink-0" size={16} />
             </AnimatedButton>
           </div>
         </ScrollReveal>

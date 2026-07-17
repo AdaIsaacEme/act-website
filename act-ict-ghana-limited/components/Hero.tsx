@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
           <img
             src={slide.image}
             alt={slide.title}
-            className={`absolute inset-0 w-full h-full object-cover ${index === currentSlide ? `kenburns-${index % 2 === 0 ? "a" : "b"}` : ""}`}
+            className={`absolute inset-0 w-full h-full ${index === 0 ? 'object-contain' : 'object-cover'} ${index === currentSlide ? `kenburns-${index % 2 === 0 ? "a" : "b"}` : ""}`}
             style={{ willChange: "transform" }}
             loading="eager"
           />

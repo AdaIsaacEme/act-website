@@ -53,6 +53,7 @@ export interface SiteContent {
   contact: {
     address: string;
     phone: string;
+    phone2: string;
     email: string;
     mapUrl: string;
   };

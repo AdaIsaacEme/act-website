@@ -4,7 +4,8 @@ import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import AnimatedButton from "../components/AnimatedButton";
 import * as LucideIcons from "lucide-react";
-import { Zap, ChevronDown } from "lucide-react";
+import { Zap, ChevronDown, Info } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Solution, ProductGroup, Product } from "../types";
 
 const Solutions: React.FC = () => {
@@ -290,9 +291,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Product Content */}
       <div className="flex-1 min-w-0">
-        <h5 className="font-semibold text-sm mb-2" style={{ color: 'var(--text-heading)' }}>
-          {product.title}
-        </h5>
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <h5 className="font-semibold text-sm" style={{ color: 'var(--text-heading)' }}>
+            {product.title}
+          </h5>
+          <Link
+            to="/contact"
+            aria-label="More info — contact us"
+            title="More info"
+            className="w-6 h-6 rounded-full flex items-center justify-center border border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8]/10 transition-colors duration-200 flex-shrink-0"
+          >
+            <Info size={14} />
+          </Link>
+        </div>
 
         {/* Product Specs */}
         {product.specs && product.specs.length > 0 && (

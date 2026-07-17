@@ -77,8 +77,7 @@ const Footer: React.FC = () => {
               style={{ color: "var(--text-secondary)" }}
             >
               Leading the way in technological innovation. Providing top-tier
-              IT, Security, and Engineering solutions across Ghana and West
-              Africa.
+              IT, Security, and Engineering solutions across Ghana and Africa.
             </p>
             <div className="flex space-x-4 pt-4">
               <a
@@ -229,6 +228,15 @@ const Footer: React.FC = () => {
                   className="hover:text-[#00A8E8] transition-colors duration-300"
                 >
                   {content.contact.phone}
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Phone className="flex-shrink-0" size={16} />
+                <a
+                  href="tel:+233501533712"
+                  className="hover:text-[#00A8E8] transition-colors duration-300"
+                >
+                  {content.contact.phone2}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
