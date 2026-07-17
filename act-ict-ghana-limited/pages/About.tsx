@@ -277,8 +277,7 @@ const About: React.FC = () => {
                       overflow: "hidden",
                     }}
                   >
-                    <AnimatedWrapper hoverScale={1.1}>
-                      <img
+                    <img
                         src={client.logo}
                         alt={client.name}
                         className="client-logo"
@@ -294,7 +293,6 @@ const About: React.FC = () => {
                           img.parentElement?.appendChild(span);
                         }}
                       />
-                    </AnimatedWrapper>
                   </div>
                 ))}
               </StaggeredGrid>
