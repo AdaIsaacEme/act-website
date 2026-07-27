@@ -33,7 +33,7 @@ const defaultContent: SiteContent = {
       },
       {
         id: "4",
-        title: "Trusted by The Mines, Oil Gas and other industries",
+        title: "Trusted by The Mines, Oil & Gas and other industries",
         subtitle:
           "From underground mine connectivity to aerostat surveillance — we deploy where it matters most.",
         image: "/images/hero/slide-4.jpg",
