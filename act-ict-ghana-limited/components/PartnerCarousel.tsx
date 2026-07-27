@@ -57,7 +57,7 @@ const PartnerCarousel: React.FC = () => {
                   <div
                     style={{
                       width: "100%",
-                      height: "clamp(56px, 10vw, 96px)",
+                      height: partner.logoUrl.includes("rt.png") ? "clamp(76px, 10vw, 116px)" : "clamp(56px, 10vw, 96px)",
                       backgroundColor: "var(--bg-surface)",
                       border: "1px solid var(--border-color)",
                       borderRadius: "8px",
@@ -79,7 +79,12 @@ const PartnerCarousel: React.FC = () => {
                     <img
                       src={partner.logoUrl}
                       alt={partner.name}
-                      style={{
+                      style={partner.logoUrl.includes("rt.png") ? {
+                        width: "clamp(70px, 9vw, 100px)",
+                        height: "auto",
+                        objectFit: "contain",
+                        filter: "brightness(0.8)",
+                      } : {
                         maxHeight: "100%",
                         maxWidth: "100%",
                         objectFit: "contain",

@@ -186,6 +186,26 @@ const defaultSolutions: Solution[] = [
             ],
             image: "/images/products/poc-radio.jpg",
           },
+          {
+            id: "prod-1-1-5",
+            title: "MXM600 TETRA",
+            specs: [
+              {
+                text: "This radio supports various installation options, including: control room, vehicle, and custom installation. The radio includes noise suppression technology trained through AI. It has Wi-Fi Over-the-Air Programming, Bluetooth® 5.3, and automated configuration to ease installation.",
+              },
+            ],
+            image: "/images/products/mxm600.jpeg",
+          },
+          {
+            id: "prod-1-1-6",
+            title: "DM2600",
+            specs: [
+              {
+                text: "It delivers the best in digital radio technology, with features like integrated voice systems capability, twice the calling capacity, and clearer voice communications.",
+              },
+            ],
+            image: "/images/products/dm2600.jpeg",
+          },
         ],
       },
       {

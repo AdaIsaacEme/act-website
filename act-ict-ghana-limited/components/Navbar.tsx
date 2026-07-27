@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-4 lg:space-x-8 items-center">
             <AnimatedLink
               to="/"
-              className="transition-all duration-300 text-[#006bb7] hover:text-[#006bb7] font-semibold"
+              className={`transition-all duration-300 ${isActive("/")}`}
             >
               Home
             </AnimatedLink>
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
             </AnimatedLink>
 
             <div className="relative group">
-              <button className="flex items-center space-x-1 transition-all duration-300 text-[#006bb7] hover:text-[#006bb7] font-semibold">
+              <button className={`flex items-center space-x-1 transition-all duration-300 ${location.pathname === "/act-ict" || location.pathname === "/act-global" ? "text-[#006bb7] font-bold" : linkColor}`}>
                 <span>Global Presence</span>
                 <ChevronDown size={16} />
               </button>
@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
 
             <AnimatedLink
               to="/mining"
-              className={`transition-all duration-300 ${linkColor}`}
+              className={`transition-all duration-300 ${isActive("/mining")}`}
             >
               Mining
             </AnimatedLink>
@@ -225,7 +225,13 @@ const Navbar: React.FC = () => {
               <Link
                 to="/"
                 onClick={toggleMenu}
-                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 text-[#006bb7]`}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === "/"
+                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    : isDark
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                }`}
               >
                 Home
               </Link>
@@ -248,7 +254,13 @@ const Navbar: React.FC = () => {
               >
                 <button
                   onClick={() => setDivisionOpen(!divisionOpen)}
-                  className="w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 text-[#006bb7]"
+                  className={`w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 ${
+                    location.pathname === "/act-ict" || location.pathname === "/act-global"
+                      ? "text-[#00A8E8]"
+                      : isDark
+                        ? "text-white hover:text-[#006bb7]"
+                        : "text-gray-800 hover:text-[#006bb7]"
+                  }`}
                 >
                   <span>Global Presence</span>
                   <ChevronDown
