@@ -6,7 +6,7 @@ const defaultContent: SiteContent = {
     slides: [
       {
         id: "1",
-        title: "leading technology solutions provider in Africa",
+        title: "leading technology solutions provider in West Africa",
         subtitle:
           "Empowering businesses with cutting-edge IT, Communications, and Security systems.",
         image: "/images/hero/slide-1.jpg",

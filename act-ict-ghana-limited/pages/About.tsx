@@ -87,7 +87,7 @@ const About: React.FC = () => {
             </h1>
             <p className="text-xl max-w-2xl mx-auto text-white/80">
               Your trusted partner in delivering world-class technology and
-              engineering solutions in Africa.
+              engineering solutions in West Africa.
             </p>
           </div>
         </div>
@@ -115,7 +115,7 @@ const About: React.FC = () => {
               >
                 <p>
                   ACT ICT Ghana Ltd is a leading technology and engineering
-                  solutions provider across Ghana and the African region.
+                  solutions provider across Ghana and the West African region.
                 </p>
                 <p>
                   We specialize in designing, deploying, and supporting
@@ -234,8 +234,9 @@ const About: React.FC = () => {
                 className="leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
-                To be the premier technology infrastructure provider in Africa,
-                known for engineering excellence and uncompromising quality.
+                To be the premier technology infrastructure provider in West
+                Africa, known for engineering excellence and uncompromising
+                quality.
               </p>
             </div>
           </div>
@@ -278,21 +279,21 @@ const About: React.FC = () => {
                     }}
                   >
                     <img
-                        src={client.logo}
-                        alt={client.name}
-                        className="client-logo"
-                        onError={(e) => {
-                          const img = e.currentTarget;
-                          img.style.display = "none";
-                          const span = document.createElement("span");
-                          span.textContent = client.name;
-                          span.style.color = "#7A9ABD";
-                          span.style.fontSize = "13px";
-                          span.style.textAlign = "center";
-                          span.style.fontWeight = "600";
-                          img.parentElement?.appendChild(span);
-                        }}
-                      />
+                      src={client.logo}
+                      alt={client.name}
+                      className="client-logo"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        img.style.display = "none";
+                        const span = document.createElement("span");
+                        span.textContent = client.name;
+                        span.style.color = "#7A9ABD";
+                        span.style.fontSize = "13px";
+                        span.style.textAlign = "center";
+                        span.style.fontWeight = "600";
+                        img.parentElement?.appendChild(span);
+                      }}
+                    />
                   </div>
                 ))}
               </StaggeredGrid>

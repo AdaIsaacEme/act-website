@@ -59,7 +59,7 @@ const Projects: React.FC = () => {
               Our Projects
             </h1>
             <p className="text-lg text-white/80">
-              Showcasing excellence in execution across Ghana and Africa.
+              Showcasing excellence in execution across Ghana and West Africa.
             </p>
           </div>
         </div>
@@ -180,9 +180,9 @@ const Projects: React.FC = () => {
               className="mb-6 max-w-2xl mx-auto"
               style={{ color: "var(--text-secondary)" }}
             >
-              We have completed 100+ projects across Ghana and Africa. Contact
-              us for a full portfolio of our engineering excellence and proven
-              track record.
+              We have completed 100+ projects across Ghana and West Africa.
+              Contact us for a full portfolio of our engineering excellence and
+              proven track record.
             </p>
             <AnimatedButton
               onClick={() => navigate("/contact")}

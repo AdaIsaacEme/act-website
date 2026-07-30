@@ -6,7 +6,7 @@ const AwardsTicker: React.FC = () => {
     "🥇 Ghana's Most Outstanding ICT Solutions 2019 – tmt Magazine",
     "🏅 ICT Solutions Provider of the Year 2021 – African Excellence Awards",
     "⭐ Motorola Solutions Platinum Partner",
-    "🌍 Operating since 2011 across Ghana & Africa",
+    "🌍 Operating since 2011 across Ghana & West Africa",
   ];
 
   return (

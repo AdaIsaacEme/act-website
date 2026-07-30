@@ -77,7 +77,8 @@ const Footer: React.FC = () => {
               style={{ color: "var(--text-secondary)" }}
             >
               Leading the way in technological innovation. Providing top-tier
-              IT, Security, and Engineering solutions across Ghana and Africa.
+              IT, Security, and Engineering solutions across Ghana and West
+              Africa.
             </p>
             <div className="flex space-x-4 pt-4">
               <a
