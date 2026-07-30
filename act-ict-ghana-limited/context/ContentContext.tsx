@@ -602,14 +602,9 @@ const defaultPartners: Partner[] = [
     logoUrl: "/images/partners/huawei.png",
     tier: "Technology Partner",
   },
+
   {
     id: "11",
-    name: "Watergen",
-    logoUrl: "/images/partners/watergen.png",
-    tier: "Partner",
-  },
-  {
-    id: "12",
     name: "Thuraya",
     logoUrl: "/images/partners/thuraya.png",
     tier: "Partner",
