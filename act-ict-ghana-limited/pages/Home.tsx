@@ -238,7 +238,7 @@ const Home: React.FC = () => {
                 key={sol.id}
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                className="relative group p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border hover:border-[#00A8E8] will-change-transform"
+                className="relative group p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border hover:border-[#00A8E8] will-change-transform flex flex-col h-full"
                 style={{
                   backgroundColor: "var(--bg-surface)",
                   borderColor: "var(--border-color)",
@@ -254,7 +254,7 @@ const Home: React.FC = () => {
                   {sol.title}
                 </h3>
                 <p
-                  className="text-sm mb-4 leading-relaxed line-clamp-3"
+                  className="text-sm mb-4 leading-relaxed line-clamp-3 flex-1"
                   style={{ color: "var(--text-secondary)" }}
                 >
                   {sol.description}
@@ -320,7 +320,7 @@ const Home: React.FC = () => {
                     expandedExpertise === item.id ? null : item.id,
                   )
                 }
-                className={`cursor-pointer bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 transition-all duration-300 hover:border-[#00A8E8] hover:bg-[#0F2137]/80 ${
+                className={`cursor-pointer bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 transition-all duration-300 hover:border-[#00A8E8] hover:bg-[#0F2137]/80 flex flex-col h-full min-h-[200px] ${
                   expandedExpertise === item.id ? "ring-2 ring-[#00A8E8]" : ""
                 }`}
               >
@@ -343,7 +343,7 @@ const Home: React.FC = () => {
                   </div>
                 )}
 
-                <div className="flex justify-end mt-2">
+                <div className="flex justify-end mt-auto">
                   <div
                     className={`p-1 rounded-full bg-[#1E3A5F] transition-transform duration-300 ${
                       expandedExpertise === item.id ? "rotate-90" : ""
