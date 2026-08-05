@@ -6,7 +6,7 @@ const defaultContent: SiteContent = {
     slides: [
       {
         id: "1",
-        title: "leading technology solutions provider in West Africa",
+        title: "THE leading technology solutions provider in West Africa",
         subtitle:
           "Empowering businesses with cutting-edge IT, Communications, and Security systems.",
         image: "/images/hero/slide-1.jpg",
@@ -44,8 +44,8 @@ const defaultContent: SiteContent = {
   },
   contact: {
     address: "F28/8 Fifth Circular Rd., Cantonments, Accra, Ghana",
-    phone: "+233-577-700-555",
-    phone2: "+233-501-533-712",
+    phone: "+233-302-764-657",
+    phone2: "+233-577-700-555",
     email: "office@act-ict.com",
     mapUrl:
       "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31767.631074774617!2d-0.17039359999999998!3d5.5738368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!4m5!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd%2C%2028%2C%208%20Fifth%20Circular%20Rd%2C%20Accra!3m2!1d5.572328!2d-0.16627319999999998!5e0!3m2!1sen!2sgh!4v1769185781477!5m2!1sen!2sgh",
@@ -70,7 +70,7 @@ const defaultProjects: Project[] = [
   },
   {
     id: "2",
-    title: "Weather Stations Project",
+    title: "Automatic Weather Station project.",
     description:
       "Supplied and installed automated weather stations across Ghana. The project enhanced real-time weather monitoring and data collection.",
     category: "Engineering",

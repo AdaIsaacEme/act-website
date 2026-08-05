@@ -19,17 +19,6 @@ const DivisionACTICT: React.FC = () => {
       ],
     },
     {
-      id: "network",
-      title: "Network Infrastructure",
-      icon: <Server size={48} />,
-      content:
-        "Building the backbone of modern enterprise. We specialize in structured cabling, fiber optics, and wireless broadband solutions designed for high availability and speed.",
-      features: [
-        "Data Center Cabling",
-        "Wireless Point-to-Point",
-      ],
-    },
-    {
       id: "video",
       title: "Video Surveillance",
       icon: <Video size={48} />,
@@ -42,6 +31,15 @@ const DivisionACTICT: React.FC = () => {
         "Remote Monitoring",
       ],
     },
+    {
+      id: "network",
+      title: "Network Infrastructure",
+      icon: <Server size={48} />,
+      content:
+        "Building the backbone of modern enterprise. We specialize in structured cabling, fiber optics, and wireless broadband solutions designed for high availability and speed.",
+      features: ["Data Center Cabling", "Wireless Point-to-Point"],
+    },
+
     {
       id: "tracking",
       title: "Personnel & Equipment Tracking",
@@ -56,11 +54,13 @@ const DivisionACTICT: React.FC = () => {
         "Lamp Room Management",
       ],
     },
-
   ];
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)' }} className="pt-28 sm:pt-32">
+    <div
+      style={{ backgroundColor: "var(--bg-primary)" }}
+      className="pt-28 sm:pt-32"
+    >
       {/* Header with Banner */}
       <ScrollReveal>
         <div className="relative overflow-hidden py-20 mb-24">
@@ -74,7 +74,9 @@ const DivisionACTICT: React.FC = () => {
             <span className="text-[#00A8E8] font-bold tracking-[0.3em] uppercase text-sm">
               Division
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mt-2 mb-6 text-white">ACT-ICT</h1>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mt-2 mb-6 text-white">
+              ACT-ICT
+            </h1>
             <p className="text-xl max-w-2xl text-white/80">
               Delivering the core of connectivity and security. We build the
               systems that keep your business communicating and secure.
@@ -88,57 +90,68 @@ const DivisionACTICT: React.FC = () => {
         {sections.map((section, idx) => {
           const direction = idx % 2 === 0 ? "right" : "left";
           return (
-            <ScrollReveal key={section.id} direction={direction} delay={idx * 0.08} duration={0.6}>
+            <ScrollReveal
+              key={section.id}
+              direction={direction}
+              delay={idx * 0.08}
+              duration={0.6}
+            >
               <div
                 className={`flex flex-col md:flex-row gap-8 md:gap-12 items-center ${
                   idx % 2 !== 0 ? "md:flex-row-reverse" : ""
                 }`}
-            >
-              {/* Content */}
-              <div className="flex-1">
-                <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
-                  {section.icon}
+              >
+                {/* Content */}
+                <div className="flex-1">
+                  <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
+                    {section.icon}
+                  </div>
+                  <h2
+                    className="font-display text-3xl sm:text-4xl font-black mb-4"
+                    style={{ color: "var(--text-heading)" }}
+                  >
+                    {section.title}
+                  </h2>
+                  <p
+                    className="text-lg leading-relaxed mb-6"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {section.content}
+                  </p>
+                  <ul className="space-y-3">
+                    {section.features.map((feat, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center font-medium"
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        <Check className="text-[#00A8E8] mr-3" size={20} />
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h2 className="font-display text-3xl sm:text-4xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
-                  {section.title}
-                </h2>
-                <p className="text-lg leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
-                  {section.content}
-                </p>
-                <ul className="space-y-3">
-                  {section.features.map((feat, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center font-medium"
-                      style={{ color: 'var(--text-primary)' }}
-                    >
-                      <Check className="text-[#00A8E8] mr-3" size={20} />
-                      {feat}
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
-              {/* Image */}
-              <div className="flex-1 w-full">
-                <div className="relative overflow-hidden rounded-xl shadow-2xl ring-1 ring-[#00A8E8]/20 hover:ring-[#00A8E8]/50 transition-all duration-300">
-                  <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
-                    <img
-                      src={`/images/divisions/act-ict-${idx + 1}.jpg`}
-                      alt={section.title}
-                      className="w-full h-auto object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
-                  </AnimatedWrapper>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/20 to-transparent" />
+                {/* Image */}
+                <div className="flex-1 w-full">
+                  <div className="relative overflow-hidden rounded-xl shadow-2xl ring-1 ring-[#00A8E8]/20 hover:ring-[#00A8E8]/50 transition-all duration-300">
+                    <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
+                      <img
+                        src={`/images/divisions/act-ict-${idx + 1}.jpg`}
+                        alt={section.title}
+                        className="w-full h-auto object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    </AnimatedWrapper>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/20 to-transparent" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
           );
-        })}    
+        })}
       </div>
     </div>
   );

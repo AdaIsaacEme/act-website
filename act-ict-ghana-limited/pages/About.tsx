@@ -60,15 +60,11 @@ const About: React.FC = () => {
     { name: "GWL", logo: "/images/logo/gwl.jpg" },
     { name: "MPS", logo: "/images/logo/mps.jpg" },
     { name: "Asante Gold", logo: "/images/logo/asante-gold.jpg" },
+    { name: "ZiJin", logo: "/images/logo/zijin.jpg" },
+    { name: "GMC", logo: "/images/logo/gmc.png" },
   ];
 
-  const sectors = [
-    "Mining",
-    "Oil & Gas",
-    "Healthcare",
-    "Government",
-    "Other Sectors",
-  ];
+  const sectors = ["Mining", "Oil & Gas", "Government", "Other Sectors"];
 
   return (
     <div className="pt-32" style={{ backgroundColor: "var(--bg-primary)" }}>
@@ -130,13 +126,6 @@ const About: React.FC = () => {
                   Schréder, MOXA, Cisco, among others, we provide innovative and
                   dependable solutions tailored to challenging operational
                   environments.
-                </p>
-                <p>
-                  From enabling underground and surface mine communications to
-                  implementing advanced security and connectivity systems for
-                  critical operations, we focus on delivering technology that
-                  improves safety, efficiency, communication, and operational
-                  reliability where it matters most.
                 </p>
               </div>
             </div>

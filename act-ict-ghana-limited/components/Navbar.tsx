@@ -99,8 +99,10 @@ const Navbar: React.FC = () => {
             </AnimatedLink>
 
             <div className="relative group">
-              <button className={`flex items-center space-x-1 transition-all duration-300 ${location.pathname === "/act-ict" || location.pathname === "/act-global" ? "text-[#006bb7] font-bold" : linkColor}`}>
-                <span>Global Presence</span>
+              <button
+                className={`flex items-center space-x-1 transition-all duration-300 ${location.pathname === "/act-ict" || location.pathname === "/act-global" ? "text-[#006bb7] font-bold" : linkColor}`}
+              >
+                <span>Division</span>
                 <ChevronDown size={16} />
               </button>
               <div
@@ -120,7 +122,12 @@ const Navbar: React.FC = () => {
                 </Link>
               </div>
             </div>
-
+            <AnimatedLink
+              to="/solutions"
+              className={`transition-all duration-300 ${isActive("/solutions")}`}
+            >
+              Solutions
+            </AnimatedLink>
             <AnimatedLink
               to="/mining"
               className={`transition-all duration-300 ${isActive("/mining")}`}
@@ -128,12 +135,6 @@ const Navbar: React.FC = () => {
               Mining
             </AnimatedLink>
 
-            <AnimatedLink
-              to="/solutions"
-              className={`transition-all duration-300 ${isActive("/solutions")}`}
-            >
-              Solutions
-            </AnimatedLink>
             <AnimatedLink
               to="/projects"
               className={`transition-all duration-300 ${isActive("/projects")}`}
@@ -255,14 +256,15 @@ const Navbar: React.FC = () => {
                 <button
                   onClick={() => setDivisionOpen(!divisionOpen)}
                   className={`w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 ${
-                    location.pathname === "/act-ict" || location.pathname === "/act-global"
+                    location.pathname === "/act-ict" ||
+                    location.pathname === "/act-global"
                       ? "text-[#00A8E8]"
                       : isDark
                         ? "text-white hover:text-[#006bb7]"
                         : "text-gray-800 hover:text-[#006bb7]"
                   }`}
                 >
-                  <span>Global Presence</span>
+                  <span>Division</span>
                   <ChevronDown
                     size={18}
                     className={`transform transition-transform duration-300 ${divisionOpen ? "rotate-180" : ""}`}
@@ -304,6 +306,20 @@ const Navbar: React.FC = () => {
                 )}
               </div>
 
+              <Link
+                to="/solutions"
+                onClick={toggleMenu}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
+                  location.pathname === "/solutions"
+                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    : isDark
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                }`}
+              >
+                Solutions
+              </Link>
+
               {/* Mining */}
               <Link
                 to="/mining"
@@ -319,19 +335,6 @@ const Navbar: React.FC = () => {
                 Mining
               </Link>
 
-              <Link
-                to="/solutions"
-                onClick={toggleMenu}
-                className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
-                  location.pathname === "/solutions"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
-                    : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
-                }`}
-              >
-                Solutions
-              </Link>
               <Link
                 to="/projects"
                 onClick={toggleMenu}

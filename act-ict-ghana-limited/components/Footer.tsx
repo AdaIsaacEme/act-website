@@ -225,7 +225,7 @@ const Footer: React.FC = () => {
               <li className="flex items-center space-x-3">
                 <Phone className="flex-shrink-0" size={16} />
                 <a
-                  href={`tel:${content.contact.phone}`}
+                  href="tel:+233302764657"
                   className="hover:text-[#00A8E8] transition-colors duration-300"
                 >
                   {content.contact.phone}
@@ -234,7 +234,7 @@ const Footer: React.FC = () => {
               <li className="flex items-center space-x-3">
                 <Phone className="flex-shrink-0" size={16} />
                 <a
-                  href="tel:+233501533712"
+                  href="tel:+233577700555"
                   className="hover:text-[#00A8E8] transition-colors duration-300"
                 >
                   {content.contact.phone2}
