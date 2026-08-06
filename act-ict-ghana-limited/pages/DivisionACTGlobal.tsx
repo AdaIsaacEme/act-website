@@ -34,7 +34,7 @@ const DivisionACTGlobal: React.FC = () => {
     {
       title: "Solar Lighting Solutions",
       icon: <Sun size={24} />,
-      desc: "BEKA Schréder solar-powered trailers and lights — rapidly deployable standalone units for remote mining sites, providing lighting, Wi-Fi, CCTV, and radio in one package.",
+      desc: "Solar-powered trailers and lights — rapidly deployable standalone units for remote mining sites, providing lighting, Wi-Fi, CCTV, and radio in one package.",
     },
   ];
 
