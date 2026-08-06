@@ -25,20 +25,24 @@ const DivisionACTGlobal: React.FC = () => {
       icon: <Lightbulb size={24} />,
       desc: "High-performance industrial LED lighting by Beka Schréder, powering safer and more efficient mining and industrial operations with expert support.",
     },
-    {
-      title: "Solar Lighting Solutions",
-      icon: <Sun size={24} />,
-      desc: "BEKA Schréder solar-powered trailers and lights — rapidly deployable standalone units for remote mining sites, providing lighting, Wi-Fi, CCTV, and radio in one package.",
-    },
+
     {
       title: "Drone & Aerostat Systems",
       icon: <Navigation size={24} />,
       desc: "RT SkyStar™ tactical aerostat systems and drone services for aerial surveillance across Ghana.",
     },
+    {
+      title: "Solar Lighting Solutions",
+      icon: <Sun size={24} />,
+      desc: "BEKA Schréder solar-powered trailers and lights — rapidly deployable standalone units for remote mining sites, providing lighting, Wi-Fi, CCTV, and radio in one package.",
+    },
   ];
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)' }} className="pt-28 sm:pt-32">
+    <div
+      style={{ backgroundColor: "var(--bg-primary)" }}
+      className="pt-28 sm:pt-32"
+    >
       {/* Header with Banner */}
       <ScrollReveal slideDistance={30}>
         <div className="relative overflow-hidden py-20 mb-24">
@@ -65,12 +69,19 @@ const DivisionACTGlobal: React.FC = () => {
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 pb-20">
-        <StaggeredGrid staggerDelay={0.05} containerDelay={0.15} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+        <StaggeredGrid
+          staggerDelay={0.05}
+          containerDelay={0.15}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
+        >
           {sections.map((item, idx) => (
             <div
               key={idx}
               className="group rounded-xl p-8 hover:border-[#F59E0B] hover:shadow-lg hover:shadow-[#F59E0B]/20 transition-all duration-300 flex flex-col h-full"
-              style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)' }}
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "var(--border-color)",
+              }}
             >
               {/* Icon row with info button */}
               <div className="flex items-start justify-between mb-6">
@@ -87,12 +98,18 @@ const DivisionACTGlobal: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h2 className="font-display text-2xl font-black mb-4" style={{ color: 'var(--text-heading)' }}>
+              <h2
+                className="font-display text-2xl font-black mb-4"
+                style={{ color: "var(--text-heading)" }}
+              >
                 {item.title}
               </h2>
 
               {/* Description */}
-              <p className="leading-relaxed mb-6 flex-1" style={{ color: 'var(--text-secondary)' }}>
+              <p
+                className="leading-relaxed mb-6 flex-1"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 {item.desc}
               </p>
 

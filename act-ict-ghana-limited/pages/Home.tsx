@@ -46,9 +46,9 @@ const Home: React.FC = () => {
     {
       id: "eng",
       title: "Safety",
-      desc: "Shelter in tower construction, tower construction, and specialized engineering.",
+      desc: "Intelligent safety solutions that protect people, assets and operations through advanced monitoring,real time detection.",
       details:
-        "Tower construction, power substations, and industrial civil works.",
+        "Driver Fatigue monitoring, Collision Avoidance, Gas Detection, Environmental Monitoring, Cap lamps, Self-Rescuer, and workforce safety systems.",
     },
     {
       id: "elec",
