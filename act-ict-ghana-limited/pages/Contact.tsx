@@ -103,10 +103,9 @@ const Contact: React.FC = () => {
             sizes="100vw"
             alt=""
             fetchPriority="high"
-            className="absolute inset-0 w-full h-full object-cover scale-110 blur-md"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Blur + heavier overlay: this banner has its own text baked in, which clashed with the heading. */}
-          <div className="absolute inset-0 bg-[#0A1628]/85" />
+          <div className="absolute inset-0 bg-[#0A1628]/40" />
           <div className="relative">
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-4 text-white">
               Contact Us

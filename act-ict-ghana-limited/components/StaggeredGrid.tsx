@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import React, { ReactNode, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 type Direction = 'up' | 'alternating' | 'left' | 'right';
 
@@ -11,6 +11,13 @@ interface StaggeredGridProps {
   fromDirection?: Direction;
 }
 
+/**
+ * Reveals its children one after another when the grid scrolls into view.
+ *
+ * Each child animates itself (rather than waiting for a one-off signal from the parent),
+ * so children that appear later — e.g. after a filter tab is clicked — still fade in
+ * instead of staying invisible.
+ */
 const StaggeredGrid: React.FC<StaggeredGridProps> = ({
   children,
   className = '',
@@ -18,55 +25,38 @@ const StaggeredGrid: React.FC<StaggeredGridProps> = ({
   containerDelay = 0,
   fromDirection = 'up',
 }) => {
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: staggerDelay,
-        delayChildren: containerDelay,
-      },
-    },
-  };
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
 
-  const getVariant = (index: number) => {
-    let x = 0, y = 0;
+  const offset = (index: number) => {
     switch (fromDirection) {
-      case 'up': y = 36; break;
-      case 'left': x = 36; break;
-      case 'right': x = -36; break;
+      case 'left':
+        return { x: 36, y: 0 };
+      case 'right':
+        return { x: -36, y: 0 };
       case 'alternating':
-        x = index % 2 === 0 ? -28 : 28;
-        y = 16;
-        break;
+        return { x: index % 2 === 0 ? -28 : 28, y: 16 };
+      default:
+        return { x: 0, y: 36 };
     }
-    return {
-      hidden: { opacity: 0, x, y, scale: 0.97 },
-      visible: {
-        opacity: 1, x: 0, y: 0, scale: 1,
-        transition: {
-          duration: 0.65,
-          ease: [0.16, 1, 0.3, 1],
-        },
-      },
-    };
   };
 
-  const childArray = Array.isArray(children) ? children : [children];
+  // toArray keeps each child's own key, so filtering swaps the right items.
+  const items = React.Children.toArray(children);
 
   return (
-    <motion.div
-      className={className}
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '0px 0px -60px 0px' }}
-    >
-      {childArray.map((child, i) => (
-        <motion.div key={i} variants={getVariant(i)} style={{ willChange: 'transform, opacity' }}>
+    <div ref={ref} className={className}>
+      {items.map((child, i) => (
+        <motion.div
+          key={(React.isValidElement(child) && child.key) || i}
+          initial={{ opacity: 0, scale: 0.97, ...offset(i) }}
+          animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : undefined}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: containerDelay + i * staggerDelay }}
+        >
           {child}
         </motion.div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
