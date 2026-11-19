@@ -6,10 +6,10 @@ const defaultContent: SiteContent = {
     slides: [
       {
         id: "1",
-        title: "THE leading technology solutions provider in West Africa",
+        title: "A leading technology solutions provider in Ghana and across Africa",
         subtitle:
           "Empowering businesses with cutting-edge IT, Communications, and Security systems.",
-        image: "/images/hero/slide-1.jpg",
+        image: "/images/hero/slide-1.webp",
         ctaPrimary: "Explore Solutions",
         ctaSecondary: "View Projects",
       },
@@ -18,7 +18,7 @@ const defaultContent: SiteContent = {
         title: "Platinum Partner for Motorola Solutions",
         subtitle:
           "Delivering reliable mission-critical communication infrastructure.",
-        image: "/images/hero/slide-2.jpg",
+        image: "/images/hero/slide-2.webp",
         ctaPrimary: "Our Partners",
         ctaSecondary: "Contact Us",
       },
@@ -26,17 +26,17 @@ const defaultContent: SiteContent = {
         id: "3",
         title: "Video Surveillance",
         subtitle:
-          "Explore our range of security monitoring solutions tailored for both small and large industries .",
-        image: "/images/hero/slide-3.jpg",
+          "Explore our range of security monitoring solutions tailored for both small and large industries.",
+        image: "/images/hero/slide-3.webp",
         ctaPrimary: "View Expertise",
         ctaSecondary: "View Projects",
       },
       {
         id: "4",
-        title: "Trusted by The Mines, Oil & Gas and other industries",
+        title: "Trusted by mining, oil & gas and other industries",
         subtitle:
           "From underground mine connectivity to aerostat surveillance — we deploy where it matters most.",
-        image: "/images/hero/slide-4.jpg",
+        image: "/images/hero/slide-4.webp",
         ctaPrimary: "Our Capabilities",
         ctaSecondary: "View Projects",
       },
@@ -64,17 +64,17 @@ const defaultProjects: Project[] = [
     id: "1",
     title: "UG Medical Centre",
     description:
-      "UG Medical Centre — Design, supply, and installation of a 65,000 sqm hospital facility, including IT network (Cisco), IP telephony (Avaya), and data center infrastructure.",
+      "Design, supply, and installation for a 65,000 sqm hospital facility, including IT network (Cisco), IP telephony (Avaya), and data center infrastructure.",
     category: "Infrastructure",
-    image: "/images/projects/ug-medical-centre.jpg",
+    image: "/images/projects/ug-medical-centre.webp",
   },
   {
     id: "2",
-    title: "Automatic Weather Station project.",
+    title: "Automatic Weather Stations",
     description:
       "Supplied and installed automated weather stations across Ghana. The project enhanced real-time weather monitoring and data collection.",
     category: "Engineering",
-    image: "/images/projects/weather-stations.jpg",
+    image: "/images/projects/weather-stations.webp",
   },
   {
     id: "3",
@@ -82,23 +82,23 @@ const defaultProjects: Project[] = [
     description:
       "Designed and deployed a Leaky Feeder communication system for mining operations. The solution provides reliable voice and data communication throughout underground tunnels, ensuring continuous connectivity between personnel, vehicles, and control rooms.",
     category: "Communications",
-    image: "/images/projects/leaky-feeder.jpg",
+    image: "/images/projects/leaky-feeder.webp",
   },
   {
     id: "5",
-    title: " RT Tactical Aerostat System",
+    title: "RT Tactical Aerostat System",
     description:
-      "A tactical aerostat system enabling continuous day-and-night operations for up to 72 hours at heights of up to 1,000 feet, installed at the Mines.",
+      "A tactical aerostat system enabling continuous day-and-night operations for up to 72 hours at heights of up to 1,000 feet, installed at a gold mine in Ghana.",
     category: "Security",
-    image: "/images/projects/weather-balloon.jpg",
+    image: "/images/projects/weather-balloon.webp",
   },
   {
     id: "6",
     title: "Security Fence Installation",
     description:
-      "Installation of perimeter intrusion detection fence at the Mines.",
+      "Installation of a perimeter intrusion detection fence at a gold mine in Ghana.",
     category: "Security",
-    image: "/images/projects/perseus-fence.jpg",
+    image: "/images/projects/perimeter-fence.webp",
   },
   {
     id: "7",
@@ -106,7 +106,7 @@ const defaultProjects: Project[] = [
     description:
       "350-bed military hospital in Zambia: CISCO passive & active data network, 500+ extension AVAYA IP telephone system, Schneider Electric data center.",
     category: "Infrastructure",
-    image: "/images/projects/zambia-military-hospital.jpg",
+    image: "/images/projects/zambia-military-hospital.webp",
   },
   {
     id: "9",
@@ -114,7 +114,7 @@ const defaultProjects: Project[] = [
     description:
       "Design, installation and maintenance of IP CCTV systems across underground mining operations.",
     category: "Security",
-    image: "/images/projects/anglogold-cctv.jpg",
+    image: "/images/projects/underground-cctv.webp",
   },
   {
     id: "11",
@@ -122,14 +122,14 @@ const defaultProjects: Project[] = [
     description:
       "Full TETRA digital radio network deployment for mission-critical communications at mining operations.",
     category: "Communications",
-    image: "/images/projects/ahafo-tetra.jpg",
+    image: "/images/projects/tetra-network.webp",
   },
   {
     id: "12",
     title: "CCTV",
     description: "Multi-site CCTV deployment across mining facilities.",
     category: "Security",
-    image: "/images/projects/gsr-cctv.jpg",
+    image: "/images/projects/mine-cctv.webp",
   },
 ];
 
@@ -156,7 +156,7 @@ const defaultSolutions: Solution[] = [
               { text: "Intrinsically Safe" },
               { text: "Battery: Li-Ion 2850 mAH" },
             ],
-            image: "/images/products/motorola-r7.png",
+            image: "/images/products/motorola-r7.webp",
           },
           {
             id: "prod-1-1-2",
@@ -166,13 +166,13 @@ const defaultSolutions: Solution[] = [
               { text: "IP67" },
               { text: "Intrinsically safe" },
             ],
-            image: "/images/products/motorola-r5.png",
+            image: "/images/products/motorola-r5.webp",
           },
           {
             id: "prod-1-1-3",
             title: "MOTOROLA R2",
             specs: [{ text: "Digital Two-Way Radio" }, { text: "IP55" }],
-            image: "/images/products/motorola-r2.png",
+            image: "/images/products/motorola-r2.webp",
           },
           {
             id: "prod-1-1-4",
@@ -184,7 +184,7 @@ const defaultSolutions: Solution[] = [
               { text: "GPS tracking" },
               { text: "Dispatch and recording capabilities" },
             ],
-            image: "/images/products/poc-radio.jpg",
+            image: "/images/products/poc-radio.webp",
           },
           {
             id: "prod-1-1-5",
@@ -194,7 +194,7 @@ const defaultSolutions: Solution[] = [
                 text: "This radio supports various installation options, including: control room, vehicle, and custom installation. The radio includes noise suppression technology trained through AI. It has Wi-Fi Over-the-Air Programming, Bluetooth® 5.3, and automated configuration to ease installation.",
               },
             ],
-            image: "/images/products/mxm600.jpeg",
+            image: "/images/products/mxm600.webp",
           },
           {
             id: "prod-1-1-6",
@@ -204,7 +204,7 @@ const defaultSolutions: Solution[] = [
                 text: "It delivers the best in digital radio technology, with features like integrated voice systems capability, twice the calling capacity, and clearer voice communications.",
               },
             ],
-            image: "/images/products/dm2600.jpeg",
+            image: "/images/products/dm2600.webp",
           },
         ],
       },
@@ -220,7 +220,7 @@ const defaultSolutions: Solution[] = [
               { text: "Intrusion prevention system" },
               { text: "Intrusion detection system" },
             ],
-            image: "/images/products/moxa-secure-routers.png",
+            image: "/images/products/moxa-secure-routers.webp",
           },
         ],
       },
@@ -237,13 +237,13 @@ const defaultSolutions: Solution[] = [
               { text: "Cisco Catalyst 9400 Series Switches" },
               { text: "Cisco Catalyst 9200 Series Switches" },
             ],
-            image: "/images/products/cisco-switches.png",
+            image: "/images/products/cisco-switches.webp",
           },
           {
             id: "prod-1-3-2",
             title: "Transceiver GLC-LH-SMD",
             specs: [{ text: "1000BASE-LX/LH SFP" }],
-            image: "/images/products/cisco-transceiver.png",
+            image: "/images/products/cisco-transceiver.webp",
           },
         ],
       },
@@ -261,7 +261,7 @@ const defaultSolutions: Solution[] = [
               { text: "Local and Remote Diagnostics" },
               { text: "Interference Reduction" },
             ],
-            image: "/images/products/leaky-feeder.jpg",
+            image: "/images/products/leaky-feeder.webp",
           },
         ],
       },
@@ -278,7 +278,7 @@ const defaultSolutions: Solution[] = [
     productGroups: [
       {
         id: "pg-2-1",
-        title: "SCHUAENBURG SYSTEMS",
+        title: "SCHAUENBURG SYSTEMS",
         products: [
           {
             id: "prod-2-1-1",
@@ -289,7 +289,7 @@ const defaultSolutions: Solution[] = [
               { text: "Rugged Durability" },
               { text: "MHSC & DMRE Compliant" },
             ],
-            image: "/images/products/schuaenburg-gdi-sentinel.png",
+            image: "/images/products/schauenburg-gdi-sentinel.webp",
           },
           {
             id: "prod-2-1-2",
@@ -299,7 +299,7 @@ const defaultSolutions: Solution[] = [
               { text: "Other gases can be requested" },
               { text: "Environmental Sensors" },
             ],
-            image: "/images/products/schuaenburg-smartintellisens.png",
+            image: "/images/products/schauenburg-smartintellisens.webp",
           },
           {
             id: "prod-2-1-3",
@@ -308,7 +308,7 @@ const defaultSolutions: Solution[] = [
               { text: "Worker fatigue detection" },
               { text: "Safety compliance" },
             ],
-            image: "/images/products/schuaenburg-fatigue-monitoring.png",
+            image: "/images/products/schauenburg-fatigue-monitoring.webp",
           },
           {
             id: "prod-2-1-4",
@@ -319,7 +319,7 @@ const defaultSolutions: Solution[] = [
               { text: "Personnel 2-way page communication" },
               { text: "Productivity monitoring and optimization application" },
             ],
-            image: "/images/products/schuaenburg-collision-avoidance.png",
+            image: "/images/products/schauenburg-collision-avoidance.webp",
           },
           {
             id: "prod-2-1-5",
@@ -328,7 +328,7 @@ const defaultSolutions: Solution[] = [
               { text: "Intelligent lighting" },
               { text: "Long battery life" },
             ],
-            image: "/images/products/schuaenburg-smartlite-caplamp.png",
+            image: "/images/products/schauenburg-smartlite-caplamp.webp",
           },
           {
             id: "prod-2-1-6",
@@ -338,7 +338,7 @@ const defaultSolutions: Solution[] = [
               { text: "Weight – Approx 2.25-2.3kg" },
               { text: "Shelf life up to years" },
             ],
-            image: "/images/products/self-rescuer.jpg",
+            image: "/images/products/self-rescuer.webp",
           },
         ],
       },
@@ -368,7 +368,7 @@ const defaultSolutions: Solution[] = [
                 text: "Engineered for enterprise-level surveillance with smart detection to pinpoint critical events instantly.",
               },
             ],
-            image: "/images/products/avigilon.jpg",
+            image: "/images/products/avigilon.webp",
           },
           {
             id: "prod-3-1-2",
@@ -381,7 +381,7 @@ const defaultSolutions: Solution[] = [
                 text: "The industry standard for durable, high-end IP video surveillance in demanding environments.",
               },
             ],
-            image: "/images/products/axis.jpg",
+            image: "/images/products/axis.webp",
           },
           {
             id: "prod-3-1-3",
@@ -394,7 +394,7 @@ const defaultSolutions: Solution[] = [
                 text: "The world-leading choice for versatile, user-friendly security across homes and commercial properties.",
               },
             ],
-            image: "/images/products/hikvision.jpg",
+            image: "/images/products/hikvision.webp",
           },
           {
             id: "prod-3-1-4",
@@ -407,7 +407,7 @@ const defaultSolutions: Solution[] = [
                 text: "Budget-friendly, high-performance cameras built for dependable indoor and outdoor monitoring.",
               },
             ],
-            image: "/images/products/dahua.jpg",
+            image: "/images/products/dahua.webp",
           },
           {
             id: "prod-3-1-5",
@@ -420,13 +420,13 @@ const defaultSolutions: Solution[] = [
                 text: "Designed for smart city and commercial security, featuring advanced object tracking and ultra-low light color vision.",
               },
             ],
-            image: "/images/products/holowits.jpg",
+            image: "/images/products/holowits.webp",
           },
         ],
       },
       {
         id: "pg-3-2",
-        title: " GM Afcon Intrusion Detection ",
+        title: "GM Afcon Intrusion Detection",
         products: [
           {
             id: "prod-3-2-1",
@@ -436,7 +436,7 @@ const defaultSolutions: Solution[] = [
                 text: "An advanced, high-precision perimeter security solution designed for both indoor and outdoor threats.",
               },
             ],
-            image: "/images/products/gmafcon.jpg",
+            image: "/images/products/gmafcon.webp",
           },
         ],
       },
@@ -457,7 +457,7 @@ const defaultSolutions: Solution[] = [
               { text: "Operates at altitudes up to 1,000 ft" },
               { text: "Requires only a minimal crew" },
             ],
-            image: "/images/products/rt-trailer.jpg",
+            image: "/images/products/rt-trailer.webp",
           },
         ],
       },
@@ -489,7 +489,7 @@ const defaultSolutions: Solution[] = [
               { text: "230V +3%/-10% - 50Hz" },
               { text: "Large Area & Floodlighting" },
             ],
-            image: "/images/products/lednova.jpg",
+            image: "/images/products/lednova.webp",
           },
           {
             id: "prod-4-1-2",
@@ -502,7 +502,7 @@ const defaultSolutions: Solution[] = [
               { text: "60,000h - L90B10 - 50,000h - L80B10" },
               { text: "12V DC" },
             ],
-            image: "/images/products/beka-solar.jpg",
+            image: "/images/products/beka-solar.webp",
           },
           {
             id: "prod-4-1-3",
@@ -515,7 +515,7 @@ const defaultSolutions: Solution[] = [
               { text: "Flux (lm) - 230413198-264V – 50Hz" },
               { text: "100,000h - Up to L95B10" },
             ],
-            image: "/images/products/omniblast.jpg",
+            image: "/images/products/omniblast.webp",
           },
         ],
       },
@@ -533,7 +533,7 @@ const defaultSolutions: Solution[] = [
               { text: "Single Axle Trailer (Aus/US standard)" },
               { text: "Used for Network, Radio, CCTV and lighting" },
             ],
-            image: "/images/products/solar-trailer.jpg",
+            image: "/images/products/solar-trailer.webp",
           },
         ],
       },
@@ -545,62 +545,62 @@ const defaultPartners: Partner[] = [
   {
     id: "1",
     name: "Motorola Solutions",
-    logoUrl: "/images/partners/motorola-solutions.png",
+    logoUrl: "/images/partners/motorola-solutions.webp",
     tier: "Platinum Partner",
   },
   {
     id: "2",
     name: "Schauenburg",
-    logoUrl: "/images/partners/schauenburg.png",
+    logoUrl: "/images/partners/schauenburg.webp",
     tier: "Partner",
   },
   {
     id: "3",
     name: "Avigilon",
-    logoUrl: "/images/partners/avigilon.png",
+    logoUrl: "/images/partners/avigilon.webp",
     tier: "Technology Partner",
   },
   {
     id: "4",
     name: "BEKA Schréder",
-    logoUrl: "/images/partners/beka-schreder.png",
+    logoUrl: "/images/partners/beka-schreder.webp",
     tier: "Authorized Partner",
   },
   {
     id: "5",
     name: "Moxa",
-    logoUrl: "/images/partners/moxa.png",
+    logoUrl: "/images/partners/moxa.webp",
     tier: "Technology Partner",
   },
   {
     id: "6",
     name: "Axis",
-    logoUrl: "/images/partners/axis.png",
+    logoUrl: "/images/partners/axis.webp",
     tier: "Technology Partner",
   },
   {
     id: "7",
     name: "CISCO",
-    logoUrl: "/images/partners/cisco.png",
+    logoUrl: "/images/partners/cisco.webp",
     tier: "Select Partner",
   },
   {
     id: "8",
     name: "GM Afcon Intrusion Detection",
-    logoUrl: "/images/partners/gm-afcon.png",
+    logoUrl: "/images/partners/gm-afcon.webp",
     tier: "Authorized Partner",
   },
   {
     id: "9",
     name: "RT",
-    logoUrl: "/images/partners/rt.png",
+    logoUrl: "/images/partners/rt.webp",
     tier: "Partner",
   },
 
   {
     id: "10",
     name: "Thuraya",
-    logoUrl: "/images/partners/thuraya.png",
+    logoUrl: "/images/partners/thuraya.webp",
     tier: "Partner",
   },
 ];

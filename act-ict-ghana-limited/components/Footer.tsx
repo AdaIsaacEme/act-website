@@ -37,27 +37,27 @@ const Footer: React.FC = () => {
           direction="up"
           delay={0.1}
           className="py-8 px-4 text-center"
-          style={{ backgroundColor: "#00A8E8" }}
+          style={{ backgroundColor: "#0077B6" }}
         >
-          <h3 className="font-display text-2xl text-white">
+          <h2 className="font-display text-2xl text-white">
             Ready to transform your operations?
-          </h3>
+          </h2>
           <Link
             to="/contact"
             className="mt-4 inline-block font-bold px-8 py-3 rounded-lg transition-all duration-300 btn-lift hover:bg-gray-100"
-            style={{ backgroundColor: "white", color: "#00A8E8" }}
+            style={{ backgroundColor: "white", color: "#0077B6" }}
           >
             Get in Touch →
           </Link>
         </ScrollReveal>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 md:pb-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 my-8 md:my-12">
           {/* Company Info */}
           <div className="space-y-4">
             <img
-              src="/images/logo/act-ict-logo.png"
+              src="/images/logo/act-ict-logo.webp"
               alt="ACT-ICT Ghana Limited"
               className="h-8 sm:h-10 w-auto object-contain mb-3 sm:mb-4"
               onError={(e) => {
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
               style={{ color: "var(--text-secondary)" }}
             >
               Leading the way in technological innovation. Providing top-tier
-              IT, Security, and Engineering solutions across Ghana and West
+              IT, Security, and Engineering solutions in Ghana and across
               Africa.
             </p>
             <div className="flex space-x-4 pt-4">
@@ -85,65 +85,49 @@ const Footer: React.FC = () => {
                 href={content.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300"
-                style={{ color: "var(--text-secondary)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#00A8E8")}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--text-secondary)")
-                }
+                aria-label="ACT-ICT on Facebook"
+                className="p-2 -m-2 text-[color:var(--text-secondary)] hover:text-[color:var(--accent-text)] transition-colors duration-300"
               >
-                <Facebook size={20} />
+                <Facebook size={20} aria-hidden="true" />
               </a>
               <a
                 href={content.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300"
-                style={{ color: "var(--text-secondary)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#00A8E8")}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--text-secondary)")
-                }
+                aria-label="ACT-ICT on LinkedIn"
+                className="p-2 -m-2 text-[color:var(--text-secondary)] hover:text-[color:var(--accent-text)] transition-colors duration-300"
               >
-                <Linkedin size={20} />
+                <Linkedin size={20} aria-hidden="true" />
               </a>
               <a
                 href={content.socials.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300"
-                style={{ color: "var(--text-secondary)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#00A8E8")}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--text-secondary)")
-                }
+                aria-label="ACT-ICT on X (Twitter)"
+                className="p-2 -m-2 text-[color:var(--text-secondary)] hover:text-[color:var(--accent-text)] transition-colors duration-300"
               >
-                <Twitter size={20} />
+                <Twitter size={20} aria-hidden="true" />
               </a>
               <a
                 href={content.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300"
-                style={{ color: "var(--text-secondary)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#00A8E8")}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--text-secondary)")
-                }
+                aria-label="ACT-ICT on Instagram"
+                className="p-2 -m-2 text-[color:var(--text-secondary)] hover:text-[color:var(--accent-text)] transition-colors duration-300"
               >
-                <Instagram size={20} />
+                <Instagram size={20} aria-hidden="true" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3
+            <h2
               className="font-display text-lg font-bold mb-6"
-              style={{ color: "#00A8E8" }}
+              style={{ color: "var(--accent-text)" }}
             >
               Quick Links
-            </h3>
+            </h2>
             <ul
               className="space-y-3 text-sm"
               style={{ color: "var(--text-secondary)" }}
@@ -151,7 +135,7 @@ const Footer: React.FC = () => {
               <li>
                 <AnimatedLink
                   to="/about"
-                  className="hover:text-[#00A8E8] transition-all duration-300"
+                  className="inline-block py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
                 >
                   About Us
                 </AnimatedLink>
@@ -159,7 +143,7 @@ const Footer: React.FC = () => {
               <li>
                 <AnimatedLink
                   to="/act-ict"
-                  className="hover:text-[#00A8E8] transition-all duration-300"
+                  className="inline-block py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
                 >
                   ACT-ICT
                 </AnimatedLink>
@@ -167,7 +151,7 @@ const Footer: React.FC = () => {
               <li>
                 <AnimatedLink
                   to="/act-global"
-                  className="hover:text-[#00A8E8] transition-all duration-300"
+                  className="inline-block py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
                 >
                   ACT Global
                 </AnimatedLink>
@@ -175,7 +159,7 @@ const Footer: React.FC = () => {
               <li>
                 <AnimatedLink
                   to="/projects"
-                  className="hover:text-[#00A8E8] transition-all duration-300"
+                  className="inline-block py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
                 >
                   Our Projects
                 </AnimatedLink>
@@ -183,7 +167,7 @@ const Footer: React.FC = () => {
               <li>
                 <AnimatedLink
                   to="/solutions"
-                  className="hover:text-[#00A8E8] transition-all duration-300"
+                  className="inline-block py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
                 >
                   Solutions & Services
                 </AnimatedLink>
@@ -191,9 +175,9 @@ const Footer: React.FC = () => {
               <li>
                 <AnimatedLink
                   to="/contact"
-                  className="hover:text-[#00A8E8] transition-all duration-300"
+                  className="inline-block py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
                 >
-                  Contact Support
+                  Contact Us
                 </AnimatedLink>
               </li>
             </ul>
@@ -201,50 +185,50 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div>
-            <h3
+            <h2
               className="font-display text-lg font-bold mb-6"
-              style={{ color: "#00A8E8" }}
+              style={{ color: "var(--accent-text)" }}
             >
               Contact Us
-            </h3>
+            </h2>
             <ul
               className="space-y-4 text-sm"
               style={{ color: "var(--text-secondary)" }}
             >
               <li className="flex items-start space-x-3">
-                <MapPin className="flex-shrink-0 mt-1" size={16} />
+                <MapPin className="flex-shrink-0 mt-1" size={16} aria-hidden="true" />
                 <a
                   href="https://maps.app.goo.gl/nGFsDiXuHMVzQKEr7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#00A8E8] transition-colors duration-300"
+                  className="hover:text-[color:var(--accent-text)] transition-colors duration-300"
                 >
                   {content.contact.address}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone className="flex-shrink-0" size={16} />
+                <Phone className="flex-shrink-0" size={16} aria-hidden="true" />
                 <a
                   href="tel:+233302764657"
-                  className="hover:text-[#00A8E8] transition-colors duration-300"
+                  className="hover:text-[color:var(--accent-text)] transition-colors duration-300"
                 >
                   {content.contact.phone}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone className="flex-shrink-0" size={16} />
+                <Phone className="flex-shrink-0" size={16} aria-hidden="true" />
                 <a
                   href="tel:+233577700555"
-                  className="hover:text-[#00A8E8] transition-colors duration-300"
+                  className="hover:text-[color:var(--accent-text)] transition-colors duration-300"
                 >
                   {content.contact.phone2}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail className="flex-shrink-0" size={16} />
+                <Mail className="flex-shrink-0" size={16} aria-hidden="true" />
                 <a
                   href={`mailto:${content.contact.email}`}
-                  className="hover:text-[#00A8E8] transition-colors duration-300"
+                  className="hover:text-[color:var(--accent-text)] transition-colors duration-300"
                 >
                   {content.contact.email}
                 </a>
@@ -254,12 +238,12 @@ const Footer: React.FC = () => {
 
           {/* Trusted Partners */}
           <div>
-            <h3
+            <h2
               className="font-display text-lg font-bold mb-6"
-              style={{ color: "#00A8E8" }}
+              style={{ color: "var(--accent-text)" }}
             >
               Trusted Partners
-            </h3>
+            </h2>
             <p
               className="text-sm mb-6"
               style={{ color: "var(--text-secondary)" }}
@@ -278,7 +262,7 @@ const Footer: React.FC = () => {
             paddingBottom: "1rem",
             textAlign: "center",
             color: "var(--text-secondary)",
-            fontSize: "10px",
+            fontSize: "12px",
           }}
         >
           <p>

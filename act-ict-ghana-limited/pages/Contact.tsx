@@ -1,16 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedButton from "../components/AnimatedButton";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle, AlertCircle } from "lucide-react";
+
+// Form delivery: set VITE_WEB3FORMS_KEY in Vercel (free key from web3forms.com, sent to office@act-ict.com).
+// Without a key, the form opens the visitor's email app with the message filled in, so nothing is lost.
+const WEB3FORMS_KEY = (import.meta as any).env?.VITE_WEB3FORMS_KEY as string | undefined;
+const OFFICE_EMAIL = "office@act-ict.com";
+
+type Status = "idle" | "sending" | "sent" | "mailto" | "error";
+
+const fieldClass =
+  "w-full px-4 py-3 rounded-lg border focus:border-[color:var(--accent-text)] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300";
+const fieldStyle: React.CSSProperties = {
+  backgroundColor: "var(--bg-primary)",
+  borderColor: "var(--border-color)",
+  color: "var(--text-primary)",
+};
+const cardClass =
+  "block rounded-xl p-6 border hover:border-[color:var(--accent-text)] transition-all duration-300";
+const cardStyle: React.CSSProperties = {
+  backgroundColor: "var(--bg-surface)",
+  borderColor: "var(--border-color)",
+};
+
+const telHref = (n: string) => `tel:${n.replace(/[^+\d]/g, "")}`;
 
 const Contact: React.FC = () => {
   const { content } = useContent();
+  const [status, setStatus] = useState<Status>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Thank you for contacting ACT-ICT. We will get back to you shortly.");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    if (data.get("botcheck")) return; // honeypot: bots fill hidden fields
+
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const subject = String(data.get("subject") || "General Inquiry");
+    const message = String(data.get("message") || "").trim();
+
+    if (!WEB3FORMS_KEY) {
+      const body = `${message}\n\n— ${name}\n${email}${phone ? `\n${phone}` : ""}`;
+      window.location.href = `mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
+        `Website: ${subject}`,
+      )}&body=${encodeURIComponent(body)}`;
+      setStatus("mailto");
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Website enquiry: ${subject}`,
+          from_name: "ACT-ICT website",
+          name,
+          email,
+          phone,
+          enquiry_type: subject,
+          message,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json.success !== false) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -29,16 +97,20 @@ const Contact: React.FC = () => {
           style={{ marginBottom: "5rem" }}
         >
           <img
-            src="/images/banners/contact-banner.png"
-            alt="Contact Us"
-            className="absolute inset-0 w-full h-full object-cover"
+            src="/images/banners/contact-banner.webp"
+            srcSet="/images/banners/contact-banner-960.webp 960w, /images/banners/contact-banner.webp 1920w"
+            sizes="100vw"
+            alt=""
+            fetchPriority="high"
+            className="absolute inset-0 w-full h-full object-cover scale-110 blur-md"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
+          {/* Blur + heavier overlay: this banner has its own text baked in, which clashed with the heading. */}
+          <div className="absolute inset-0 bg-[#0A1628]/85" />
           <div className="relative">
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mb-4 text-white">
               Contact Us
             </h1>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-white/85">
               Get in touch with our expert team today.
             </p>
           </div>
@@ -54,60 +126,54 @@ const Contact: React.FC = () => {
             containerDelay={0.1}
             className="space-y-6"
           >
-            {/* Phone */}
-            <a
-              href="tel:+233577700555"
-              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                borderColor: "var(--border-color)",
-              }}
-            >
+            {/* Phone — one link per number */}
+            <div className={cardClass} style={cardStyle}>
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
-                  <Phone size={24} />
+                <div className="p-3 bg-[#00A8E8]/10 text-[color:var(--accent-text)] rounded-lg ring-1 ring-[#00A8E8]/30">
+                  <Phone size={24} aria-hidden="true" />
                 </div>
                 <div>
-                  <h4
+                  <h2
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-heading)" }}
                   >
                     Phone
-                  </h4>
-                  <p
-                    className="text-sm hover:text-[#00A8E8]"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    {content.contact.phone} / {content.contact.phone2}
+                  </h2>
+                  <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                    <a
+                      href={telHref(content.contact.phone)}
+                      className="inline-block py-1 hover:text-[color:var(--accent-text)]"
+                      style={{ color: "inherit" }}
+                    >
+                      {content.contact.phone}
+                    </a>
+                    <br />
+                    <a
+                      href={telHref(content.contact.phone2)}
+                      className="inline-block py-1 hover:text-[color:var(--accent-text)]"
+                      style={{ color: "inherit" }}
+                    >
+                      {content.contact.phone2}
+                    </a>
                   </p>
                 </div>
               </div>
-            </a>
+            </div>
 
             {/* Email */}
-            <a
-              href="mailto:office@act-ict.com"
-              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                borderColor: "var(--border-color)",
-              }}
-            >
+            <a href={`mailto:${content.contact.email}`} className={cardClass} style={cardStyle}>
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
-                  <Mail size={24} />
+                <div className="p-3 bg-[#00A8E8]/10 text-[color:var(--accent-text)] rounded-lg ring-1 ring-[#00A8E8]/30">
+                  <Mail size={24} aria-hidden="true" />
                 </div>
                 <div>
-                  <h4
+                  <h2
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-heading)" }}
                   >
                     Email
-                  </h4>
-                  <p
-                    className="text-sm hover:text-[#00A8E8]"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  </h2>
+                  <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
                     {content.contact.email}
                   </p>
                 </div>
@@ -119,28 +185,23 @@ const Contact: React.FC = () => {
               href="https://maps.app.goo.gl/nh1LEgKni858MnMo8"
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                borderColor: "var(--border-color)",
-              }}
+              className={cardClass}
+              style={cardStyle}
             >
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
-                  <MapPin size={24} />
+                <div className="p-3 bg-[#00A8E8]/10 text-[color:var(--accent-text)] rounded-lg ring-1 ring-[#00A8E8]/30">
+                  <MapPin size={24} aria-hidden="true" />
                 </div>
                 <div>
-                  <h4
+                  <h2
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-heading)" }}
                   >
                     Address
-                  </h4>
-                  <p
-                    className="text-sm hover:text-[#00A8E8]"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  </h2>
+                  <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
                     {content.contact.address}
+                    <span className="sr-only"> (opens Google Maps)</span>
                   </p>
                 </div>
               </div>
@@ -151,27 +212,21 @@ const Contact: React.FC = () => {
               href="https://wa.me/233577700555"
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-xl p-6 hover:border-[#00A8E8] transition-all duration-300 cursor-pointer"
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                borderColor: "var(--border-color)",
-              }}
+              className={cardClass}
+              style={cardStyle}
             >
               <div className="flex items-start space-x-4">
-                <div className="p-3 bg-[#00A8E8]/10 text-[#00A8E8] rounded-lg ring-1 ring-[#00A8E8]/30">
-                  <MessageCircle size={24} />
+                <div className="p-3 bg-[#00A8E8]/10 text-[color:var(--accent-text)] rounded-lg ring-1 ring-[#00A8E8]/30">
+                  <MessageCircle size={24} aria-hidden="true" />
                 </div>
                 <div>
-                  <h4
+                  <h2
                     className="font-semibold text-lg"
                     style={{ color: "var(--text-heading)" }}
                   >
                     WhatsApp
-                  </h4>
-                  <p
-                    className="text-sm hover:text-[#00A8E8]"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
+                  </h2>
+                  <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
                     +233-577-700-555
                   </p>
                 </div>
@@ -182,104 +237,173 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <ScrollReveal delay={0.15} className="lg:col-span-2">
             <div
-              className="rounded-xl p-5 sm:p-6 md:p-8"
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                borderColor: "var(--border-color)",
-              }}
+              className="rounded-xl p-5 sm:p-6 md:p-8 border"
+              style={cardStyle}
             >
-              <h3
+              <h2
                 className="font-display text-2xl font-black mb-6"
                 style={{ color: "var(--text-heading)" }}
               >
                 Send us a Message
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              </h2>
+
+              {status === "sent" ? (
+                <div role="status" className="flex items-start gap-3 text-base" style={{ color: "var(--text-primary)" }}>
+                  <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={22} aria-hidden="true" />
                   <div>
-                    <label
-                      className="block text-sm font-medium mb-2"
-                      style={{ color: "var(--text-secondary)" }}
+                    <p className="font-semibold">Thank you — your message has been sent.</p>
+                    <p style={{ color: "var(--text-secondary)" }}>
+                      Our team will reply to the email address you gave. For anything urgent, call{" "}
+                      {content.contact.phone2}.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setStatus("idle")}
+                      className="mt-4 underline text-[color:var(--accent-text)]"
                     >
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
-                      style={{
-                        backgroundColor: "var(--bg-primary)",
-                        borderColor: "var(--border-color)",
-                        color: "var(--text-primary)",
-                      }}
-                    />
+                      Send another message
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate={false}>
+                  {/* Honeypot — hidden from people, filled by bots */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                    aria-hidden="true"
+                  />
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label
+                        htmlFor="contact-name"
+                        className="block text-sm font-medium mb-2"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        Full Name
+                      </label>
+                      <input
+                        id="contact-name"
+                        name="name"
+                        type="text"
+                        autoComplete="name"
+                        required
+                        maxLength={120}
+                        className={fieldClass}
+                        style={fieldStyle}
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="contact-email"
+                        className="block text-sm font-medium mb-2"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        required
+                        maxLength={200}
+                        className={fieldClass}
+                        style={fieldStyle}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label
+                        htmlFor="contact-phone"
+                        className="block text-sm font-medium mb-2"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        Phone <span className="font-normal">(optional)</span>
+                      </label>
+                      <input
+                        id="contact-phone"
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        maxLength={40}
+                        className={fieldClass}
+                        style={fieldStyle}
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="contact-subject"
+                        className="block text-sm font-medium mb-2"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        Subject
+                      </label>
+                      <select
+                        id="contact-subject"
+                        name="subject"
+                        className={fieldClass}
+                        style={fieldStyle}
+                      >
+                        <option>General Inquiry</option>
+                        <option>Request Quote</option>
+                        <option>Technical Support</option>
+                        <option>Partnership</option>
+                      </select>
+                    </div>
                   </div>
                   <div>
                     <label
+                      htmlFor="contact-message"
                       className="block text-sm font-medium mb-2"
                       style={{ color: "var(--text-secondary)" }}
                     >
-                      Email Address
+                      Message
                     </label>
-                    <input
-                      type="email"
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows={5}
                       required
-                      className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
-                      style={{
-                        backgroundColor: "var(--bg-primary)",
-                        borderColor: "var(--border-color)",
-                        color: "var(--text-primary)",
-                      }}
-                    />
+                      maxLength={5000}
+                      className={`${fieldClass} resize-y`}
+                      style={fieldStyle}
+                    ></textarea>
                   </div>
-                </div>
-                <div>
-                  <label
-                    className="block text-sm font-medium mb-2"
-                    style={{ color: "var(--text-secondary)" }}
+
+                  {status === "error" && (
+                    <p role="alert" className="flex items-start gap-2 text-sm text-red-600">
+                      <AlertCircle size={18} className="flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      Sorry, your message could not be sent. Please try again, or email{" "}
+                      <a href={`mailto:${OFFICE_EMAIL}`} className="underline">{OFFICE_EMAIL}</a>.
+                    </p>
+                  )}
+                  {status === "mailto" && (
+                    <p role="status" className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                      Your email app should now open with your message ready to send. If it
+                      didn't, email us at{" "}
+                      <a href={`mailto:${OFFICE_EMAIL}`} className="underline text-[color:var(--accent-text)]">
+                        {OFFICE_EMAIL}
+                      </a>
+                      .
+                    </p>
+                  )}
+
+                  <AnimatedButton
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full md:w-auto px-8 py-3 bg-brand hover:bg-brand-dark disabled:opacity-60 text-white font-bold rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg btn-lift"
+                    hoverScale={1.05}
                   >
-                    Subject
-                  </label>
-                  <select
-                    className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300"
-                    style={{
-                      backgroundColor: "var(--bg-primary)",
-                      borderColor: "var(--border-color)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
-                    <option>General Inquiry</option>
-                    <option>Request Quote</option>
-                    <option>Technical Support</option>
-                    <option>Partnership</option>
-                  </select>
-                </div>
-                <div>
-                  <label
-                    className="block text-sm font-medium mb-2"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    required
-                    className="w-full px-4 py-3 rounded-lg focus:border-[#00A8E8] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300 resize-none"
-                    style={{
-                      backgroundColor: "var(--bg-primary)",
-                      borderColor: "var(--border-color)",
-                      color: "var(--text-primary)",
-                    }}
-                  ></textarea>
-                </div>
-                <AnimatedButton
-                  type="submit"
-                  className="w-full md:w-auto px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
-                  hoverScale={1.05}
-                >
-                  Send Message <Send size={18} className="ml-2" />
-                </AnimatedButton>
-              </form>
+                    {status === "sending" ? "Sending…" : "Send Message"}{" "}
+                    <Send size={18} className="ml-2" aria-hidden="true" />
+                  </AnimatedButton>
+                </form>
+              )}
             </div>
           </ScrollReveal>
         </div>
@@ -288,20 +412,17 @@ const Contact: React.FC = () => {
         <ScrollReveal delay={0.25}>
           <div
             className="rounded-xl overflow-hidden shadow-lg h-96"
-            style={{
-              backgroundColor: "var(--bg-surface)",
-              borderColor: "var(--border-color)",
-            }}
+            style={{ backgroundColor: "var(--bg-surface)" }}
           >
             <iframe
-              title="ACT-ICT Location"
+              title="Map showing the ACT-ICT office in Cantonments, Accra"
               width="100%"
               height="100%"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d239844.67066752896!2d-0.25359755684031976!3d5.628474630122922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9abd2e1c0b97%3A0x6d8f600786f98aae!2sACT%20ICT%20Ghana%20Ltd!5e0!3m2!1sen!2sgh!4v1778021865165!5m2!1sen!2sgh"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin-when-cross-origin"
               className="w-full h-full"
             ></iframe>
           </div>

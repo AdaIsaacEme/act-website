@@ -36,7 +36,7 @@ const AnimatedLink: React.FC<AnimatedLinkProps> = ({
       className="inline-block"
     >
       <Link className={className} {...props}>
-        <span className="relative inline-block">
+        <span className="relative inline-flex items-center">
           {children}
           <motion.span
             className="absolute bottom-0 left-0 h-0.5 bg-current"

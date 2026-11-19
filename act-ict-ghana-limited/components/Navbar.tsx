@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 import AnimatedLink from "./AnimatedLink";
@@ -14,25 +14,40 @@ const Navbar: React.FC = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Close menus when the page changes; lock page scroll behind the open mobile menu.
+  useEffect(() => {
+    setIsOpen(false);
+    setDivisionOpen(false);
+  }, [location.pathname]);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const themeLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
+
   const isActive = (path: string) =>
     location.pathname === path
-      ? "text-[#006bb7] font-bold"
+      ? "text-[color:var(--accent-text)] font-bold"
       : isDark
-        ? "text-white hover:text-[#006bb7]"
-        : "text-gray-800 hover:text-[#006bb7]";
+        ? "text-white hover:text-[color:var(--accent-text)]"
+        : "text-gray-800 hover:text-[color:var(--accent-text)]";
 
   const navBg = isDark
     ? "bg-[#0A1628]/95 border-[#1E3A5F]"
     : "bg-white/95 border-gray-200";
   const linkColor = isDark
-    ? "text-white hover:text-[#006bb7]"
-    : "text-gray-800 hover:text-[#006bb7]";
+    ? "text-white hover:text-[color:var(--accent-text)]"
+    : "text-gray-800 hover:text-[color:var(--accent-text)]";
   const topBarBg = isDark
     ? "bg-[#060F1E] text-[#7A9ABD] border-[#1E3A5F]"
     : "bg-gray-100 text-gray-600 border-gray-200";
 
   return (
     <nav
+      aria-label="Main"
       className={`fixed w-full z-50 ${navBg} backdrop-blur-md border-b transition-all duration-300`}
     >
       {/* Top Bar */}
@@ -42,16 +57,22 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex space-x-6">
             <a
-              href="tel:+233577700555"
-              className="flex items-center space-x-2 hover:text-[#006bb7] transition-all duration-300"
+              href="tel:+233302764657"
+              className="flex items-center space-x-2 py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
             >
-              <Phone size={14} /> <span>+233 577 700 555</span>
+              <Phone size={14} aria-hidden="true" /> <span>+233 302 764 657</span>
+            </a>
+            <a
+              href="tel:+233577700555"
+              className="flex items-center space-x-2 py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
+            >
+              <Phone size={14} aria-hidden="true" /> <span>+233 577 700 555</span>
             </a>
             <a
               href="mailto:office@act-ict.com"
-              className="flex items-center space-x-2 hover:text-[#006bb7] transition-all duration-300"
+              className="flex items-center space-x-2 py-1 hover:text-[color:var(--accent-text)] transition-all duration-300"
             >
-              <Mail size={14} />{" "}
+              <Mail size={14} aria-hidden="true" />{" "}
               <span className="overflow-hidden text-ellipsis">
                 office@act-ict.com
               </span>
@@ -64,9 +85,9 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 flex items-center">
+          <Link to="/" className="flex-shrink-0 flex items-center" aria-label="ACT-ICT Ghana Limited — home">
             <img
-              src="/images/logo/act-ict-logo.png"
+              src="/images/logo/act-ict-logo.webp"
               alt="ACT-ICT Ghana Limited"
               className="h-8 sm:h-10 md:h-12 w-auto object-contain"
               onError={(e) => {
@@ -100,23 +121,30 @@ const Navbar: React.FC = () => {
 
             <div className="relative group">
               <button
-                className={`flex items-center space-x-1 transition-all duration-300 ${location.pathname === "/act-ict" || location.pathname === "/act-global" ? "text-[#006bb7] font-bold" : linkColor}`}
+                type="button"
+                aria-haspopup="true"
+                aria-expanded={divisionOpen}
+                onClick={() => setDivisionOpen(!divisionOpen)}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setDivisionOpen(false);
+                }}
+                className={`flex items-center space-x-1 transition-all duration-300 ${location.pathname === "/act-ict" || location.pathname === "/act-global" ? "text-[color:var(--accent-text)] font-bold" : linkColor}`}
               >
                 <span>Division</span>
-                <ChevronDown size={16} />
+                <ChevronDown size={16} aria-hidden="true" />
               </button>
               <div
-                className={`absolute left-0 mt-2 w-48 rounded-md shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left z-50 border ${isDark ? "bg-[#0F2137] border-[#1E3A5F]" : "bg-white border-gray-200"}`}
+                className={`absolute left-0 mt-2 w-48 rounded-md shadow-xl py-2 ${divisionOpen ? "opacity-100 visible" : "opacity-0 invisible"} group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 transform origin-top-left z-50 border ${isDark ? "bg-[#0F2137] border-[#1E3A5F]" : "bg-white border-gray-200"}`}
               >
                 <Link
                   to="/act-ict"
-                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#006bb7] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#006bb7] hover:bg-gray-100"}`}
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[color:var(--accent-text)] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[color:var(--accent-text)] hover:bg-gray-100"}`}
                 >
                   ACT-ICT
                 </Link>
                 <Link
                   to="/act-global"
-                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[#006bb7] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[#006bb7] hover:bg-gray-100"}`}
+                  className={`block px-4 py-2 text-sm transition-all duration-300 ${isDark ? "text-white hover:text-[color:var(--accent-text)] hover:bg-[#1E3A5F]" : "text-gray-700 hover:text-[color:var(--accent-text)] hover:bg-gray-100"}`}
                 >
                   ACT Global
                 </Link>
@@ -150,16 +178,20 @@ const Navbar: React.FC = () => {
 
             {/* Theme Toggle Button */}
             <button
+              type="button"
               onClick={toggleTheme}
-              className={`relative w-12 h-6 rounded-full transition-all duration-300 focus:outline-none ${
+              aria-label={themeLabel}
+              aria-pressed={isDark}
+              className={`relative w-12 h-6 rounded-full transition-all duration-300 ${
                 isDark ? "bg-[#1E3A5F]" : "bg-gray-200"
               }`}
-              title="Toggle theme"
+              title={themeLabel}
             >
               <span
+                aria-hidden="true"
                 className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full transition-all duration-300 flex items-center justify-center text-xs ${
                   isDark
-                    ? "translate-x-6 bg-[#00A8E8]"
+                    ? "translate-x-6 bg-brand"
                     : "translate-x-0 bg-white shadow"
                 }`}
               >
@@ -180,16 +212,20 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center gap-4">
             {/* Theme Toggle for Mobile */}
             <button
+              type="button"
               onClick={toggleTheme}
-              className={`relative w-12 h-6 rounded-full transition-all duration-300 focus:outline-none ${
+              aria-label={themeLabel}
+              aria-pressed={isDark}
+              className={`relative w-12 h-6 rounded-full transition-all duration-300 ${
                 isDark ? "bg-[#1E3A5F]" : "bg-gray-200"
               }`}
-              title="Toggle theme"
+              title={themeLabel}
             >
               <span
+                aria-hidden="true"
                 className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full transition-all duration-300 flex items-center justify-center text-xs ${
                   isDark
-                    ? "translate-x-6 bg-[#00A8E8]"
+                    ? "translate-x-6 bg-brand"
                     : "translate-x-0 bg-white shadow"
                 }`}
               >
@@ -198,10 +234,14 @@ const Navbar: React.FC = () => {
             </button>
 
             <button
+              type="button"
               onClick={toggleMenu}
-              className={`transition-all duration-300 focus:outline-none ${linkColor}`}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              className={`p-2 -mr-2 transition-all duration-300 ${linkColor}`}
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={28} aria-hidden="true" /> : <Menu size={28} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -220,6 +260,7 @@ const Navbar: React.FC = () => {
           />
           {/* Mobile menu */}
           <div
+            id="mobile-menu"
             className={`md:hidden absolute w-full shadow-2xl z-50 max-h-[calc(100vh-120px)] overflow-y-auto border-t transition-all duration-300 ${isDark ? "bg-[#0A1628] border-[#1E3A5F]" : "bg-white border-gray-200"}`}
           >
             <div className="px-4 pt-4 pb-6 space-y-1">
@@ -228,10 +269,10 @@ const Navbar: React.FC = () => {
                 onClick={toggleMenu}
                 className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === "/"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[color:var(--accent-text)]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[color:var(--accent-text)]"
                 }`}
               >
                 Home
@@ -241,10 +282,10 @@ const Navbar: React.FC = () => {
                 onClick={toggleMenu}
                 className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === "/about"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[color:var(--accent-text)]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[color:var(--accent-text)]"
                 }`}
               >
                 About Us
@@ -254,18 +295,21 @@ const Navbar: React.FC = () => {
                 className={`rounded-lg overflow-hidden ${isDark ? "bg-[#0F1D2F]" : "bg-gray-50"}`}
               >
                 <button
+                  type="button"
+                  aria-expanded={divisionOpen}
                   onClick={() => setDivisionOpen(!divisionOpen)}
                   className={`w-full flex justify-between items-center px-4 py-3.5 text-base font-medium transition-all duration-200 ${
                     location.pathname === "/act-ict" ||
                     location.pathname === "/act-global"
-                      ? "text-[#00A8E8]"
+                      ? "text-[color:var(--accent-text)]"
                       : isDark
-                        ? "text-white hover:text-[#006bb7]"
-                        : "text-gray-800 hover:text-[#006bb7]"
+                        ? "text-white hover:text-[color:var(--accent-text)]"
+                        : "text-gray-800 hover:text-[color:var(--accent-text)]"
                   }`}
                 >
                   <span>Division</span>
                   <ChevronDown
+                    aria-hidden="true"
                     size={18}
                     className={`transform transition-transform duration-300 ${divisionOpen ? "rotate-180" : ""}`}
                   />
@@ -279,13 +323,13 @@ const Navbar: React.FC = () => {
                       onClick={toggleMenu}
                       className={`flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all duration-200 ${
                         location.pathname === "/act-ict"
-                          ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                          ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                           : isDark
-                            ? "text-[#7A9ABD] hover:text-[#006bb7] hover:bg-[#1E3A5F]/40"
-                            : "text-gray-600 hover:text-[#006bb7] hover:bg-gray-100"
+                            ? "text-[#7A9ABD] hover:text-[color:var(--accent-text)] hover:bg-[#1E3A5F]/40"
+                            : "text-gray-600 hover:text-[color:var(--accent-text)] hover:bg-gray-100"
                       }`}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00A8E8] flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
                       ACT-ICT
                     </Link>
                     <Link
@@ -293,10 +337,10 @@ const Navbar: React.FC = () => {
                       onClick={toggleMenu}
                       className={`flex items-center gap-3 pl-8 pr-4 py-3 text-sm font-medium transition-all duration-200 ${
                         location.pathname === "/act-global"
-                          ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                          ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                           : isDark
-                            ? "text-[#7A9ABD] hover:text-[#006bb7] hover:bg-[#1E3A5F]/40"
-                            : "text-gray-600 hover:text-[#006bb7] hover:bg-gray-100"
+                            ? "text-[#7A9ABD] hover:text-[color:var(--accent-text)] hover:bg-[#1E3A5F]/40"
+                            : "text-gray-600 hover:text-[color:var(--accent-text)] hover:bg-gray-100"
                       }`}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] flex-shrink-0" />
@@ -311,10 +355,10 @@ const Navbar: React.FC = () => {
                 onClick={toggleMenu}
                 className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === "/solutions"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[color:var(--accent-text)]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[color:var(--accent-text)]"
                 }`}
               >
                 Solutions
@@ -326,10 +370,10 @@ const Navbar: React.FC = () => {
                 onClick={toggleMenu}
                 className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === "/mining"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[color:var(--accent-text)]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[color:var(--accent-text)]"
                 }`}
               >
                 Mining
@@ -340,10 +384,10 @@ const Navbar: React.FC = () => {
                 onClick={toggleMenu}
                 className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === "/projects"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[color:var(--accent-text)]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[color:var(--accent-text)]"
                 }`}
               >
                 Projects
@@ -353,10 +397,10 @@ const Navbar: React.FC = () => {
                 onClick={toggleMenu}
                 className={`flex items-center gap-3 px-4 py-3.5 rounded-lg text-base font-medium transition-all duration-200 ${
                   location.pathname === "/contact"
-                    ? "text-[#00A8E8] bg-[#00A8E8]/10"
+                    ? "text-[color:var(--accent-text)] bg-[#00A8E8]/10"
                     : isDark
-                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[#006bb7]"
-                      : "text-gray-800 hover:bg-gray-100 hover:text-[#006bb7]"
+                      ? "text-white hover:bg-[#1E3A5F]/60 hover:text-[color:var(--accent-text)]"
+                      : "text-gray-800 hover:bg-gray-100 hover:text-[color:var(--accent-text)]"
                 }`}
               >
                 Contact

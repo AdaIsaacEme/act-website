@@ -10,8 +10,8 @@ import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedWrapper from "../components/AnimatedWrapper";
 import AnimatedLink from "../components/AnimatedLink";
 import AnimatedButton from "../components/AnimatedButton";
-import { ArrowRight, ExternalLink, Zap } from "lucide-react";
-import * as LucideIcons from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import { getSolutionIcon } from "../components/solutionIcons";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -19,10 +19,7 @@ const Home: React.FC = () => {
   const featuredSolutions = solutions.slice(0, 4);
   const recentProjects = projects.slice(0, 3);
 
-  const getIcon = (iconName: string) => {
-    const IconComponent = (LucideIcons as any)[iconName];
-    return IconComponent ? <IconComponent size={32} /> : <Zap size={32} />;
-  };
+  const getIcon = (iconName: string) => getSolutionIcon(iconName, 32);
 
   const [expandedExpertise, setExpandedExpertise] = useState<string | null>(
     null,
@@ -46,7 +43,7 @@ const Home: React.FC = () => {
     {
       id: "eng",
       title: "Safety",
-      desc: "Intelligent safety solutions that protect people, assets and operations through advanced monitoring,real time detection.",
+      desc: "Intelligent safety solutions that protect people, assets and operations through advanced monitoring and real-time detection.",
       details:
         "Driver Fatigue monitoring, Collision Avoidance, Gas Detection, Environmental Monitoring, Cap lamps, Self-Rescuer, and workforce safety systems.",
     },
@@ -76,12 +73,15 @@ const Home: React.FC = () => {
             delay={0}
             duration={0.6}
             distance={40}
+            className="order-2 md:order-1"
           >
-            <div className="relative overflow-hidden order-2 md:order-1">
+            <div className="relative overflow-hidden h-full">
               <AnimatedWrapper hoverScale={1.06}>
                 <img
-                  src="/images/divisions/act-ict.jpg"
-                  alt="ACT-ICT"
+                  loading="lazy"
+                  decoding="async"
+                  src="/images/divisions/act-ict.webp"
+                  alt="ACT-ICT engineers at work"
                   className="w-full h-full object-cover will-change-transform"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
@@ -96,9 +96,10 @@ const Home: React.FC = () => {
             delay={0.12}
             duration={0.6}
             distance={40}
+            className="order-1 md:order-2"
           >
             <div
-              className="flex items-center px-6 sm:px-8 md:px-16 py-12 sm:py-16 md:py-20 order-1 md:order-2"
+              className="flex items-center px-6 sm:px-8 md:px-16 py-12 sm:py-16 md:py-20"
               style={{ backgroundColor: "var(--bg-primary)" }}
             >
               <div>
@@ -126,7 +127,7 @@ const Home: React.FC = () => {
                 </div>
                 <AnimatedLink
                   to="/act-ict"
-                  className="inline-flex items-center text-[#00A8E8] hover:text-[#0090CC] font-semibold transition-all duration-300"
+                  className="inline-flex items-center text-[color:var(--accent-text)] hover:opacity-80 font-semibold transition-all duration-300"
                 >
                   Explore <ArrowRight className="ml-2" size={18} />
                 </AnimatedLink>
@@ -161,13 +162,13 @@ const Home: React.FC = () => {
                   style={{ color: "var(--text-primary)" }}
                 >
                   <p>✓ Industrial LED Lights</p>
-                  <p>✓ Mine Safety Solutions Management</p>
+                  <p>✓ Mine Safety Systems</p>
                   <p>✓ Intrusion Detection</p>
                   <p>✓ Technology Supply Integration</p>
                 </div>
                 <AnimatedLink
                   to="/act-global"
-                  className="inline-flex items-center text-[#F59E0B] hover:text-amber-400 font-semibold transition-all duration-300"
+                  className="inline-flex items-center py-2 text-[color:var(--accent-warm-text)] hover:opacity-80 font-semibold transition-all duration-300"
                 >
                   Explore <ArrowRight className="ml-2" size={18} />
                 </AnimatedLink>
@@ -183,8 +184,10 @@ const Home: React.FC = () => {
             <div className="relative overflow-hidden">
               <AnimatedWrapper hoverScale={1.06}>
                 <img
-                  src="/images/divisions/act-global.jpg"
-                  alt="ACTGlobal"
+                  loading="lazy"
+                  decoding="async"
+                  src="/images/divisions/act-global.webp"
+                  alt="ACT Global industrial equipment"
                   className="w-full h-full object-cover will-change-transform"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
@@ -216,11 +219,11 @@ const Home: React.FC = () => {
                 >
                   Our Solutions
                 </h2>
-                <div className="w-20 h-1 bg-[#00A8E8] rounded-full"></div>
+                <div className="w-20 h-1 bg-brand rounded-full"></div>
               </div>
               <AnimatedLink
                 to="/solutions"
-                className="hidden md:flex items-center text-[#00A8E8] font-semibold hover:text-[#0090CC] transition-all duration-300"
+                className="hidden md:flex items-center text-[color:var(--accent-text)] font-semibold hover:opacity-80 transition-all duration-300"
               >
                 View All Solutions <ArrowRight className="ml-2" size={20} />
               </AnimatedLink>
@@ -238,13 +241,13 @@ const Home: React.FC = () => {
                 key={sol.id}
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                className="relative group p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border hover:border-[#00A8E8] will-change-transform flex flex-col h-full"
+                className="relative group p-8 rounded-xl shadow-sm hover:shadow-md hover:shadow-[#00A8E8]/20 transition-all duration-300 border hover:border-[color:var(--accent-text)] will-change-transform flex flex-col h-full"
                 style={{
                   backgroundColor: "var(--bg-surface)",
                   borderColor: "var(--border-color)",
                 }}
               >
-                <div className="w-14 h-14 bg-[#00A8E8]/10 rounded-lg flex items-center justify-center text-[#00A8E8] mb-6 group-hover:bg-[#00A8E8]/20 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
+                <div className="w-14 h-14 bg-[#00A8E8]/10 rounded-lg flex items-center justify-center text-[color:var(--accent-text)] mb-6 group-hover:bg-[#00A8E8]/20 transition-all duration-300 ring-1 ring-[#00A8E8]/30">
                   {getIcon(sol.iconName)}
                 </div>
                 <h3
@@ -261,7 +264,7 @@ const Home: React.FC = () => {
                 </p>
                 <AnimatedLink
                   to="/solutions"
-                  className="text-[#00A8E8] text-sm font-semibold flex items-center hover:text-[#0090CC] transition-all duration-300"
+                  className="text-[color:var(--accent-text)] text-sm font-semibold flex items-center py-2 hover:opacity-80 transition-all duration-300"
                 >
                   Learn more <ArrowRight className="ml-1" size={14} />
                 </AnimatedLink>
@@ -273,8 +276,8 @@ const Home: React.FC = () => {
           <ScrollReveal delay={0.3} slideDistance={20}>
             <div className="mt-8 text-center md:hidden">
               <AnimatedButton
-                onClick={() => (window.location.href = "/solutions")}
-                className="inline-flex items-center px-6 py-3 border text-[#00A8E8] font-semibold rounded-md transition-all duration-300 btn-lift"
+                onClick={() => navigate("/solutions")}
+                className="inline-flex items-center px-6 py-3 border text-[color:var(--accent-text)] font-semibold rounded-md transition-all duration-300 btn-lift"
                 style={{
                   backgroundColor: "var(--bg-surface)",
                   borderColor: "var(--border-color)",
@@ -291,7 +294,7 @@ const Home: React.FC = () => {
       {/* Expertise Section */}
       <section className="py-20 bg-[#060F1E] text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#1E3A5F] rounded-full opacity-30 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-[#00A8E8] rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-brand rounded-full opacity-20 blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal slideDistance={25}>
@@ -299,7 +302,7 @@ const Home: React.FC = () => {
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 Areas of Expertise
               </h2>
-              <p className="text-[#7A9ABD] max-w-2xl mx-auto">
+              <p className="text-[#9DB4CF] max-w-2xl mx-auto">
                 We combine technical knowledge with industry best practices to
                 deliver superior results.
               </p>
@@ -315,27 +318,37 @@ const Home: React.FC = () => {
             {expertiseItems.map((item) => (
               <div
                 key={item.id}
-                onClick={() =>
-                  setExpandedExpertise(
-                    expandedExpertise === item.id ? null : item.id,
-                  )
-                }
-                className={`cursor-pointer bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 transition-all duration-300 hover:border-[#00A8E8] hover:bg-[#0F2137]/80 flex flex-col h-full min-h-[200px] ${
+                className={`relative bg-[#0F2137] border border-[#1E3A5F] rounded-xl p-6 transition-all duration-300 hover:border-[color:var(--accent-text)] hover:bg-[#0F2137]/80 flex flex-col h-full min-h-[200px] ${
                   expandedExpertise === item.id ? "ring-2 ring-[#00A8E8]" : ""
                 }`}
               >
                 <h3 className="font-display text-xl font-bold mb-2 text-white">
-                  {item.title}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedExpertise(
+                        expandedExpertise === item.id ? null : item.id,
+                      )
+                    }
+                    aria-expanded={expandedExpertise === item.id}
+                    aria-controls={`expertise-${item.id}`}
+                    className="text-left after:absolute after:inset-0 after:content-['']"
+                  >
+                    {item.title}
+                  </button>
                 </h3>
-                <p className="text-[#7A9ABD] text-sm mb-4">{item.desc}</p>
+                <p className="text-[#9DB4CF] text-sm mb-4">{item.desc}</p>
 
                 {expandedExpertise === item.id && (
-                  <div className="mt-4 pt-4 border-t border-[#1E3A5F] animate-fade-in text-sm text-[#E8EFF8]">
+                  <div
+                    id={`expertise-${item.id}`}
+                    className="relative z-10 mt-4 pt-4 border-t border-[#1E3A5F] animate-fade-in text-sm text-[#E8EFF8]"
+                  >
                     {item.details}
                     <div className="mt-3">
                       <AnimatedLink
                         to="/solutions"
-                        className="text-[#00A8E8] hover:text-[#0090CC] text-xs uppercase font-bold tracking-wider transition-all duration-300"
+                        className="text-[#00A8E8] hover:opacity-80 text-xs uppercase font-bold tracking-wider transition-all duration-300"
                       >
                         See Services &rarr;
                       </AnimatedLink>
@@ -343,13 +356,13 @@ const Home: React.FC = () => {
                   </div>
                 )}
 
-                <div className="flex justify-end mt-auto">
+                <div className="flex justify-end mt-auto" aria-hidden="true">
                   <div
                     className={`p-1 rounded-full bg-[#1E3A5F] transition-transform duration-300 ${
                       expandedExpertise === item.id ? "rotate-90" : ""
                     }`}
                   >
-                    <ExternalLink size={16} />
+                    <ChevronRight size={16} />
                   </div>
                 </div>
               </div>
@@ -358,14 +371,14 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section
+      <section style={{ backgroundColor: "var(--bg-secondary)" }}>
+       <div
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
           padding: "clamp(48px, 8vw, 80px) 1rem",
-          backgroundColor: "var(--bg-secondary)",
         }}
-      >
+       >
         <ScrollReveal slideDistance={25}>
           <div className="flex justify-between items-center mb-12">
             <h2
@@ -376,7 +389,7 @@ const Home: React.FC = () => {
             </h2>
             <AnimatedButton
               onClick={() => navigate("/projects")}
-              className="hidden md:inline-flex px-6 py-2 border border-[#00A8E8] text-[#00A8E8] font-semibold rounded-full hover:bg-[#00A8E8] hover:text-white transition-all duration-300 btn-lift"
+              className="hidden md:inline-flex px-6 py-2 border border-[color:var(--accent-text)] text-[color:var(--accent-text)] font-semibold rounded-full hover:bg-brand hover:text-white transition-all duration-300 btn-lift"
               hoverScale={1.05}
             >
               View More Projects
@@ -395,11 +408,13 @@ const Home: React.FC = () => {
               key={project.id}
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 500, damping: 25 }}
-              className="group cursor-pointer will-change-transform"
+              className="group relative"
             >
               <div className="relative overflow-hidden rounded-xl mb-4 shadow-lg aspect-video will-change-transform">
                 <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
+                  loading="lazy"
+                  decoding="async"
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover will-change-transform"
@@ -409,15 +424,20 @@ const Home: React.FC = () => {
                   />
                 </AnimatedWrapper>
                 <div className="absolute inset-0 bg-gray-900/40" />
-                <div className="absolute top-4 left-4 bg-[#00A8E8] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <div className="absolute top-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                   {project.category}
                 </div>
               </div>
               <h3
-                className="font-display text-xl group-hover:text-[#00A8E8] transition-all duration-300"
+                className="font-display text-xl group-hover:text-[color:var(--accent-text)] transition-all duration-300"
                 style={{ color: "var(--text-heading)" }}
               >
-                {project.title}
+                <Link
+                  to="/projects"
+                  className="after:absolute after:inset-0 after:content-['']"
+                >
+                  {project.title}
+                </Link>
               </h3>
               <p
                 className="text-sm mt-2"
@@ -433,13 +453,14 @@ const Home: React.FC = () => {
           <div className="mt-8 text-center md:hidden">
             <AnimatedButton
               onClick={() => navigate("/projects")}
-              className="inline-block px-6 py-3 bg-[#00A8E8] text-white font-semibold rounded-md shadow-lg hover:bg-[#0090CC] transition-all duration-300 btn-lift"
+              className="inline-block px-6 py-3 bg-brand text-white font-semibold rounded-md shadow-lg hover:bg-brand-dark transition-all duration-300 btn-lift"
               hoverScale={1.08}
             >
               View All Projects
             </AnimatedButton>
           </div>
         </ScrollReveal>
+       </div>
       </section>
     </div>
   );
