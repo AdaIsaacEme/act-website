@@ -20,12 +20,12 @@ const PartnerCarousel: React.FC = () => {
 
         <div style={{ backgroundColor: "var(--bg-secondary)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)", paddingTop: "clamp(24px, 4vw, 48px)", paddingBottom: "clamp(24px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto", paddingLeft: "16px", paddingRight: "16px", marginBottom: "32px", textAlign: "center" }}>
-            <p style={{ color: "var(--text-secondary)", letterSpacing: "0.3em", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", margin: 0 }}>
+            <h2 style={{ color: "var(--text-secondary)", letterSpacing: "0.3em", fontSize: "12px", fontWeight: "700", textTransform: "uppercase", margin: 0, fontFamily: "'DM Sans', sans-serif" }}>
               Our Trusted Partners
-            </p>
+            </h2>
           </div>
 
-          <div style={{ width: "100%", overflow: "hidden", position: "relative" }}>
+          <div className="marquee" style={{ width: "100%", overflow: "hidden", position: "relative" }}>
             <div
               ref={trackRef}
               style={{
@@ -43,6 +43,7 @@ const PartnerCarousel: React.FC = () => {
               {displayPartners.map((partner, index) => (
                 <div
                   key={`partner-${partner.id}-${index}`}
+                  aria-hidden={index >= partners.length ? true : undefined}
                   style={{
                     flexShrink: 0,
                     width: "clamp(110px, 18vw, 180px)",
@@ -57,7 +58,7 @@ const PartnerCarousel: React.FC = () => {
                   <div
                     style={{
                       width: "100%",
-                      height: partner.logoUrl.includes("rt.png") ? "clamp(76px, 10vw, 116px)" : "clamp(56px, 10vw, 96px)",
+                      height: partner.logoUrl.includes("/rt.webp") ? "clamp(76px, 10vw, 116px)" : "clamp(56px, 10vw, 96px)",
                       backgroundColor: "var(--bg-surface)",
                       border: "1px solid var(--border-color)",
                       borderRadius: "8px",
@@ -78,8 +79,10 @@ const PartnerCarousel: React.FC = () => {
                   >
                     <img
                       src={partner.logoUrl}
-                      alt={partner.name}
-                      style={partner.logoUrl.includes("rt.png") ? {
+                      alt={index < partners.length ? partner.name : ""}
+                      loading="lazy"
+                      decoding="async"
+                      style={partner.logoUrl.includes("/rt.webp") ? {
                         width: "clamp(70px, 9vw, 100px)",
                         height: "auto",
                         objectFit: "contain",

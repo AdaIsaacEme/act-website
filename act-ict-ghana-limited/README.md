@@ -1,20 +1,42 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ACT-ICT Ghana Limited — website
 
-# Run and deploy your AI Studio app
+React 19 + Vite + Tailwind CSS (compiled at build time), deployed on Vercel.
+Every page is pre-rendered to real HTML at build time (`scripts/prerender.mjs`),
+then React takes over in the browser.
 
-This contains everything you need to run your app locally.
+## Commands
 
-View your app in AI Studio: https://ai.studio/apps/drive/1xUdb_Dqja4emMrzQuStygTz9zSy6lYwa
+| Command | What it does |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Local dev server on http://localhost:3000 |
+| `npm run build` | Type-check, build, pre-render every page into `dist/` |
+| `npm run preview` | Serve the built `dist/` locally |
+| `npm run images` | Convert any new JPG/PNG in `public/images` to resized WebP (strips GPS/camera data) |
 
-## Run Locally
+## Where things live
 
-**Prerequisites:**  Node.js
+- `context/ContentContext.tsx` — hero slides, contact details, projects, solutions/products, partners.
+- `pages/Projects.tsx` — the long project write-ups shown in the pop-up.
+- `seo.ts` — page titles and descriptions, and the site URL.
+- `vercel.json` — security headers, caching, clean URLs.
 
+## Adding images
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Drop the original JPG/PNG into the right folder under `public/images/`, run
+`npm run images`, then reference the `.webp` file in the code. Never commit
+photos straight from a camera or phone: they can contain GPS coordinates.
+
+## Settings in Vercel (Project → Settings → Environment Variables)
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_WEB3FORMS_KEY` | Contact form delivery. Free key from https://web3forms.com, registered to office@act-ict.com. Without it, the form opens the visitor's email app instead. |
+| `VITE_SITE_URL` | The live address, e.g. `https://www.act-ict.com` (used for canonical links, sitemap, share previews). Defaults to the vercel.app address. |
+
+## Accessibility
+
+Animations use Framer Motion with `MotionConfig reducedMotion="user"`, and CSS
+animations stop under `prefers-reduced-motion`. Text colours use
+`var(--accent-text)` so they pass contrast in both themes; buttons use `bg-brand`
+(#0077B6). Keep to these when adding new UI.

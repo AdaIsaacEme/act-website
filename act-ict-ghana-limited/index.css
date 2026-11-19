@@ -10,6 +10,9 @@
   --border-color:  #1E3A5F;
   --card-shadow:   0 4px 24px rgba(0,0,0,0.3);
   --logo-filter:   brightness(0) invert(1);
+  /* Accent for TEXT: bright cyan reads well on navy (6.6:1). */
+  --accent-text:   #00A8E8;
+  --accent-warm-text: #F59E0B;
 }
 
 [data-theme="light"] {
@@ -23,6 +26,9 @@
   --border-color:  #e2e8f0;
   --card-shadow:   0 4px 24px rgba(0,0,0,0.08);
   --logo-filter:   none;
+  /* On white, cyan fails contrast (2.6:1); this blue passes on white and light greys (≥4.7:1). */
+  --accent-text:   #0369A1;
+  --accent-warm-text: #B45309;
 }
 
 /* Auto-theme body text */
@@ -68,7 +74,7 @@ body {
 /* Scroll animation for partner carousel */
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-scroll {
@@ -110,8 +116,6 @@ html, body {
 }
 
 body {
-  background-color: #0A1628;
-  color: #E8EFF8;
   font-family: 'DM Sans', sans-serif;
   line-height: 1.6;
 }
@@ -458,3 +462,72 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: #00A8E8;
 }
+
+
+/* ============================================
+   Accessibility
+   ============================================ */
+
+/* Visible keyboard focus everywhere (mouse clicks don't show it). */
+:focus-visible {
+  outline: 3px solid var(--accent-text);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: #0077B6;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+.skip-link:focus { top: 1rem; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pause moving strips while hovered or focused. */
+.marquee:hover > *,
+.marquee:focus-within > * {
+  animation-play-state: paused !important;
+}
+
+/* Visitors who ask their device for less motion get a still site. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-scroll,
+  .marquee > * {
+    animation: none !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    white-space: normal;
+    justify-content: center;
+  }
+}
+
+/* Tailwind is compiled at build time (was loaded from a CDN). Kept last so it
+   layers on top of the rules above, exactly as the CDN version did. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

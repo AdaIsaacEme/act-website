@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import AnimatedButton from "../components/AnimatedButton";
-import * as LucideIcons from "lucide-react";
-import { Zap, ChevronDown, Info } from "lucide-react";
+import { ChevronDown, Info } from "lucide-react";
+import { getSolutionIcon } from "../components/solutionIcons";
 import { Link } from "react-router-dom";
 import { Solution, ProductGroup, Product } from "../types";
 
@@ -50,10 +50,7 @@ const Solutions: React.FC = () => {
     setExpandedGroups(newSet);
   };
 
-  const getIcon = (iconName: string) => {
-    const IconComponent = (LucideIcons as any)[iconName];
-    return IconComponent ? <IconComponent size={40} /> : <Zap size={40} />;
-  };
+  const getIcon = (iconName: string) => getSolutionIcon(iconName, 40);
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingBottom: '5rem' }} className="pt-28 sm:pt-32">
@@ -61,8 +58,9 @@ const Solutions: React.FC = () => {
       <ScrollReveal slideDistance={30}>
         <div className="relative overflow-hidden" style={{ paddingTop: '5rem', paddingBottom: '5rem', marginBottom: '4rem' }}>
           <img
-            src="/images/banners/solutions-banner.png"
-            alt="Our Solutions"
+            src="/images/banners/solutions-banner.webp"
+            alt=""
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
@@ -86,7 +84,7 @@ const Solutions: React.FC = () => {
                 onClick={() => handleCategoryChange(category)}
                 className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 btn-lift ${
                   activeCategory === category
-                    ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50"
+                    ? "bg-brand text-white shadow-lg shadow-[#00A8E8]/50"
                     : ""
                 }`}
                 style={activeCategory !== category ? { backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' } : undefined}
@@ -115,7 +113,10 @@ const Solutions: React.FC = () => {
               >
                 {/* Main Solution Card Header */}
                 <button
+                  type="button"
                   onClick={() => toggleSolutionExpanded(sol.id)}
+                  aria-expanded={isExpanded}
+                  aria-controls={`solution-panel-${sol.id}`}
                   className="w-full text-left group hover:bg-[#00A8E8]/5 transition-colors duration-300 p-5 sm:p-6 md:p-8 flex items-start justify-between gap-4"
                   style={{ borderBottom: isExpanded ? '1px solid var(--border-color)' : 'none' }}
                 >
@@ -123,7 +124,7 @@ const Solutions: React.FC = () => {
                     {/* Icon Circle with Glow */}
                     <div className="relative mb-6 w-fit">
                       <div className="absolute inset-0 bg-[#00A8E8]/20 rounded-full blur-xl group-hover:bg-[#00A8E8]/40 transition-all duration-300" />
-                      <div className="relative w-16 h-16 bg-[#00A8E8]/10 rounded-full flex items-center justify-center text-[#00A8E8] ring-1 ring-[#00A8E8]/30 group-hover:ring-[#00A8E8]/50 transition-all duration-300">
+                      <div className="relative w-16 h-16 bg-[#00A8E8]/10 rounded-full flex items-center justify-center text-[color:var(--accent-text)] ring-1 ring-[#00A8E8]/30 group-hover:ring-[#00A8E8]/50 transition-all duration-300">
                         {getIcon(sol.iconName)}
                       </div>
                     </div>
@@ -131,15 +132,15 @@ const Solutions: React.FC = () => {
                     {/* Category Badge */}
                     {sol.category && (
                       <div className="inline-block mb-3">
-                        <span className="text-xs font-bold text-[#00A8E8] tracking-wider uppercase bg-[#00A8E8]/10 px-3 py-1 rounded-full">
+                        <span className="text-xs font-bold text-[color:var(--accent-text)] tracking-wider uppercase bg-[#00A8E8]/10 px-3 py-1 rounded-full">
                           {sol.category}
                         </span>
                       </div>
                     )}
 
-                    <h3 className="font-display text-xl sm:text-2xl font-black mb-3" style={{ color: 'var(--text-heading)' }}>
+                    <h2 className="font-display text-xl sm:text-2xl font-black mb-3" style={{ color: 'var(--text-heading)' }}>
                       {sol.title}
-                    </h3>
+                    </h2>
                     {sol.description && (
                       <p className="leading-relaxed text-sm" style={{ color: 'var(--text-secondary)' }}>
                         {sol.description}
@@ -154,7 +155,7 @@ const Solutions: React.FC = () => {
                       transition={{ duration: 0.3 }}
                       className="flex-shrink-0 mt-4"
                     >
-                      <ChevronDown size={24} style={{ color: '#00A8E8' }} />
+                      <ChevronDown size={24} aria-hidden="true" style={{ color: 'var(--accent-text)' }} />
                     </motion.div>
                   )}
                 </button>
@@ -168,6 +169,7 @@ const Solutions: React.FC = () => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
+                      id={`solution-panel-${sol.id}`}
                     >
                       <div className="px-5 sm:px-6 md:px-8 py-4 space-y-3">
                         {sol.productGroups!.map((group) => {
@@ -227,18 +229,20 @@ const ProductGroupAccordion: React.FC<ProductGroupAccordionProps> = ({
     >
       {/* Group Header */}
       <button
+        type="button"
         onClick={onToggle}
+        aria-expanded={isExpanded}
         className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-[#00A8E8]/5 transition-colors duration-300 group/header"
       >
-        <h4 className="font-semibold text-sm tracking-wider uppercase" style={{ color: 'var(--text-heading)' }}>
+        <h3 className="font-semibold text-sm tracking-wider uppercase" style={{ color: 'var(--text-heading)' }}>
           {group.title}
-        </h4>
+        </h3>
         <motion.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
           transition={{ duration: 0.2 }}
           className="flex-shrink-0"
         >
-          <ChevronDown size={18} style={{ color: '#00A8E8' }} />
+          <ChevronDown size={18} aria-hidden="true" style={{ color: 'var(--accent-text)' }} />
         </motion.div>
       </button>
 
@@ -279,6 +283,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {product.image && (
         <div className="flex-shrink-0 w-24 h-24 rounded-md overflow-hidden">
           <img
+            loading="lazy"
+            decoding="async"
             src={product.image}
             alt={product.title}
             className="w-full h-full object-cover"
@@ -292,14 +298,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2 mb-2">
-          <h5 className="font-semibold text-sm" style={{ color: 'var(--text-heading)' }}>
+          <h4 className="font-semibold text-sm" style={{ color: 'var(--text-heading)' }}>
             {product.title}
-          </h5>
+          </h4>
           <Link
             to="/contact"
-            aria-label="More info — contact us"
-            title="More info"
-            className="w-6 h-6 rounded-full flex items-center justify-center border border-[#00A8E8] text-[#00A8E8] hover:bg-[#00A8E8]/10 transition-colors duration-200 flex-shrink-0"
+            aria-label={`Ask about ${product.title}`}
+            title="Ask us about this product"
+            className="w-8 h-8 rounded-full flex items-center justify-center border border-[color:var(--accent-text)] text-[color:var(--accent-text)] hover:bg-[#00A8E8]/10 transition-colors duration-200 flex-shrink-0"
           >
             <Info size={14} />
           </Link>
@@ -314,7 +320,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 className="text-xs flex items-start gap-2"
                 style={{ color: 'var(--text-secondary)' }}
               >
-                <span className="text-[#00A8E8] font-bold mt-0.5">•</span>
+                <span className="text-[color:var(--accent-text)] font-bold mt-0.5">•</span>
                 <span className="leading-tight">{spec.text}</span>
               </li>
             ))}

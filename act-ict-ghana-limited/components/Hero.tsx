@@ -1,53 +1,47 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useContent } from "../context/ContentContext";
 import AnimatedButton from "./AnimatedButton";
 
+const SLIDE_MS = 6000;
+
+const srcSetFor = (src: string) =>
+  `${src.replace(/\.webp$/, "-960.webp")} 960w, ${src} 1920w`;
+
 const Hero: React.FC = () => {
   const { content } = useContent();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [imagesReady, setImagesReady] = useState(false);
   const slides = content.hero.slides;
-  const preloadedRef = useRef<Set<string>>(new Set());
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [paused, setPaused] = useState(false); // set by the pause button
+  const [hovered, setHovered] = useState(false); // pointer or keyboard focus inside
+  // Only slides that have been (or are about to be) shown get an <img>, so a visitor
+  // who never waits for slide 4 never downloads it.
+  const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0]));
+  const reduceMotion = useReducedMotion();
+  const navigate = useNavigate();
 
-  // Preload all hero images on mount
-  useEffect(() => {
-    let loaded = 0;
-    const total = slides.length;
-    slides.forEach((slide) => {
-      if (preloadedRef.current.has(slide.image)) {
-        loaded++;
-        if (loaded >= total) setImagesReady(true);
-        return;
-      }
-      const img = new Image();
-      img.src = slide.image;
-      img.onload = () => {
-        preloadedRef.current.add(slide.image);
-        loaded++;
-        if (loaded >= total) setImagesReady(true);
-      };
-      img.onerror = () => {
-        loaded++;
-        if (loaded >= total) setImagesReady(true);
-      };
-    });
-  }, [slides]);
+  const autoplay = !paused && !hovered && !reduceMotion;
 
   useEffect(() => {
-    if (!imagesReady) return;
+    // Warm up the next slide shortly before it is needed.
+    const next = (currentSlide + 1) % slides.length;
+    setLoaded((prev) => (prev.has(currentSlide) && prev.has(next) ? prev : new Set([...prev, currentSlide, next])));
+  }, [currentSlide, slides.length]);
+
+  useEffect(() => {
+    if (!autoplay) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, SLIDE_MS);
     return () => clearInterval(timer);
-  }, [slides.length, imagesReady]);
+  }, [slides.length, autoplay]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () =>
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  const navigate = useNavigate();
+
   const slideLinks: Record<string, { primary: string; secondary: string }> = {
     "1": { primary: "/solutions", secondary: "/projects" },
     "2": { primary: "/about", secondary: "/contact" },
@@ -58,146 +52,133 @@ const Hero: React.FC = () => {
   const stats = [
     { number: "25+", label: "Engineers" },
     { number: "10", label: "Service Vans" },
-    { number: "15+", label: "Years of Experience" },
+    { number: "2011", label: "Established" },
     { number: "8", label: "Industry Awards" },
   ];
 
+  const slide = slides[currentSlide];
+
   return (
-    <div
+    <section
+      aria-roledescription="carousel"
+      aria-label="Highlights"
       className="relative w-full overflow-hidden overflow-x-hidden bg-[#0A1628] text-white"
       style={{ minHeight: "100svh" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setHovered(false);
+      }}
     >
-      {/* Preloaded background images — all always in DOM for instant transitions */}
-      {slides.map((slide, index) => (
-        <div
-          key={`bg-${slide.id}`}
-          className="absolute inset-0 overflow-hidden transition-opacity duration-1000 ease-in-out"
-          style={{ opacity: index === currentSlide ? 1 : 0 }}
-        >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className={`absolute inset-0 w-full h-full object-cover ${index === currentSlide ? `kenburns-${index % 2 === 0 ? "a" : "b"}` : ""}`}
-            style={{ willChange: "transform" }}
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/70 to-[#0A1628]/30" />
-        </div>
-      ))}
+      {/* Background images */}
+      {slides.map((s, index) =>
+        loaded.has(index) ? (
+          <div
+            key={`bg-${s.id}`}
+            className="absolute inset-0 overflow-hidden transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: index === currentSlide ? 1 : 0 }}
+            aria-hidden={index !== currentSlide}
+          >
+            <img
+              src={s.image}
+              srcSet={srcSetFor(s.image)}
+              sizes="100vw"
+              alt=""
+              className={`absolute inset-0 w-full h-full object-cover ${
+                index === currentSlide ? `kenburns-${index % 2 === 0 ? "a" : "b"}` : ""
+              }`}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/70 to-[#0A1628]/30" />
+          </div>
+        ) : null,
+      )}
 
       {/* Animated text content */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={slides[currentSlide].id}
+          key={slide.id}
           className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
+          aria-live={autoplay ? "off" : "polite"}
         >
-          {/* Content — uses flex-col justify-center and targeted breakpoints for spacing */}
-          <div className="relative w-full h-full flex flex-col justify-center pt-32 pb-20 lg:pt-40 lg:pb-24 2xl:pt-64 2xl:pb-32">
+          <div className="relative w-full h-full flex flex-col justify-center pt-32 pb-24 lg:pt-40 lg:pb-28 2xl:pt-64 2xl:pb-32">
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-2xl lg:max-w-3xl">
-                <motion.h2
-                  key={`${slides[currentSlide].id}-title`}
+                <motion.h1
                   initial={{ opacity: 0, y: 60 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.7,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: 0.15,
-                  }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                   className="font-display leading-[0.9] tracking-tight text-white drop-shadow-2xl mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
                 >
-                  {slides[currentSlide].title}
-                </motion.h2>
+                  {slide.title}
+                </motion.h1>
 
                 <motion.p
-                  key={`${slides[currentSlide].id}-sub`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: 0.3,
-                  }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
                   className="text-base sm:text-lg md:text-xl text-[#E8EFF8]/90 font-light max-w-xl mb-6"
                 >
-                  {slides[currentSlide].subtitle}
+                  {slide.subtitle}
                 </motion.p>
 
-                <motion.div
-                  key={`${slides[currentSlide].id}-stats`}
+                <motion.ul
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.55,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: 0.45,
-                  }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
                   className="flex flex-wrap gap-4 sm:gap-6 mb-6 text-xs sm:text-sm md:text-base"
                 >
                   {stats.map((stat, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
+                    <li key={stat.label} className="flex items-center gap-2">
                       <span className="text-[#F59E0B] font-black text-lg sm:text-xl md:text-2xl">
                         {stat.number}
                       </span>
-                      <span className="text-white/80">{stat.label}</span>
+                      <span className="text-white/85">{stat.label}</span>
                       {idx < stats.length - 1 && (
-                        <span className="hidden sm:inline text-[#7A9ABD]">
+                        <span className="hidden sm:inline text-[#7A9ABD]" aria-hidden="true">
                           |
                         </span>
                       )}
-                    </div>
+                    </li>
                   ))}
-                </motion.div>
+                </motion.ul>
 
                 <motion.div
-                  key={`${slides[currentSlide].id}-cta`}
                   initial={{ opacity: 0, y: 20, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{
-                    duration: 0.55,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: 0.6,
-                  }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
                   className="flex flex-col sm:flex-row gap-3"
                 >
                   <AnimatedButton
                     onClick={() => {
-                      if (slides[currentSlide].id === "2") {
-                        navigate("/");
-                        setTimeout(() => {
-                          document.getElementById("partners")?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                        }, 100);
+                      if (slide.id === "2") {
+                        document.getElementById("partners")?.scrollIntoView({
+                          behavior: reduceMotion ? "auto" : "smooth",
+                          block: "start",
+                        });
                       } else {
-                        navigate(
-                          slideLinks[slides[currentSlide].id]?.primary ??
-                            "/solutions",
-                        );
+                        navigate(slideLinks[slide.id]?.primary ?? "/solutions");
                       }
                     }}
-                    className="inline-flex justify-center items-center px-6 sm:px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
+                    className="inline-flex justify-center items-center px-6 sm:px-8 py-3 bg-brand hover:bg-brand-dark text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
                     hoverScale={1.04}
                   >
-                    {slides[currentSlide].ctaPrimary}{" "}
-                    <ArrowRight className="ml-2 flex-shrink-0" size={16} />
+                    {slide.ctaPrimary}{" "}
+                    <ArrowRight className="ml-2 flex-shrink-0" size={16} aria-hidden="true" />
                   </AnimatedButton>
                   <AnimatedButton
-                    onClick={() =>
-                      navigate(
-                        slideLinks[slides[currentSlide].id]?.secondary ??
-                          "/projects",
-                      )
-                    }
-                    className="inline-flex justify-center items-center px-6 sm:px-8 py-3 border border-white/40 hover:border-[#00A8E8] text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
+                    onClick={() => navigate(slideLinks[slide.id]?.secondary ?? "/projects")}
+                    className="inline-flex justify-center items-center px-6 sm:px-8 py-3 border border-white/60 hover:border-white text-white font-semibold rounded-lg text-sm sm:text-base transition-colors duration-200"
                     hoverScale={1.03}
                   >
-                    {slides[currentSlide].ctaSecondary}
+                    {slide.ctaSecondary}
                   </AnimatedButton>
                 </motion.div>
               </div>
@@ -206,39 +187,50 @@ const Hero: React.FC = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Slide indicators — responsive positioning */}
-      <div className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        {slides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentSlide(idx)}
-            className={`rounded-full transition-all duration-300 ${
-              idx === currentSlide
-                ? "bg-[#00A8E8] w-6 h-2.5"
-                : "bg-white/30 w-2.5 h-2.5"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Nav arrows — hidden on mobile */}
-      <div className="absolute z-20 bottom-6 right-4 sm:right-10 hidden sm:flex gap-2">
-        <AnimatedButton
+      {/* Controls — bottom-left, clear of the WhatsApp button (bottom-right). */}
+      <div className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2 sm:left-10 sm:translate-x-0 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          className="p-2 rounded-full bg-white/10 hover:bg-white/25 text-white mr-1"
+        >
+          {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+        </button>
+        <button
+          type="button"
           onClick={prevSlide}
-          className="p-2 rounded-full bg-white/10 hover:bg-[#00A8E8]/40 text-white"
-          hoverScale={1.1}
+          aria-label="Previous slide"
+          className="hidden sm:inline-flex p-2 rounded-full bg-white/10 hover:bg-white/25 text-white"
         >
-          <ChevronLeft size={20} />
-        </AnimatedButton>
-        <AnimatedButton
+          <ChevronLeft size={18} aria-hidden="true" />
+        </button>
+        {slides.map((s, idx) => (
+          <button
+            key={s.id}
+            type="button"
+            onClick={() => setCurrentSlide(idx)}
+            aria-label={`Go to slide ${idx + 1}: ${s.title}`}
+            aria-current={idx === currentSlide ? "true" : undefined}
+            className="p-2 -m-1 group"
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                idx === currentSlide ? "bg-[#00A8E8] w-6 h-2.5" : "bg-white/50 group-hover:bg-white/80 w-2.5 h-2.5"
+              }`}
+            />
+          </button>
+        ))}
+        <button
+          type="button"
           onClick={nextSlide}
-          className="p-2 rounded-full bg-white/10 hover:bg-[#00A8E8]/40 text-white"
-          hoverScale={1.1}
+          aria-label="Next slide"
+          className="hidden sm:inline-flex p-2 rounded-full bg-white/10 hover:bg-white/25 text-white"
         >
-          <ChevronRight size={20} />
-        </AnimatedButton>
+          <ChevronRight size={18} aria-hidden="true" />
+        </button>
       </div>
-    </div>
+    </section>
   );
 };
 

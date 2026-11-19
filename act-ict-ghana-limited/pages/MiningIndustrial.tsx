@@ -1,41 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "../components/ScrollReveal";
-import StaggeredGrid from "../components/StaggeredGrid";
-import AnimatedLink from "../components/AnimatedLink";
-import { useTheme } from "../context/ThemeContext";
 
-const SURFACE_IMG = "/images/mining/surface-mining.jpg";
-const UNDERGROUND_IMG = "/images/mining/underground-mining.jpg";
-
-// ─── Mining client logos — ACTUAL filenames on disk ───────────────────────
-const MINING_CLIENTS = [
-  {
-    name: "Newmont Ghana",
-    logo: "/images/logo/newmount-logo.png",
-    projects: "SkyStar™ Aerostat, Radio Networks",
-  },
-  {
-    name: "AngloGold Ashanti",
-    logo: "/images/logo/aga.png",
-    projects: "Leaky Feeder, Underground CCTV",
-  },
-  {
-    name: "Asanko Gold",
-    logo: "/images/logo/asanko-logo.png",
-    projects: "CCTV, Network Infrastructure",
-  },
-  {
-    name: "Golden Star Resources",
-    logo: "/images/logo/gsr-logo.png",
-    projects: "CCTV — Prestea & Wassa",
-  },
-  {
-    name: "Perseus Mining",
-    logo: "/images/logo/perseus-logo.png",
-    projects: "Perimeter Intrusion Detection",
-  },
-];
+const SURFACE_IMG = "/images/mining/surface-mining.webp";
+const UNDERGROUND_IMG = "/images/mining/underground-mining.webp";
 
 const SURFACE_SOLUTIONS = [
   "Digital Radio",
@@ -60,7 +28,11 @@ const UNDERGROUND_SOLUTIONS = [
 ];
 
 // ─── Reusable image component with React-based fallback ─────────────────────
-const MiningImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+const MiningImage: React.FC<{ src: string; alt: string; eager?: boolean }> = ({
+  src,
+  alt,
+  eager = false,
+}) => {
   const [failed, setFailed] = React.useState(false);
 
   if (failed) {
@@ -87,67 +59,17 @@ const MiningImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
     <img
       src={src}
       alt={alt}
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : "auto"}
+      decoding="async"
       style={{ objectFit: "cover", width: "100%", height: "100%" }}
       onError={() => setFailed(true)}
     />
   );
 };
 
-// ─── Client logo with React-based text fallback ────────────────────────────
-const ClientLogo: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
-  const [failed, setFailed] = React.useState(false);
-
-  return (
-    <div
-      style={{
-        height: "64px",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: "12px",
-      }}
-    >
-      {failed ? (
-        <span
-          style={{
-            color: "#7A9ABD",
-            fontWeight: "700",
-            fontSize: "13px",
-            textAlign: "center",
-            lineHeight: "1.3",
-            padding: "8px",
-          }}
-        >
-          {alt}
-        </span>
-      ) : (
-        <img
-          src={src}
-          alt={alt}
-          onError={() => setFailed(true)}
-          style={{
-            maxHeight: "56px",
-            maxWidth: "140px",
-            objectFit: "contain",
-            transition: "opacity 0.3s",
-            opacity: 0.85,
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLImageElement).style.opacity = "1";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLImageElement).style.opacity = "0.85";
-          }}
-        />
-      )}
-    </div>
-  );
-};
-
 // ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 const MiningIndustrial: React.FC = () => {
-  const { isDark } = useTheme();
 
   return (
     <div
@@ -163,7 +85,7 @@ const MiningIndustrial: React.FC = () => {
           overflow: "hidden",
         }}
       >
-        <MiningImage src={SURFACE_IMG} alt="Mining Operations" />
+        <MiningImage src={SURFACE_IMG} alt="" eager />
         {/* Dark overlay */}
         <div
           style={{
@@ -196,11 +118,11 @@ const MiningIndustrial: React.FC = () => {
                 margin: "0 0 24px 0",
               }}
             >
-              MINING
+              Mining
             </h1>
             <p
               style={{
-                color: "#7A9ABD",
+                color: "#C9D6E6",
                 fontSize: "18px",
                 maxWidth: "540px",
                 lineHeight: "1.6",
@@ -215,7 +137,7 @@ const MiningIndustrial: React.FC = () => {
               to="/contact"
               style={{
                 display: "inline-block",
-                backgroundColor: "#00A8E8",
+                backgroundColor: "#0077B6",
                 color: "white",
                 fontWeight: "700",
                 padding: "14px 32px",
@@ -223,10 +145,10 @@ const MiningIndustrial: React.FC = () => {
                 transition: "background-color 0.3s",
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = "#0090CC")
+                (e.currentTarget.style.backgroundColor = "#005F92")
               }
               onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "#00A8E8")
+                (e.currentTarget.style.backgroundColor = "#0077B6")
               }
             >
               Get a Mining Solutions Assessment →
@@ -245,7 +167,7 @@ const MiningIndustrial: React.FC = () => {
             <div>
               <p
                 style={{
-                  color: "#00A8E8",
+                  color: "var(--accent-text)",
                   fontSize: "11px",
                   fontWeight: "700",
                   letterSpacing: "0.3em",
@@ -292,7 +214,7 @@ const MiningIndustrial: React.FC = () => {
                   >
                     <span
                       style={{
-                        color: "#00A8E8",
+                        color: "var(--accent-text)",
                         marginRight: "12px",
                         fontSize: "18px",
                         flexShrink: 0,
@@ -350,7 +272,7 @@ const MiningIndustrial: React.FC = () => {
               <div className="md:order-2">
                 <p
                   style={{
-                    color: "#00A8E8",
+                    color: "var(--accent-text)",
                     fontSize: "11px",
                     fontWeight: "700",
                     letterSpacing: "0.3em",
@@ -397,7 +319,7 @@ const MiningIndustrial: React.FC = () => {
                     >
                       <span
                         style={{
-                          color: "#00A8E8",
+                          color: "var(--accent-text)",
                           marginRight: "12px",
                           fontSize: "18px",
                           flexShrink: 0,
@@ -418,7 +340,7 @@ const MiningIndustrial: React.FC = () => {
       {/* ── CTA ── */}
       <section
         style={{
-          backgroundColor: "#00A8E8",
+          backgroundColor: "#0077B6",
           padding: "80px 2rem",
           textAlign: "center",
         }}
@@ -436,7 +358,7 @@ const MiningIndustrial: React.FC = () => {
         </h2>
         <p
           style={{
-            color: "rgba(255,255,255,0.85)",
+            color: "#ffffff",
             fontSize: "18px",
             marginBottom: "32px",
           }}
@@ -449,7 +371,7 @@ const MiningIndustrial: React.FC = () => {
           style={{
             display: "inline-block",
             backgroundColor: "white",
-            color: "#00A8E8",
+            color: "#0077B6",
             fontWeight: "700",
             padding: "16px 40px",
             textDecoration: "none",

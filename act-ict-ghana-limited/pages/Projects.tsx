@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
@@ -112,7 +112,7 @@ const projectModalData: Record<string, ProjectModalData> = {
     ],
   },
   "12": {
-    heading: "Intelligent  CCTV Solutions",
+    heading: "Intelligent CCTV Solutions",
     intro:
       "ACT ICT delivers end-to-end CCTV systems tailored for mining operations, businesses, government institutions, schools, hospitals, and residential developments, ensuring reliable monitoring in every environment.",
     solutionsTitle: "Key Solutions Provided",
@@ -134,10 +134,29 @@ const Projects: React.FC = () => {
   const activeModal = selectedProjectId
     ? projectModalData[selectedProjectId]
     : null;
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openProject = (id: string, trigger: HTMLElement) => {
+    lastTriggerRef.current = trigger;
+    setSelectedProjectId(id);
+  };
+  const closeProject = () => {
+    setSelectedProjectId(null);
+    lastTriggerRef.current?.focus();
+  };
+
+  // Move focus into the dialog when it opens.
+  useEffect(() => {
+    if (selectedProjectId) closeRef.current?.focus();
+  }, [selectedProjectId]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedProjectId(null);
+      if (e.key === "Escape") {
+        setSelectedProjectId(null);
+        lastTriggerRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -159,10 +178,11 @@ const Projects: React.FC = () => {
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   const categoryColors: { [key: string]: string } = {
-    Infrastructure: "#00A8E8",
-    Communications: "#F59E0B",
-    Security: "#EF4444",
-    Engineering: "#10B981",
+    // Darker tones so white badge text stays readable (WCAG AA).
+    Infrastructure: "#0077B6",
+    Communications: "#B45309",
+    Security: "#B91C1C",
+    Engineering: "#047857",
   };
 
   return (
@@ -185,8 +205,9 @@ const Projects: React.FC = () => {
           }}
         >
           <img
-            src="/images/projects/projects-banner.png"
-            alt="Our Projects"
+            src="/images/projects/projects-banner.webp"
+            alt=""
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
@@ -195,7 +216,7 @@ const Projects: React.FC = () => {
               Our Projects
             </h1>
             <p className="text-lg text-white/80">
-              Showcasing excellence in execution across Ghana and West Africa.
+              Showcasing excellence in execution across Ghana and Africa.
             </p>
           </div>
         </div>
@@ -211,7 +232,7 @@ const Projects: React.FC = () => {
                 onClick={() => setFilter(cat)}
                 className={`text-xs sm:text-sm px-4 sm:px-6 py-2 rounded-full font-semibold transition-all duration-300 btn-lift ${
                   filter === cat
-                    ? "bg-[#00A8E8] text-white shadow-lg shadow-[#00A8E8]/50 scale-105"
+                    ? "bg-brand text-white shadow-lg shadow-[#00A8E8]/50 scale-105"
                     : ""
                 }`}
                 style={
@@ -243,8 +264,7 @@ const Projects: React.FC = () => {
               key={project.id}
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 500, damping: 25 }}
-              onClick={() => setSelectedProjectId(project.id)}
-              className="group rounded-xl overflow-hidden hover:border-[#00A8E8] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full will-change-transform cursor-pointer"
+              className="group relative rounded-xl overflow-hidden hover:border-[color:var(--accent-text)] transition-all duration-300 hover:shadow-lg hover:shadow-[#00A8E8]/20 flex flex-col h-full will-change-transform cursor-pointer"
               style={{
                 backgroundColor: "var(--bg-surface)",
                 borderColor: "var(--border-color)",
@@ -254,6 +274,8 @@ const Projects: React.FC = () => {
               <div className="relative aspect-[4/3] overflow-hidden bg-[#060F1E] will-change-transform grid">
                 <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover will-change-transform"
@@ -269,7 +291,7 @@ const Projects: React.FC = () => {
                   className="absolute top-4 left-4 px-4 py-2 rounded-full text-white text-xs font-bold uppercase tracking-wider"
                   style={{
                     backgroundColor:
-                      categoryColors[project.category] || "#00A8E8",
+                      categoryColors[project.category] || "#0077B6",
                   }}
                 >
                   {project.category}
@@ -278,20 +300,28 @@ const Projects: React.FC = () => {
 
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col">
-                <h3
-                  className="font-display text-xl font-black mb-2 group-hover:text-[#00A8E8] transition-all duration-300"
+                <h2
+                  className="font-display text-xl font-black mb-2 group-hover:text-[color:var(--accent-text)] transition-all duration-300"
                   style={{ color: "var(--text-heading)" }}
                 >
-                  {project.title}
-                </h3>
+                  <button
+                    type="button"
+                    onClick={(e) => openProject(project.id, e.currentTarget)}
+                    aria-haspopup="dialog"
+                    className="text-left after:absolute after:inset-0 after:content-[''] after:z-10"
+                  >
+                    {project.title}
+                  </button>
+                </h2>
                 <p
                   className="text-sm flex-1"
                   style={{ color: "var(--text-secondary)" }}
                 >
                   {project.description}
                 </p>
-                <span className="mt-4 text-[#00A8E8] text-sm font-semibold flex items-center self-start group-hover:text-[#0090CC] transition-colors duration-200">
-                  View project details <ArrowRight className="ml-1" size={14} />
+                <span className="mt-4 text-[color:var(--accent-text)] text-sm font-semibold flex items-center self-start group-hover:opacity-80 transition-colors duration-200">
+                  View project details{" "}
+                  <ArrowRight className="ml-1" size={14} aria-hidden="true" />
                 </span>
               </div>
 
@@ -310,23 +340,23 @@ const Projects: React.FC = () => {
               borderColor: "var(--border-color)",
             }}
           >
-            <h3
+            <h2
               className="font-display text-3xl mb-4"
               style={{ color: "var(--text-heading)" }}
             >
               More Projects on Request
-            </h3>
+            </h2>
             <p
               className="mb-6 max-w-2xl mx-auto"
               style={{ color: "var(--text-secondary)" }}
             >
-              We have completed 100+ projects across Ghana and West Africa.
+              We have completed 100+ projects across Ghana and Africa.
               Contact us for a full portfolio of our engineering excellence and
               proven track record.
             </p>
             <AnimatedButton
               onClick={() => navigate("/contact")}
-              className="inline-flex justify-center items-center px-8 py-3 bg-[#00A8E8] hover:bg-[#0090CC] text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
+              className="inline-flex justify-center items-center px-8 py-3 bg-brand hover:bg-brand-dark text-white font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#00A8E8]/50 btn-lift"
               hoverScale={1.04}
             >
               Get in Touch{" "}
@@ -347,7 +377,7 @@ const Projects: React.FC = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
-              onClick={() => setSelectedProjectId(null)}
+              onClick={closeProject}
             />
             <motion.div
               key="panel"
@@ -358,6 +388,9 @@ const Projects: React.FC = () => {
               className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none"
             >
               <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="project-dialog-title"
                 className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-2xl p-6 sm:p-8 pointer-events-auto shadow-2xl border"
                 style={{
                   backgroundColor: "var(--bg-surface)",
@@ -367,15 +400,18 @@ const Projects: React.FC = () => {
               >
                 {/* Close button */}
                 <button
-                  onClick={() => setSelectedProjectId(null)}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#00A8E8]/10 text-[#00A8E8] hover:bg-[#00A8E8]/20 transition-colors duration-200"
-                  aria-label="Close"
+                  ref={closeRef}
+                  type="button"
+                  onClick={closeProject}
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#00A8E8]/10 text-[color:var(--accent-text)] hover:bg-[#00A8E8]/20 transition-colors duration-200"
+                  aria-label="Close project details"
                 >
                   <X size={16} />
                 </button>
 
                 {/* Heading */}
                 <h2
+                  id="project-dialog-title"
                   className="font-display text-xl sm:text-2xl font-black mb-4 pr-10 leading-snug"
                   style={{ color: "var(--text-heading)" }}
                 >
@@ -383,7 +419,7 @@ const Projects: React.FC = () => {
                 </h2>
 
                 {/* Accent line */}
-                <div className="w-16 h-1 bg-[#00A8E8] rounded-full mb-6" />
+                <div className="w-16 h-1 bg-brand rounded-full mb-6" />
 
                 {/* Intro */}
                 <p
@@ -394,7 +430,7 @@ const Projects: React.FC = () => {
                 </p>
 
                 {/* Solutions list */}
-                <p className="text-xs font-bold uppercase tracking-widest mb-4 text-[#00A8E8]">
+                <p className="text-xs font-bold uppercase tracking-widest mb-4 text-[color:var(--accent-text)]">
                   {activeModal.solutionsTitle}:
                 </p>
                 <ul className="space-y-3">
@@ -404,7 +440,7 @@ const Projects: React.FC = () => {
                       className="flex items-start gap-3 text-sm leading-relaxed"
                       style={{ color: "var(--text-secondary)" }}
                     >
-                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#00A8E8] flex-shrink-0" />
+                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
                       {item}
                     </li>
                   ))}

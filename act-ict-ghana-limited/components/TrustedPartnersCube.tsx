@@ -19,6 +19,8 @@ const TrustedPartnersCube: React.FC = () => {
           <img
             src={partner.logoUrl}
             alt={partner.name}
+            loading="lazy"
+            decoding="async"
             style={{
               maxHeight: '100%',
               maxWidth: '80px',

@@ -22,21 +22,8 @@ const DEFAULT_MESSAGE =
 const WhatsAppFloat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [timestamp, setTimestamp] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fabRef = useRef<HTMLButtonElement>(null);
-
-  // Generate timestamp (SSR-safe, client-side only)
-  useEffect(() => {
-    const formatter = new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-    setTimestamp(formatter.format(new Date()));
-  }, []);
 
   // Handle Esc key
   useEffect(() => {
@@ -93,9 +80,9 @@ const WhatsAppFloat: React.FC = () => {
     }
   };
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <>
@@ -105,7 +92,7 @@ const WhatsAppFloat: React.FC = () => {
           ref={fabRef}
           onClick={handleOpen}
           className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-105 transition-transform duration-200 ease-out flex items-center justify-center"
-          aria-label="Open chat"
+          aria-label="Chat with us on WhatsApp"
           type="button"
         >
           <WhatsAppIcon className="w-7 h-7" />
@@ -125,13 +112,13 @@ const WhatsAppFloat: React.FC = () => {
             aria-labelledby="whatsapp-panel-title"
           >
             {/* Header */}
-            <div className="bg-[#2596be] px-4 py-3 flex items-center justify-between flex-shrink-0">
+            <div className="bg-brand px-4 py-3 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
                 {/* Logo Avatar */}
                 <div className="w-9 h-9 rounded-full bg-[#0a0a0a] flex items-center justify-center overflow-hidden flex-shrink-0">
                   <img
-                    src="/images/logo/act-ict-logo.png"
-                    alt="ACT-ICT Ghana"
+                    src="/images/logo/act-ict-logo.webp"
+                    alt=""
                     className="w-full h-full object-contain p-1"
                   />
                 </div>
@@ -139,14 +126,14 @@ const WhatsAppFloat: React.FC = () => {
                   id="whatsapp-panel-title"
                   className="text-white font-semibold text-base"
                 >
-                  Have a question?
+                  Chat on WhatsApp
                 </h2>
               </div>
               {/* Close Button */}
               <button
                 onClick={handleClose}
                 className="text-white hover:opacity-80 transition-opacity duration-200 flex-shrink-0"
-                aria-label="Close chat"
+                aria-label="Close WhatsApp panel"
                 type="button"
               >
                 <ChevronDown className="w-5 h-5" />
@@ -160,26 +147,19 @@ const WhatsAppFloat: React.FC = () => {
                 {/* Logo Avatar */}
                 <div className="w-7 h-7 rounded-full bg-[#0a0a0a] flex items-center justify-center overflow-hidden flex-shrink-0">
                   <img
-                    src="/images/logo/act-ict-logo.png"
-                    alt="ACT-ICT Ghana"
+                    src="/images/logo/act-ict-logo.webp"
+                    alt=""
                     className="w-full h-full object-contain p-0.5"
                   />
                 </div>
                 {/* Bubble */}
                 <div className="bg-gray-100 text-gray-800 text-sm rounded-2xl rounded-tl-sm px-3 py-2 max-w-xs">
                   <p>
-                    Enter your question below and a representative will get
-                    right back to you.
+                    Type your question below. It will open in WhatsApp, ready
+                    to send to our team.
                   </p>
                 </div>
               </div>
-
-              {/* Timestamp */}
-              {timestamp && (
-                <div className="text-right pr-2">
-                  <span className="text-xs text-gray-500">{timestamp}</span>
-                </div>
-              )}
             </div>
 
             {/* Input Row */}
@@ -204,10 +184,10 @@ const WhatsAppFloat: React.FC = () => {
                   onClick={handleSend}
                   className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
                     message.trim()
-                      ? "bg-[#2596be] text-white hover:bg-[#1e7aa8]"
-                      : "bg-gray-300 text-gray-600"
+                      ? "bg-brand text-white hover:bg-brand-dark"
+                      : "bg-gray-300 text-gray-700"
                   }`}
-                  aria-label="Send message"
+                  aria-label="Open in WhatsApp"
                   type="button"
                 >
                   <Send className="w-4 h-4" />
@@ -216,10 +196,7 @@ const WhatsAppFloat: React.FC = () => {
 
               {/* Footer */}
               <div className="text-center text-xs text-gray-500 pb-1">
-                <span>Powered by </span>
-                <span className="text-[#2596be] font-medium">
-                  ACT-ICT Ghana
-                </span>
+                <span>Opens WhatsApp · +233 577 700 555</span>
               </div>
             </div>
           </div>

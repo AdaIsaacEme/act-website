@@ -33,38 +33,45 @@ const About: React.FC = () => {
   ];
 
   const clients = [
-    { name: "Newmont Ghana", logo: "/images/logo/newmount-logo.png" },
-    { name: "AngloGold Ashanti", logo: "/images/logo/aga.png" },
-    { name: "Asanko Gold", logo: "/images/logo/asanko-logo.png" },
-    { name: "Golden Star Resources", logo: "/images/logo/gsr-logo.png" },
+    { name: "Newmont Ghana", logo: "/images/logo/newmont-logo.webp" },
+    { name: "AngloGold Ashanti", logo: "/images/logo/aga.webp" },
+    { name: "Asanko Gold", logo: "/images/logo/asanko-logo.webp" },
+    { name: "Golden Star Resources", logo: "/images/logo/gsr-logo.webp" },
     {
       name: "Ghana National Gas Company",
-      logo: "/images/logo/ghana-national-gas-company.png",
+      logo: "/images/logo/ghana-national-gas-company.webp",
     },
     {
       name: "Volta River Authority",
-      logo: "/images/logo/volta-river-authority.png",
+      logo: "/images/logo/volta-river-authority.webp",
     },
     {
       name: "Ghana Ports & Harbours Authority",
-      logo: "/images/logo/ghana-ports-harbours-authority.png",
+      logo: "/images/logo/ghana-ports-harbours-authority.webp",
     },
-    { name: "Seadrill", logo: "/images/logo/seadrill.jpg" },
+    { name: "Seadrill", logo: "/images/logo/seadrill.webp" },
     {
       name: "University of Ghana Medical Centre",
-      logo: "/images/logo/ugmc.jpg",
+      logo: "/images/logo/ugmc.webp",
     },
-    { name: "G4S", logo: "/images/logo/g4s.png" },
-    { name: "Perseus Mining", logo: "/images/logo/perseus-logo.png" },
-    { name: "Goldfields", logo: "/images/logo/goldfields.jpg" },
-    { name: "GWL", logo: "/images/logo/gwl.jpg" },
-    { name: "MPS", logo: "/images/logo/mps.jpg" },
-    { name: "Asante Gold", logo: "/images/logo/asante-gold.jpg" },
-    { name: "ZiJin", logo: "/images/logo/zijin.jpg" },
-    { name: "GMC", logo: "/images/logo/gmc.png" },
+    { name: "G4S", logo: "/images/logo/g4s.webp" },
+    { name: "Perseus Mining", logo: "/images/logo/perseus-logo.webp" },
+    { name: "Gold Fields", logo: "/images/logo/goldfields.webp" },
+    { name: "GWL", logo: "/images/logo/gwl.webp" },
+    { name: "MPS", logo: "/images/logo/mps.webp" },
+    { name: "Asante Gold", logo: "/images/logo/asante-gold.webp" },
+    { name: "Zijin", logo: "/images/logo/zijin.webp" },
+    { name: "GMC", logo: "/images/logo/gmc.webp" },
   ];
 
-  const sectors = ["Mining", "Oil & Gas", "Government", "Other Sectors"];
+  const sectors = [
+    "Mining",
+    "Oil & Gas",
+    "Government & Defence",
+    "Healthcare",
+    "Utilities & Ports",
+    "Commercial & Industrial",
+  ];
 
   return (
     <div className="pt-32" style={{ backgroundColor: "var(--bg-primary)" }}>
@@ -72,8 +79,9 @@ const About: React.FC = () => {
       <ScrollReveal slideDistance={30}>
         <div className="relative overflow-hidden py-20">
           <img
-            src="/images/about/about-banner.png"
-            alt="About ACT-ICT Ghana"
+            src="/images/about/about-banner.webp"
+            alt=""
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
@@ -83,7 +91,7 @@ const About: React.FC = () => {
             </h1>
             <p className="text-xl max-w-2xl mx-auto text-white/80">
               Your trusted partner in delivering world-class technology and
-              engineering solutions in West Africa.
+              engineering solutions in Ghana and across Africa.
             </p>
           </div>
         </div>
@@ -110,8 +118,8 @@ const About: React.FC = () => {
                 style={{ color: "var(--text-secondary)" }}
               >
                 <p>
-                  ACT ICT Ghana Ltd is a leading technology and engineering
-                  solutions provider across Ghana and the West African region.
+                  ACT-ICT Ghana Limited is a leading technology and engineering
+                  solutions provider in Ghana and across Africa.
                 </p>
                 <p>
                   We specialize in designing, deploying, and supporting
@@ -139,8 +147,10 @@ const About: React.FC = () => {
             <div className="relative h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl bg-[#0F2137] ring-1 ring-[#1E3A5F] will-change-transform">
               <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                 <img
-                  src="/images/about/cisco-router-hack.jpg"
-                  alt="Strategic Partnership"
+                  src="/images/about/network-engineering.webp"
+                  alt="Network engineering equipment"
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover will-change-transform"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
@@ -168,7 +178,7 @@ const About: React.FC = () => {
                 borderColor: "var(--border-color)",
               }}
             >
-              <div className="font-display text-4xl font-black text-[#00A8E8] mb-2">
+              <div className="font-display text-4xl font-black text-[color:var(--accent-text)] mb-2">
                 <AnimatedCounter value={stat.number} duration={1.2} />
               </div>
               <div
@@ -247,8 +257,9 @@ const About: React.FC = () => {
               Our Clients
             </h2>
             <div className="text-center">
-              <p className="mb-12" style={{ color: "#7A9ABD" }}>
-                Among our clients:
+              <p className="mb-12" style={{ color: "#9DB4CF" }}>
+                Mining houses, utilities, hospitals and public institutions
+                that rely on our systems every day.
               </p>
               <StaggeredGrid
                 staggerDelay={0.04}
@@ -270,6 +281,8 @@ const About: React.FC = () => {
                     <img
                       src={client.logo}
                       alt={client.name}
+                      loading="lazy"
+                      decoding="async"
                       className="client-logo"
                       onError={(e) => {
                         const img = e.currentTarget;
@@ -307,7 +320,7 @@ const About: React.FC = () => {
               {sectors.map((sector, idx) => (
                 <div
                   key={idx}
-                  className="border rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
+                  className="border rounded-xl p-8 text-center hover:border-[color:var(--accent-text)] transition-all duration-300"
                   style={{
                     backgroundColor: "var(--bg-surface)",
                     borderColor: "var(--border-color)",
@@ -346,7 +359,7 @@ const About: React.FC = () => {
                 },
                 {
                   title: "Global Partnerships",
-                  desc: "Direct access to world-class technology through platinum partnerships.",
+                  desc: "Direct access to world-class technology, including Motorola Solutions Platinum Partner status.",
                 },
                 {
                   title: "Proven Track Record",
@@ -355,21 +368,21 @@ const About: React.FC = () => {
               ].map((val, idx) => (
                 <div
                   key={idx}
-                  className="border rounded-xl p-8 text-center hover:border-[#00A8E8] transition-all duration-300"
+                  className="border rounded-xl p-8 text-center hover:border-[color:var(--accent-text)] transition-all duration-300"
                   style={{
                     backgroundColor: "var(--bg-surface)",
                     borderColor: "var(--border-color)",
                   }}
                 >
-                  <div className="w-12 h-12 bg-[#00A8E8]/10 text-[#00A8E8] rounded-full flex items-center justify-center mb-4 mx-auto ring-1 ring-[#00A8E8]/30">
+                  <div className="w-12 h-12 bg-[#00A8E8]/10 text-[color:var(--accent-text)] rounded-full flex items-center justify-center mb-4 mx-auto ring-1 ring-[#00A8E8]/30">
                     <CheckCircle size={24} />
                   </div>
-                  <h4
+                  <h3
                     className="font-display text-xl font-black mb-2"
                     style={{ color: "var(--text-heading)" }}
                   >
                     {val.title}
-                  </h4>
+                  </h3>
                   <p style={{ color: "var(--text-secondary)" }}>{val.desc}</p>
                 </div>
               ))}

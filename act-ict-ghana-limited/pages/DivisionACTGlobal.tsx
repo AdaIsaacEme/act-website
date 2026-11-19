@@ -47,8 +47,9 @@ const DivisionACTGlobal: React.FC = () => {
       <ScrollReveal slideDistance={30}>
         <div className="relative overflow-hidden py-20 mb-24">
           <img
-            src="/images/divisions/act-global-banner.png"
-            alt="ACTGlobal Division"
+            src="/images/divisions/act-global-banner.webp"
+            alt=""
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
@@ -60,8 +61,8 @@ const DivisionACTGlobal: React.FC = () => {
               ACT Global
             </h1>
             <p className="text-xl max-w-2xl text-white/80">
-              From industrial automation to advanced lighting and monitoring
-              systems, we bring global technology to your operations.
+              From mine safety and industrial lighting to aerial surveillance,
+              we bring global technology to your operations.
             </p>
           </div>
         </div>
@@ -85,13 +86,13 @@ const DivisionACTGlobal: React.FC = () => {
             >
               {/* Icon row with info button */}
               <div className="flex items-start justify-between mb-6">
-                <div className="p-3 bg-[#F59E0B]/10 text-[#F59E0B] rounded-lg w-fit ring-1 ring-[#F59E0B]/30 group-hover:ring-[#F59E0B]/50 transition-all duration-300">
+                <div className="p-3 bg-[#F59E0B]/10 text-[color:var(--accent-warm-text)] rounded-lg w-fit ring-1 ring-[#F59E0B]/30 group-hover:ring-[#F59E0B]/50 transition-all duration-300">
                   {item.icon}
                 </div>
                 <Link
                   to="/contact"
-                  aria-label="More info — contact us"
-                  className="w-6 h-6 rounded-full flex items-center justify-center border border-[#F59E0B] text-[#F59E0B] hover:bg-[#F59E0B]/10 transition-colors duration-200 flex-shrink-0"
+                  aria-label={`Ask about ${item.title}`}
+                  className="w-8 h-8 rounded-full flex items-center justify-center border border-[color:var(--accent-warm-text)] text-[color:var(--accent-warm-text)] hover:bg-[#F59E0B]/10 transition-colors duration-200 flex-shrink-0"
                 >
                   <Info size={14} />
                 </Link>
@@ -117,8 +118,10 @@ const DivisionACTGlobal: React.FC = () => {
               <div className="h-64 rounded-lg overflow-hidden bg-[#060F1E] ring-1 ring-[#1E3A5F] grid">
                 <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                   <img
-                    src={`/images/divisions/act-global-${idx + 1}.jpg`}
+                    src={`/images/divisions/act-global-${idx + 1}.webp`}
                     alt={item.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";

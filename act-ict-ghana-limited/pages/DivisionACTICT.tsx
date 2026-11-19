@@ -65,13 +65,14 @@ const DivisionACTICT: React.FC = () => {
       <ScrollReveal>
         <div className="relative overflow-hidden py-20 mb-24">
           <img
-            src="/images/divisions/act-ict-banner.png"
-            alt="ACT-ICT Division"
+            src="/images/divisions/act-ict-banner.webp"
+            alt=""
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/90 via-[#0A1628]/70 to-[#0A1628]/40" />
           <div className="relative max-w-7xl mx-auto px-4">
-            <span className="text-[#00A8E8] font-bold tracking-[0.3em] uppercase text-sm">
+            <span className="text-[color:var(--accent-text)] font-bold tracking-[0.3em] uppercase text-sm">
               Division
             </span>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black mt-2 mb-6 text-white">
@@ -103,7 +104,7 @@ const DivisionACTICT: React.FC = () => {
               >
                 {/* Content */}
                 <div className="flex-1">
-                  <div className="inline-block p-4 bg-[#00A8E8]/10 text-[#00A8E8] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
+                  <div className="inline-block p-4 bg-[#00A8E8]/10 text-[color:var(--accent-text)] rounded-2xl mb-6 ring-1 ring-[#00A8E8]/30">
                     {section.icon}
                   </div>
                   <h2
@@ -125,7 +126,7 @@ const DivisionACTICT: React.FC = () => {
                         className="flex items-center font-medium"
                         style={{ color: "var(--text-primary)" }}
                       >
-                        <Check className="text-[#00A8E8] mr-3" size={20} />
+                        <Check className="text-[color:var(--accent-text)] mr-3 flex-shrink-0" size={20} aria-hidden="true" />
                         {feat}
                       </li>
                     ))}
@@ -137,8 +138,10 @@ const DivisionACTICT: React.FC = () => {
                   <div className="relative overflow-hidden rounded-xl shadow-2xl ring-1 ring-[#00A8E8]/20 hover:ring-[#00A8E8]/50 transition-all duration-300">
                     <AnimatedWrapper hoverScale={1.06} transitionDuration={0.4}>
                       <img
-                        src={`/images/divisions/act-ict-${idx + 1}.jpg`}
+                        src={`/images/divisions/act-ict-${idx + 1}.webp`}
                         alt={section.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-auto object-cover"
                         onError={(e) => {
                           e.currentTarget.style.display = "none";
