@@ -384,8 +384,9 @@ const Contact: React.FC = () => {
                   )}
                   {status === "mailto" && (
                     <p role="status" className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                      Your email app should now open with your message ready to send. If it
-                      didn't, email us at{" "}
+                      We couldn't send your message directly, so it has opened in your email
+                      app. <strong>Press Send there to deliver it.</strong> If nothing opened, email
+                      us at{" "}
                       <a href={`mailto:${OFFICE_EMAIL}`} className="underline text-[color:var(--accent-text)]">
                         {OFFICE_EMAIL}
                       </a>
