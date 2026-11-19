@@ -1,7 +1,7 @@
 // Single source of truth for per-page titles, descriptions and the site URL.
 // Used by the <Seo> component in the browser and by scripts/prerender.mjs at build time.
 
-// Change this (or set VITE_SITE_URL in Vercel) when the site moves to its own domain.
+// The live address. When the site moves to act-ict.com, change this (or set VITE_SITE_URL in Vercel).
 export const SITE_URL: string =
   ((import.meta as any).env?.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ||
   'https://act-website-six.vercel.app';

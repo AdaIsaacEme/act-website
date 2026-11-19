@@ -129,7 +129,7 @@ const defaultProjects: Project[] = [
     title: "CCTV",
     description: "Multi-site CCTV deployment across mining facilities.",
     category: "Security",
-    image: "/images/projects/mine-cctv.webp",
+    image: "/images/projects/cctv-control-room.webp",
   },
 ];
 
