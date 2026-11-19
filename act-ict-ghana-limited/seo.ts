@@ -1,10 +1,10 @@
 // Single source of truth for per-page titles, descriptions and the site URL.
 // Used by the <Seo> component in the browser and by scripts/prerender.mjs at build time.
 
-// The live address. Can be overridden with VITE_SITE_URL in Vercel.
+// The live address. When the site moves to act-ict.com, change this (or set VITE_SITE_URL in Vercel).
 export const SITE_URL: string =
   ((import.meta as any).env?.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ||
-  'https://act-ict.com';
+  'https://act-website-six.vercel.app';
 
 export const SITE_NAME = 'ACT-ICT Ghana Limited';
 export const OG_IMAGE = '/og-image.jpg';

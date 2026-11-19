@@ -38,7 +38,7 @@ the visitor's email app opens with the message filled in.
 
 | Variable | Purpose |
 | --- | --- |
-| `VITE_SITE_URL` | The live address, only needed if the address changes (used for canonical links, sitemap, share previews). Defaults to https://act-ict.com. |
+| `VITE_SITE_URL` | The live address, only needed if the address changes (used for canonical links, sitemap, share previews). Defaults to https://act-website-six.vercel.app. Change it when the site moves to act-ict.com. |
 
 ## Accessibility
 
