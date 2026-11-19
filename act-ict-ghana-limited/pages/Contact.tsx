@@ -5,10 +5,12 @@ import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedButton from "../components/AnimatedButton";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle, AlertCircle } from "lucide-react";
 
-// Form delivery: set VITE_WEB3FORMS_KEY in Vercel (free key from web3forms.com, sent to office@act-ict.com).
-// Without a key, the form opens the visitor's email app with the message filled in, so nothing is lost.
-const WEB3FORMS_KEY = (import.meta as any).env?.VITE_WEB3FORMS_KEY as string | undefined;
+// Form delivery: posted to FormSubmit (formsubmit.co), which emails it to OFFICE_EMAIL.
+// No account or key needed. The very first message sends an "Activate form" email to
+// OFFICE_EMAIL — click the link in it once, and every message after that is delivered.
+// If the service can't be reached, the visitor's email app opens instead, so nothing is lost.
 const OFFICE_EMAIL = "office@act-ict.com";
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${OFFICE_EMAIL}`;
 
 type Status = "idle" | "sending" | "sent" | "mailto" | "error";
 
@@ -36,7 +38,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    if (data.get("botcheck")) return; // honeypot: bots fill hidden fields
+    if (data.get("_honey")) return; // honeypot: bots fill hidden fields
 
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
@@ -44,40 +46,39 @@ const Contact: React.FC = () => {
     const subject = String(data.get("subject") || "General Inquiry");
     const message = String(data.get("message") || "").trim();
 
-    if (!WEB3FORMS_KEY) {
+    const openEmailApp = () => {
       const body = `${message}\n\n— ${name}\n${email}${phone ? `\n${phone}` : ""}`;
       window.location.href = `mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
         `Website: ${subject}`,
       )}&body=${encodeURIComponent(body)}`;
       setStatus("mailto");
-      return;
-    }
+    };
 
     setStatus("sending");
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: `Website enquiry: ${subject}`,
-          from_name: "ACT-ICT website",
+          _subject: `Website enquiry: ${subject}`,
+          _template: "table",
+          _replyto: email,
           name,
           email,
-          phone,
+          phone: phone || "—",
           enquiry_type: subject,
           message,
         }),
       });
       const json = await res.json().catch(() => ({}));
-      if (res.ok && json.success !== false) {
+      if (res.ok && String(json.success) !== "false") {
         setStatus("sent");
         form.reset();
       } else {
-        setStatus("error");
+        openEmailApp();
       }
     } catch {
-      setStatus("error");
+      openEmailApp();
     }
   };
 
@@ -269,8 +270,8 @@ const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-6" noValidate={false}>
                   {/* Honeypot — hidden from people, filled by bots */}
                   <input
-                    type="checkbox"
-                    name="botcheck"
+                    type="text"
+                    name="_honey"
                     tabIndex={-1}
                     autoComplete="off"
                     className="hidden"

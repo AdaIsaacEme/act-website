@@ -27,11 +27,17 @@ Drop the original JPG/PNG into the right folder under `public/images/`, run
 `npm run images`, then reference the `.webp` file in the code. Never commit
 photos straight from a camera or phone: they can contain GPS coordinates.
 
+## Contact form
+
+Messages are sent through FormSubmit (formsubmit.co, free, no account) to
+office@act-ict.com. The **first** message ever sent triggers an "Activate form"
+email to office@act-ict.com: click the link in it once. If the service is down,
+the visitor's email app opens with the message filled in.
+
 ## Settings in Vercel (Project → Settings → Environment Variables)
 
 | Variable | Purpose |
 | --- | --- |
-| `VITE_WEB3FORMS_KEY` | Contact form delivery. Free key from https://web3forms.com, registered to office@act-ict.com. Without it, the form opens the visitor's email app instead. |
 | `VITE_SITE_URL` | The live address, e.g. `https://www.act-ict.com` (used for canonical links, sitemap, share previews). Defaults to the vercel.app address. |
 
 ## Accessibility
