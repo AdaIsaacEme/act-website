@@ -198,7 +198,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start space-x-3">
                 <MapPin className="flex-shrink-0 mt-1" size={16} aria-hidden="true" />
                 <a
-                  href="https://maps.app.goo.gl/nGFsDiXuHMVzQKEr7"
+                  href="https://maps.app.goo.gl/nh1LEgKni858MnMo8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[color:var(--accent-text)] transition-colors duration-300"
