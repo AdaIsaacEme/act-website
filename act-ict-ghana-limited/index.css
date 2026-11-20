@@ -526,6 +526,25 @@ button {
   }
 }
 
+/* ============================================
+   Short laptop screens (e.g. 13" at 150% Windows scaling)
+   At normal 100% browser zoom the hero headline was taller than the window and slid
+   under the menu bar. On wide-but-short windows, the menu bar, hero text, slider
+   controls and WhatsApp button shrink in steps tied to window height — a ~588px-tall
+   window gets exactly the 90%-zoom look. Taller windows and phones are unchanged.
+   ============================================ */
+@media (min-width: 1024px) and (max-height: 659px) { :root { --short-zoom: 0.95; } }
+@media (min-width: 1024px) and (max-height: 619px) { :root { --short-zoom: 0.9; } }
+@media (min-width: 1024px) and (max-height: 569px) { :root { --short-zoom: 0.85; } }
+@media (min-width: 1024px) and (max-height: 529px) { :root { --short-zoom: 0.8; } }
+/* Phones held sideways: very short and narrower than a laptop. */
+@media (max-width: 1023px) and (max-height: 500px) {
+  :root { --short-zoom: 0.7; }
+  .hero-stats { display: none !important; }
+  .hero-pad { padding-top: 76px !important; padding-bottom: 56px !important; }
+}
+.short-zoom { zoom: var(--short-zoom, 1); }
+
 /* Tailwind is compiled at build time (was loaded from a CDN). Kept last so it
    layers on top of the rules above, exactly as the CDN version did. */
 @tailwind base;
