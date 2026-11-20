@@ -29,11 +29,9 @@ photos straight from a camera or phone: they can contain GPS coordinates.
 
 ## Contact form
 
-Messages are sent through FormSubmit (formsubmit.co, free, no account) to the
-address in `FORM_TO_EMAIL` at the top of `pages/Contact.tsx`. The **first** message
-sent to a new address triggers an "Activate form" email to that address: click the
-link in it once. If the service is down,
-the visitor's email app opens with the message filled in.
+The form opens the visitor's own email app with their message filled in, addressed
+to office@act-ict.com (set as `OFFICE_EMAIL` in `pages/Contact.tsx`). No outside
+form service is used: the company mail server blocks them.
 
 ## Settings in Vercel (Project → Settings → Environment Variables)
 

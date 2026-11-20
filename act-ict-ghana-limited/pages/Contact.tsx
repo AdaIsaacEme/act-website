@@ -3,17 +3,13 @@ import { useContent } from "../context/ContentContext";
 import ScrollReveal from "../components/ScrollReveal";
 import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedButton from "../components/AnimatedButton";
-import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 
-// Form delivery: posted to FormSubmit (formsubmit.co), which emails it to FORM_TO_EMAIL.
-// No account or key needed. The very first message sends an "Activate form" email to
-// FORM_TO_EMAIL — click the link in it once, and every message after that is delivered.
-// If the service can't be reached, the visitor's email app opens instead, so nothing is lost.
-const OFFICE_EMAIL = "office@act-ict.com"; // shown to visitors and used by the email-app fallback
-const FORM_TO_EMAIL = "office@act-ict.com"; // where form messages are delivered
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_TO_EMAIL}`;
+// The form opens the visitor's own email app with their message filled in, addressed to
+// OFFICE_EMAIL (the same approach as the previous act-ict.com site). No outside service is used.
+const OFFICE_EMAIL = "office@act-ict.com";
 
-type Status = "idle" | "sending" | "sent" | "mailto" | "error";
+type Status = "idle" | "mailto";
 
 const fieldClass =
   "w-full px-4 py-3 rounded-lg border focus:border-[color:var(--accent-text)] focus:ring-2 focus:ring-[#00A8E8]/20 outline-none transition-all duration-300";
@@ -35,52 +31,19 @@ const Contact: React.FC = () => {
   const { content } = useContent();
   const [status, setStatus] = useState<Status>("idle");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    if (data.get("_honey")) return; // honeypot: bots fill hidden fields
-
+    const data = new FormData(e.currentTarget);
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const subject = String(data.get("subject") || "General Inquiry");
     const message = String(data.get("message") || "").trim();
-
-    const openEmailApp = () => {
-      const body = `${message}\n\n— ${name}\n${email}${phone ? `\n${phone}` : ""}`;
-      window.location.href = `mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
-        `Website: ${subject}`,
-      )}&body=${encodeURIComponent(body)}`;
-      setStatus("mailto");
-    };
-
-    setStatus("sending");
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Website enquiry: ${subject}`,
-          _template: "table",
-          _replyto: email,
-          name,
-          email,
-          phone: phone || "—",
-          enquiry_type: subject,
-          message,
-        }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (res.ok && String(json.success) !== "false") {
-        setStatus("sent");
-        form.reset();
-      } else {
-        openEmailApp();
-      }
-    } catch {
-      openEmailApp();
-    }
+    const body = `${message}\n\n— ${name}\n${email}${phone ? `\n${phone}` : ""}`;
+    window.location.href = `mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
+      `Website: ${subject}`,
+    )}&body=${encodeURIComponent(body)}`;
+    setStatus("mailto");
   };
 
   return (
@@ -248,35 +211,7 @@ const Contact: React.FC = () => {
                 Send us a Message
               </h2>
 
-              {status === "sent" ? (
-                <div role="status" className="flex items-start gap-3 text-base" style={{ color: "var(--text-primary)" }}>
-                  <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={22} aria-hidden="true" />
-                  <div>
-                    <p className="font-semibold">Thank you — your message has been sent.</p>
-                    <p style={{ color: "var(--text-secondary)" }}>
-                      Our team will reply to the email address you gave. For anything urgent, call{" "}
-                      {content.contact.phone2}.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => setStatus("idle")}
-                      className="mt-4 underline text-[color:var(--accent-text)]"
-                    >
-                      Send another message
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6" noValidate={false}>
-                  {/* Honeypot — hidden from people, filled by bots */}
-                  <input
-                    type="text"
-                    name="_honey"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    className="hidden"
-                    aria-hidden="true"
-                  />
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label
@@ -376,18 +311,11 @@ const Contact: React.FC = () => {
                     ></textarea>
                   </div>
 
-                  {status === "error" && (
-                    <p role="alert" className="flex items-start gap-2 text-sm text-red-600">
-                      <AlertCircle size={18} className="flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      Sorry, your message could not be sent. Please try again, or email{" "}
-                      <a href={`mailto:${OFFICE_EMAIL}`} className="underline">{OFFICE_EMAIL}</a>.
-                    </p>
-                  )}
                   {status === "mailto" && (
                     <p role="status" className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                      We couldn't send your message directly, so it has opened in your email
-                      app. <strong>Press Send there to deliver it.</strong> If nothing opened, email
-                      us at{" "}
+                      Your message has opened in your email app.{" "}
+                      <strong>Press Send there to deliver it.</strong> If nothing opened, email us
+                      at{" "}
                       <a href={`mailto:${OFFICE_EMAIL}`} className="underline text-[color:var(--accent-text)]">
                         {OFFICE_EMAIL}
                       </a>
@@ -395,17 +323,19 @@ const Contact: React.FC = () => {
                     </p>
                   )}
 
+                  <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
+                    Clicking Send opens your email app with this message ready to send to{" "}
+                    {OFFICE_EMAIL}.
+                  </p>
                   <AnimatedButton
                     type="submit"
-                    disabled={status === "sending"}
-                    className="w-full md:w-auto px-8 py-3 bg-brand hover:bg-brand-dark disabled:opacity-60 text-white font-bold rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg btn-lift"
+                    className="w-full md:w-auto px-8 py-3 bg-brand hover:bg-brand-dark text-white font-bold rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg btn-lift"
                     hoverScale={1.05}
                   >
-                    {status === "sending" ? "Sending…" : "Send Message"}{" "}
+                    Send Message{" "}
                     <Send size={18} className="ml-2" aria-hidden="true" />
                   </AnimatedButton>
                 </form>
-              )}
             </div>
           </ScrollReveal>
         </div>
