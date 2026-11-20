@@ -1,0 +1,4 @@
+Contact: mailto:office@act-ict.com
+Expires: 2027-11-20T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://act-website-six.vercel.app/.well-known/security.txt

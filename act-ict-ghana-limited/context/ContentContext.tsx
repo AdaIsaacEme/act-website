@@ -52,8 +52,8 @@ const defaultContent: SiteContent = {
   },
   socials: {
     linkedin:
-      "https://www.linkedin.com/company/act-innovative-engineering-ltd/?originalSubdomain=gh",
-    facebook: "https://web.facebook.com/actictgh/?_rdc=1&_rdr#",
+      "https://www.linkedin.com/company/act-innovative-engineering-ltd/",
+    facebook: "https://www.facebook.com/actictgh/",
     twitter: "https://x.com/act_ghana",
     instagram: "https://www.instagram.com/act.ict/",
   },
