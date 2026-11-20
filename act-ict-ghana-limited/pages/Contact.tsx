@@ -5,12 +5,13 @@ import StaggeredGrid from "../components/StaggeredGrid";
 import AnimatedButton from "../components/AnimatedButton";
 import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle, AlertCircle } from "lucide-react";
 
-// Form delivery: posted to FormSubmit (formsubmit.co), which emails it to OFFICE_EMAIL.
+// Form delivery: posted to FormSubmit (formsubmit.co), which emails it to FORM_TO_EMAIL.
 // No account or key needed. The very first message sends an "Activate form" email to
-// OFFICE_EMAIL — click the link in it once, and every message after that is delivered.
+// FORM_TO_EMAIL — click the link in it once, and every message after that is delivered.
 // If the service can't be reached, the visitor's email app opens instead, so nothing is lost.
-const OFFICE_EMAIL = "office@act-ict.com";
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${OFFICE_EMAIL}`;
+const OFFICE_EMAIL = "office@act-ict.com"; // shown to visitors and used by the email-app fallback
+const FORM_TO_EMAIL = "abdallah.dev.automations@gmail.com"; // where form messages are delivered
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_TO_EMAIL}`;
 
 type Status = "idle" | "sending" | "sent" | "mailto" | "error";
 
@@ -384,8 +385,9 @@ const Contact: React.FC = () => {
                   )}
                   {status === "mailto" && (
                     <p role="status" className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                      Your email app should now open with your message ready to send. If it
-                      didn't, email us at{" "}
+                      We couldn't send your message directly, so it has opened in your email
+                      app. <strong>Press Send there to deliver it.</strong> If nothing opened, email
+                      us at{" "}
                       <a href={`mailto:${OFFICE_EMAIL}`} className="underline text-[color:var(--accent-text)]">
                         {OFFICE_EMAIL}
                       </a>
