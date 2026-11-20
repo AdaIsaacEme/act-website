@@ -62,8 +62,8 @@ const Contact: React.FC = () => {
           style={{ marginBottom: "5rem" }}
         >
           <img
-            src="/images/banners/contact-banner.webp"
-            srcSet="/images/banners/contact-banner-960.webp 960w, /images/banners/contact-banner.webp 1920w"
+            src="/images/banners/contact-banner-v2.webp"
+            srcSet="/images/banners/contact-banner-v2-960.webp 960w, /images/banners/contact-banner-v2.webp 1920w"
             sizes="100vw"
             alt=""
             fetchPriority="high"

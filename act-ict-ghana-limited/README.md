@@ -24,7 +24,9 @@ then React takes over in the browser.
 ## Adding images
 
 Drop the original JPG/PNG into the right folder under `public/images/`, run
-`npm run images`, then reference the `.webp` file in the code. Never commit
+`npm run images`, then reference the `.webp` file in the code.
+When you REPLACE an existing image, give it a new file name (e.g. `-v2`):
+browsers keep images for a day, so a reused name can show the old picture. Never commit
 photos straight from a camera or phone: they can contain GPS coordinates.
 
 ## Contact form
