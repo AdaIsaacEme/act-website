@@ -10,7 +10,7 @@ import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle, AlertCircle } fr
 // FORM_TO_EMAIL — click the link in it once, and every message after that is delivered.
 // If the service can't be reached, the visitor's email app opens instead, so nothing is lost.
 const OFFICE_EMAIL = "office@act-ict.com"; // shown to visitors and used by the email-app fallback
-const FORM_TO_EMAIL = "abdallah.dev.automations@gmail.com"; // where form messages are delivered
+const FORM_TO_EMAIL = "office@act-ict.com"; // where form messages are delivered
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_TO_EMAIL}`;
 
 type Status = "idle" | "sending" | "sent" | "mailto" | "error";
