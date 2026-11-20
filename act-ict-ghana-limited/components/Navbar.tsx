@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       aria-label="Main"
-      className={`fixed w-full z-50 ${navBg} backdrop-blur-md border-b transition-all duration-300`}
+      className={`short-zoom fixed w-full z-50 ${navBg} backdrop-blur-md border-b transition-all duration-300`}
     >
       {/* Top Bar */}
       <div

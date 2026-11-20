@@ -91,7 +91,7 @@ const WhatsAppFloat: React.FC = () => {
         <button
           ref={fabRef}
           onClick={handleOpen}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-105 transition-transform duration-200 ease-out flex items-center justify-center"
+          className="short-zoom fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-105 transition-transform duration-200 ease-out flex items-center justify-center"
           aria-label="Chat with us on WhatsApp"
           type="button"
         >

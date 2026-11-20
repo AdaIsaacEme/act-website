@@ -108,8 +108,8 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           aria-live={autoplay ? "off" : "polite"}
         >
-          <div className="relative w-full h-full flex flex-col justify-center pt-32 pb-24 lg:pt-40 lg:pb-28 2xl:pt-64 2xl:pb-32">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="hero-pad relative w-full h-full flex flex-col justify-center pt-[calc(8rem*var(--short-zoom,1))] pb-[calc(6rem*var(--short-zoom,1))] lg:pt-[calc(10rem*var(--short-zoom,1))] lg:pb-[calc(7rem*var(--short-zoom,1))] 2xl:pt-64 2xl:pb-32">
+            <div className="short-zoom w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-2xl lg:max-w-3xl">
                 <motion.h1
                   initial={{ opacity: 0, y: 60 }}
@@ -133,7 +133,7 @@ const Hero: React.FC = () => {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.45 }}
-                  className="flex flex-wrap gap-4 sm:gap-6 mb-6 text-xs sm:text-sm md:text-base"
+                  className="hero-stats flex flex-wrap gap-4 sm:gap-6 mb-6 text-xs sm:text-sm md:text-base"
                 >
                   {stats.map((stat, idx) => (
                     <li key={stat.label} className="flex items-center gap-2">
@@ -188,7 +188,7 @@ const Hero: React.FC = () => {
       </AnimatePresence>
 
       {/* Controls — bottom-left, clear of the WhatsApp button (bottom-right). */}
-      <div className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2 sm:left-10 sm:translate-x-0 flex items-center gap-2">
+      <div className="short-zoom absolute z-20 bottom-6 left-1/2 -translate-x-1/2 sm:left-10 sm:translate-x-0 flex items-center gap-2">
         <button
           type="button"
           onClick={() => setPaused((p) => !p)}
